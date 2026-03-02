@@ -44,18 +44,9 @@ export default function HeroSection() {
         <section className="relative h-screen w-full overflow-hidden">
             {/* Video Background */}
             <div className="absolute inset-0 z-0">
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    poster="/hero-poster.jpg"
-                    className="w-full h-full object-cover"
-                >
-                    <source src="/hero-video.mp4" type="video/mp4" />
-                </video>
-                {/* Fallback gradient if no video */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)] via-[#0a2d6b] to-[#061a3d]" />
+                {/* Fallback gradient placeholder since video is missing */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#061a3d] via-[#0a2d6b] to-[#1a4b9c]" />
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
             </div>
 
             {/* Overlay */}
@@ -80,7 +71,7 @@ export default function HeroSection() {
                         ref={headlineRef}
                         className="!text-white text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
                     >
-                        Experience Sri Lanka Like Never Before
+                        The Home of Sri Lankan Hospitality
                     </h1>
 
                     <motion.p
@@ -89,7 +80,7 @@ export default function HeroSection() {
                         transition={{ duration: 0.8, delay: 1.5 }}
                         className="!text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light tracking-wide"
                     >
-                        Private Tours. Luxury Fleet. Authentic Hospitality.
+                        Your adventure. Your way, with EliteWing Travels.
                     </motion.p>
 
                     <motion.div

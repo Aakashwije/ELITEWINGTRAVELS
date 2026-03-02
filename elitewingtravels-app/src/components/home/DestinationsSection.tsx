@@ -18,14 +18,12 @@ export default function DestinationsSection() {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-16"
                 >
-                    <span className="section-label justify-center">Curated Destinations</span>
+                    <span className="section-label mb-4 inline-block">Fortresses, forests, temples, treasures</span>
                     <h2>
-                        Handpicked{" "}
-                        <span className="text-gradient-gold">Luxury Escapes</span>
+                        Magical destinations
                     </h2>
                     <p className="max-w-xl mx-auto mt-4">
-                        From ancient citadels to golden beaches, each destination is
-                        carefully selected to deliver an extraordinary experience.
+                        Discover the diverse allure of Sri Lanka with our carefully selected magical escapes.
                     </p>
                 </motion.div>
 
@@ -41,13 +39,10 @@ export default function DestinationsSection() {
                                 <div className="card-luxury overflow-hidden">
                                     <div className="relative h-72 overflow-hidden">
                                         <div
-                                            className="w-full h-full bg-gradient-to-br from-[var(--color-primary)] to-[#0a2d6b] transition-transform duration-700 group-hover:scale-110"
-                                            style={{
-                                                backgroundImage: `url(${dest.image})`,
-                                                backgroundSize: "cover",
-                                                backgroundPosition: "center",
-                                            }}
-                                        />
+                                            className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[var(--color-primary)] to-[#0a2d6b] transition-transform duration-700 group-hover:scale-110"
+                                        >
+                                            <span className="text-white/20 text-6xl font-bold">{dest.name.charAt(0)}</span>
+                                        </div>
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                                         <div className="absolute bottom-4 left-5 right-5">
                                             <span className="inline-block px-3 py-1 bg-[var(--color-gold)] text-white text-xs font-semibold rounded-full mb-2">

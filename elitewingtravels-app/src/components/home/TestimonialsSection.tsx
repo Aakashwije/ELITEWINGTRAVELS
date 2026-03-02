@@ -27,9 +27,9 @@ export default function TestimonialsSection() {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-16"
                 >
-                    <span className="section-label justify-center">Testimonials</span>
+                    <span className="section-label mb-4 inline-block">Tales of travels</span>
                     <h2>
-                        What Our <span className="text-gradient-gold">Guests Say</span>
+                        Stories from <span className="text-gradient-gold">all over</span>
                     </h2>
                 </motion.div>
 
@@ -44,15 +44,8 @@ export default function TestimonialsSection() {
                             className="text-center"
                         >
                             {/* Avatar */}
-                            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-gold)] mx-auto mb-6 flex items-center justify-center text-white text-2xl font-bold overflow-hidden">
-                                <div
-                                    className="w-full h-full"
-                                    style={{
-                                        backgroundImage: `url(${t.image})`,
-                                        backgroundSize: "cover",
-                                        backgroundPosition: "center",
-                                    }}
-                                />
+                            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-gold)] mx-auto mb-6 flex items-center justify-center text-white text-3xl font-bold overflow-hidden">
+                                {t.name.charAt(0)}
                             </div>
 
                             {/* Stars */}
