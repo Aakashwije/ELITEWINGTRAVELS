@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
 
@@ -14,7 +15,6 @@ const contactSchema = z.object({
     honeypot: z.string().max(0),
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactForm() {
@@ -26,6 +26,7 @@ export default function ContactForm() {
         handleSubmit,
         formState: { errors },
     } = useForm<ContactFormData>({
+        resolver: zodResolver(contactSchema),
         defaultValues: {
             name: "",
             email: "",

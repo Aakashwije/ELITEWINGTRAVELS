@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 const tourSchema = z.object({
@@ -17,7 +18,6 @@ const tourSchema = z.object({
     honeypot: z.string().max(0),
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type TourFormData = z.infer<typeof tourSchema>;
 
 const steps = [
@@ -53,6 +53,7 @@ export default function TourBuilderSection() {
         watch,
         formState: { errors },
     } = useForm<TourFormData>({
+        resolver: zodResolver(tourSchema),
         defaultValues: {
             travelers: "",
             startDate: "",

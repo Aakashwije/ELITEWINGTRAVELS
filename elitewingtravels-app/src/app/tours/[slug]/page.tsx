@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { tours } from "@/lib/data";
 import { notFound } from "next/navigation";
 import TourDetailClient from "./TourDetailClient";

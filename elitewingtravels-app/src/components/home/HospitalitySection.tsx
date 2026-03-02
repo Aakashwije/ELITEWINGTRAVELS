@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { HeartHandshake, Shield, Sparkles, Target, Gem } from "lucide-react";
 
 export default function HospitalitySection() {
     const ref = useRef(null);
@@ -22,7 +23,13 @@ export default function HospitalitySection() {
                         <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5]">
                             <div className="w-full h-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-gold)] flex items-center justify-center">
                                 <div className="text-center text-white p-8">
-                                    <span className="text-8xl mb-4 block">🙏</span>
+                                    <motion.div 
+                                        animate={{ y: [0, -10, 0] }} 
+                                        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                                        className="mb-4 flex justify-center"
+                                    >
+                                        <HeartHandshake size={80} strokeWidth={1} />
+                                    </motion.div>
                                     <p className="text-xl font-[var(--font-heading)] italic">
                                         Ayubowan
                                     </p>
@@ -61,10 +68,10 @@ export default function HospitalitySection() {
                         </p>
                         <div className="grid grid-cols-2 gap-6">
                             {[
-                                { icon: "🛡️", title: "Safety First", desc: "Licensed, insured & professional" },
-                                { icon: "✨", title: "Premium Service", desc: "5-star quality guaranteed" },
-                                { icon: "🎯", title: "Personalized", desc: "Tailored to your desires" },
-                                { icon: "💎", title: "Authentic", desc: "Genuine cultural immersion" },
+                                { icon: Shield, title: "Safety First", desc: "Licensed, insured & professional" },
+                                { icon: Sparkles, title: "Premium Service", desc: "5-star quality guaranteed" },
+                                { icon: Target, title: "Personalized", desc: "Tailored to your desires" },
+                                { icon: Gem, title: "Authentic", desc: "Genuine cultural immersion" },
                             ].map((item, i) => (
                                 <motion.div
                                     key={item.title}
@@ -73,7 +80,13 @@ export default function HospitalitySection() {
                                     transition={{ duration: 0.6, delay: 0.4 + i * 0.1 }}
                                     className="bg-white rounded-2xl p-5 shadow-sm"
                                 >
-                                    <span className="text-2xl mb-2 block">{item.icon}</span>
+                                    <motion.div 
+                                        whileHover={{ scale: 1.1, rotate: [0, -10, 10, -10, 0] }}
+                                        transition={{ duration: 0.5 }}
+                                        className="mb-3 text-[var(--color-primary)] inline-block"
+                                    >
+                                        <item.icon size={28} strokeWidth={1.5} />
+                                    </motion.div>
                                     <h4 className="text-sm font-semibold mb-1">{item.title}</h4>
                                     <p className="!text-xs !text-[var(--color-muted)]">{item.desc}</p>
                                 </motion.div>

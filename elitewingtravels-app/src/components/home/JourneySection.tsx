@@ -46,7 +46,7 @@ export default function JourneySection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-label mb-4 inline-block">What's your journey?</span>
+          <span className="section-label mb-4 inline-block">What&apos;s your journey?</span>
           <h2 className="mb-6">Your adventure. Your way.</h2>
           <p className="max-w-2xl mx-auto">
             Discover a curated collection of signature itineraries, thoughtfully designed to showcase the diverse beauty of Sri Lanka. 

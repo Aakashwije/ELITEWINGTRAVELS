@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig, navLinks } from "@/lib/data";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -76,12 +77,12 @@ export default function Footer() {
                         <div>
                             <h4 className="!text-white text-lg mb-6">Get in Touch</h4>
                             <div className="space-y-4">
-                                <div className="flex items-start gap-3">
-                                    <span className="text-[var(--color-gold)] mt-1">📍</span>
+                                <div className="flex items-start gap-3 group">
+                                    <MapPin className="text-[var(--color-gold)] mt-1 w-5 h-5 transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1" />
                                     <span className="text-gray-400 text-sm">{siteConfig.address}</span>
                                 </div>
-                                <div className="flex items-start gap-3">
-                                    <span className="text-[var(--color-gold)] mt-1">📞</span>
+                                <div className="flex items-start gap-3 group">
+                                    <Phone className="text-[var(--color-gold)] mt-1 w-5 h-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                                     <a
                                         href={`tel:${siteConfig.phone}`}
                                         className="text-gray-400 hover:text-[var(--color-gold)] transition-colors no-underline text-sm"
@@ -89,8 +90,8 @@ export default function Footer() {
                                         {siteConfig.phone}
                                     </a>
                                 </div>
-                                <div className="flex items-start gap-3">
-                                    <span className="text-[var(--color-gold)] mt-1">✉️</span>
+                                <div className="flex items-start gap-3 group">
+                                    <Mail className="text-[var(--color-gold)] mt-1 w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                                     <a
                                         href={`mailto:${siteConfig.email}`}
                                         className="text-gray-400 hover:text-[var(--color-gold)] transition-colors no-underline text-sm"
