@@ -51,7 +51,7 @@ export default function HospitalitySection() {
                     >
                         <span className="section-label">Our Philosophy</span>
                         <h2 className="mb-6">
-                            <span className="text-gradient-gold">Ayubowan</span> –<br />
+                            <span className="text-gradient-gold">Ayubowan</span> –<br />                   
                             May You Live Long
                         </h2>
                         <p className="mb-6 text-lg">
