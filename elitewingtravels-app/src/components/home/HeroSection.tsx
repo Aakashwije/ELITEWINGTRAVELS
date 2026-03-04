@@ -64,34 +64,15 @@ export default function HeroSection() {
                 >
                     {/* Glassmorphism ambient glow */}
                     <div className="absolute top-0 left-1/2 -top-10 -translate-x-1/2 w-3/4 h-24 bg-[var(--color-gold)]/20 blur-[60px] pointer-events-none" />
-                    
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        className="mb-8"
-                    >
-                        <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-lg border border-white/20 text-white shadow-lg text-xs md:text-sm font-semibold tracking-widest uppercase">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[var(--color-gold)] animate-pulse-glow" />
-                            EliteWing Travels • Since 2005
-                        </span>
-                    </motion.div>
+                  
 
                     <h1
                         ref={headlineRef}
-                        className="!text-white text-5xl md:text-6xl lg:text-[5.5rem] font-bold mb-6 leading-[1.1] tracking-tight text-shadow-lg drop-shadow-md"
+                       className="!text-white text-5xl md:text-6xl lg:text-[5.5rem] font-bold mb-20 sm:mb-24 leading-[1.1] tracking-tight text-shadow-lg drop-shadow-md"
                     >
                         The Home of Sri Lankan Hospitality
                     </h1>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 1.5 }}
-                        className="!text-white/90 text-lg md:text-2xl max-w-2xl mx-auto mb-10 font-light tracking-wide drop-shadow-md"
-                    >
-                        Your adventure. Your way, beautifully crafted.
-                    </motion.p>
 
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

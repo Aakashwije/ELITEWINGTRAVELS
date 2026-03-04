@@ -446,9 +446,9 @@ export const testimonials = [
 ];
 
 export const mapHotspots = [
-    { id: "mirissa", label: "Mirissa", category: "Beaches", x: 42, y: 88, description: "Pristine beaches & whale watching paradise" },
-    { id: "kandy", label: "Kandy", category: "Culture", x: 48, y: 52, description: "Sacred city of the Temple of the Tooth" },
-    { id: "anuradhapura", label: "Anuradhapura", category: "Heritage", x: 44, y: 28, description: "Ancient capital & sacred Buddhist city" },
-    { id: "nuwara-eliya", label: "Nuwara Eliya", category: "Hill Country", x: 50, y: 60, description: "Misty highlands & colonial tea estates" },
-    { id: "ella", label: "Ella", category: "Adventure", x: 55, y: 65, description: "Mountain trails & the famous Nine Arches Bridge" },
+    { id: "mirissa", label: "Mirissa", category: "Beaches", x: 40.56, y: 115.05, description: "Pristine beaches & whale watching paradise" },
+    { id: "kandy", label: "Kandy", category: "Culture", x: 45.54, y: 76.93, description: "Sacred city of the Temple of the Tooth" },
+    { id: "anuradhapura", label: "Anuradhapura", category: "Heritage", x: 39.05, y: 47.87, description: "Ancient capital & sacred Buddhist city" },
+    { id: "nuwara-eliya", label: "Nuwara Eliya", category: "Hill Country", x: 49.74, y: 86.62, description: "Misty highlands & colonial tea estates" },
+    { id: "ella", label: "Ella", category: "Adventure", x: 57.18, y: 88.98, description: "Mountain trails & the famous Nine Arches Bridge" },
 ];
