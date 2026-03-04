@@ -13,11 +13,18 @@ export default function Footer() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                         {/* Brand */}
                         <div>
-                            <div className="mb-6">
-                                <h3 className="!text-white text-2xl mb-1">ELITEWING</h3>
-                                <span className="text-[var(--color-gold)] text-xs tracking-[0.3em] font-semibold">
-                                    TRAVELS
-                                </span>
+                            <div className="mb-6 flex items-center gap-4">
+                                <img 
+                                    src="/assets/images/elitewing.png" 
+                                    alt="EliteWing Travels Logo" 
+                                    className="w-14 h-14 object-cover rounded-full border border-white/20 shadow-lg"
+                                />
+                                <div>
+                                    <h3 className="!text-white text-2xl mb-1">ELITEWING</h3>
+                                    <span className="text-[var(--color-gold)] text-xs tracking-[0.3em] font-semibold">
+                                        TRAVELS
+                                    </span>
+                                </div>
                             </div>
                             <p className="!text-gray-400 text-sm leading-relaxed mb-6">
                                 Premium luxury travel experiences in Sri Lanka since 2005.

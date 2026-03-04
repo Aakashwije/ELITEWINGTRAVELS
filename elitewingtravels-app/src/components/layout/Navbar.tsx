@@ -20,15 +20,20 @@ export default function Navbar() {
             <div className="container-luxury flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-3 no-underline">
+                    <img 
+                        src="/assets/images/elitewing.png" 
+                        alt="EliteWing Travels Logo" 
+                        className="w-10 h-10 md:w-12 md:h-12 object-cover rounded-full border border-white/20 shadow-md"
+                    />
                     <div className="flex flex-col">
                         <span
-                            className={`font-[var(--font-heading)] text-xl font-bold tracking-wide transition-colors duration-300 ${scrolled ? "text-[var(--color-primary)]" : "text-white"
+                            className={`font-[var(--font-heading)] text-xl md:text-2xl font-bold tracking-wide transition-colors duration-300 ${scrolled ? "text-[var(--color-primary)]" : "text-white"
                                 }`}
                         >
                             ELITEWING
                         </span>
                         <span
-                            className={`text-[0.65rem] font-semibold tracking-[0.3em] uppercase transition-colors duration-300 ${scrolled ? "text-[var(--color-gold)]" : "text-[var(--color-gold)]"
+                            className={`text-[0.65rem] md:text-xs font-semibold tracking-[0.3em] uppercase transition-colors duration-300 ${scrolled ? "text-[var(--color-gold)]" : "text-[var(--color-gold)]"
                                 }`}
                         >
                             TRAVELS
