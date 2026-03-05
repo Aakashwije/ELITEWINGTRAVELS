@@ -4,17 +4,55 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-// ─── Exact 6 destinations required ────────────────────────────────────────────
+// ─── Coordinates calibrated against the actual srilanka_illustrated.png image ─
+// The island landmass sits approximately within this image region:
+//   Left edge  (west coast): ~38% from image left
+//   Right edge (east coast): ~85% from image left
+//   Top edge   (north tip):  ~44% from image top
+//   Bottom edge(south tip):  ~97% from image top
+//
+// Reference points verified visually:
+//   Anuradhapura  → x:52%, y:52%
+//   Wilpattu      → x:42%, y:47%
+//   Colombo       → x:40%, y:71%
+//   Kandy         → x:55%, y:65%
+//   Galle         → x:44%, y:90%
+
 const allDestinations = [
-  { label: "Colombo",      x: "26%", y: "63%" },
-  { label: "Galle",        x: "30%", y: "87%" },
-  { label: "Kandy",        x: "45%", y: "57%" },
-  { label: "Sigiriya",     x: "50%", y: "42%" },
-  { label: "Anuradhapura", x: "40%", y: "29%" },
-  { label: "Polonnaruwa",  x: "61%", y: "43%" },
+  // ── North / North-central ──
+  { label: "Anuradhapura",  x: "51%", y: "53%" },
+  { label: "Wilpattu",      x: "42%", y: "48%" },
+  { label: "Minneriya",     x: "63%", y: "57%" },
+  { label: "Sigiriya",      x: "60%", y: "60%" },
+  { label: "Polonnaruwa",   x: "68%", y: "61%" },
+  { label: "Gammaduwa",     x: "56%", y: "63%" },
+  // ── Central ──
+  { label: "Kandy",         x: "55%", y: "68%" },
+  { label: "Kithulgala",    x: "49%", y: "70%" },
+  { label: "Rathnapura",    x: "48%", y: "75%" },
+  { label: "Horton Plains", x: "58%", y: "74%" },
+  { label: "Ella",          x: "64%", y: "75%" },
+  { label: "Ranamure",      x: "51%", y: "78%" },
+  { label: "Sinharaja",     x: "50%", y: "80%" },
+  { label: "Maduru Oya",    x: "69%", y: "65%" },
+  // ── West coast ──
+  { label: "Negombo",       x: "39%", y: "66%" },
+  { label: "Colombo",       x: "39%", y: "71%" },
+  { label: "Bentota",       x: "42%", y: "77%" },
+  { label: "Ingiriya",      x: "44%", y: "74%" },
+  // ── South coast ──
+  { label: "Galle",         x: "44%", y: "85%" },
+  { label: "Unawatuna",     x: "47%", y: "86%" },
+  { label: "Weligama",      x: "51%", y: "87%" },
+  { label: "Mirissa",       x: "54%", y: "88%" },
+  { label: "Polhena",       x: "57%", y: "88%" },
+  // ── East coast ──
+  { label: "Arugam Bay",    x: "71%", y: "68%" },
+  // ── South-east ──
+  { label: "Yala",          x: "62%", y: "79%" },
 ];
 
-// ─── Category definitions with exact mapping from spec ──────────────────────
+// ─── Category definitions ──────────────────────────────────────────────────────
 const categories = [
   {
     id: "beaches",
@@ -23,7 +61,7 @@ const categories = [
     description: "Sun-kissed shores & turquoise waters",
     side: "left" as const,
     color: "#4AADE8",
-    locations: ["Galle", "Colombo"],
+    locations: ["Bentota", "Unawatuna", "Weligama", "Mirissa", "Arugam Bay"],
   },
   {
     id: "wildlife",
@@ -32,16 +70,16 @@ const categories = [
     description: "Elephants, leopards & lush rainforests",
     side: "left" as const,
     color: "#5DBF72",
-    locations: ["Sigiriya", "Polonnaruwa"],
+    locations: ["Sinharaja", "Horton Plains", "Yala", "Minneriya", "Wilpattu"],
   },
   {
     id: "adventure",
     title: "Adventure",
     image: "/assets/images/cat_adventure.png",
-    description: "Mountain trails, surfing & zip-lining",
+    description: "Mountain trails, surfing & white-water rafting",
     side: "left" as const,
     color: "#F4895F",
-    locations: ["Kandy", "Sigiriya"],
+    locations: ["Galle", "Colombo", "Negombo", "Bentota", "Kithulgala"],
   },
   {
     id: "culture",
@@ -50,7 +88,7 @@ const categories = [
     description: "Ancient kingdoms & sacred temples",
     side: "right" as const,
     color: "#A08CF5",
-    locations: ["Anuradhapura", "Polonnaruwa", "Sigiriya"],
+    locations: ["Galle", "Colombo", "Kandy", "Sigiriya", "Polonnaruwa", "Anuradhapura"],
   },
   {
     id: "hidden",
@@ -59,7 +97,7 @@ const categories = [
     description: "Serene off-the-beaten-path gems",
     side: "right" as const,
     color: "#E07BB5",
-    locations: ["Anuradhapura", "Kandy"],
+    locations: ["Polhena", "Rathnapura", "Ella", "Gammaduwa", "Ranamure", "Maduru Oya"],
   },
   {
     id: "gastronomy",
@@ -68,31 +106,30 @@ const categories = [
     description: "Spices, street food & fine dining",
     side: "right" as const,
     color: "#F5C842",
-    locations: ["Colombo", "Kandy", "Galle"],
+    locations: ["Kandy", "Colombo", "Ingiriya", "Arugam Bay"],
   },
 ];
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function MapSection() {
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const ref = useRef(null);
+  const [activeCategory, setActiveCategory]   = useState<string | null>(null);
+  const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const leftCategories  = categories.filter((c) => c.side === "left");
   const rightCategories = categories.filter((c) => c.side === "right");
 
-  // Hover takes priority over click for map interaction
-  const currentCategory = hoveredCategory ?? activeCategory;
-  const activeCat = categories.find((c) => c.id === currentCategory);
+  const currentCategory      = hoveredCategory ?? activeCategory;
+  const activeCat            = categories.find((c) => c.id === currentCategory);
   const highlightedLocations = activeCat ? activeCat.locations : [];
-  const accentColor = activeCat?.color ?? "var(--color-gold)";
+  const accentColor          = activeCat?.color ?? "var(--color-gold)";
 
   return (
     <section className="py-20 md:py-28 bg-[#f5f4f0]" ref={ref}>
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
 
-        {/* ── Header ── */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -119,7 +156,7 @@ export default function MapSection() {
           </Link>
         </motion.div>
 
-        {/* ── 3-column grid ── */}
+        {/* 3-column grid */}
         <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_260px] xl:grid-cols-[290px_1fr_290px] items-center gap-6 xl:gap-10">
 
           {/* LEFT TILES */}
@@ -147,17 +184,20 @@ export default function MapSection() {
             transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="relative mx-auto w-full max-w-[340px] md:max-w-[440px] lg:max-w-none order-1 lg:order-2"
           >
-            {/* Map image */}
             <img
               src="/assets/images/srilanka_illustrated.png"
               alt="Sri Lanka Illustrated Map"
               className="w-full h-auto drop-shadow-2xl"
             />
 
-            {/* Destination pins */}
             {allDestinations.map((dest, i) => {
-              const isHighlighted = highlightedLocations.length === 0 || highlightedLocations.includes(dest.label);
-              const isDimmed      = highlightedLocations.length > 0 && !highlightedLocations.includes(dest.label);
+              const label = dest.label.toLowerCase().replace(/\s/g, "");
+              const isHighlighted =
+                highlightedLocations.length === 0 ||
+                highlightedLocations.some((l) => l.toLowerCase().replace(/\s/g, "") === label);
+              const isDimmed =
+                highlightedLocations.length > 0 &&
+                !highlightedLocations.some((l) => l.toLowerCase().replace(/\s/g, "") === label);
               return (
                 <DestinationPin
                   key={dest.label}
@@ -166,7 +206,7 @@ export default function MapSection() {
                   isDimmed={isDimmed}
                   accentColor={accentColor}
                   inView={inView}
-                  delay={0.6 + i * 0.07}
+                  delay={0.55 + i * 0.04}
                 />
               );
             })}
@@ -189,7 +229,6 @@ export default function MapSection() {
               />
             ))}
           </div>
-
         </div>
       </div>
     </section>
@@ -210,66 +249,51 @@ function DestinationPin({ dest, isHighlighted, isDimmed, accentColor, inView, de
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0, y: 8 }}
-      animate={
-        inView
-          ? {
-              opacity: isDimmed ? 0.2 : 1,
-              scale: isHighlighted ? 1.2 : 1,
-              y: 0,
-            }
-          : {}
-      }
-      transition={{ duration: 0.45, delay, ease: "easeOut" }}
+      animate={inView ? { opacity: isDimmed ? 0.18 : 1, scale: isHighlighted ? 1.25 : 1, y: 0 } : {}}
+      transition={{ duration: 0.4, delay, ease: "easeOut" }}
       className="absolute"
-      style={{ left: dest.x, top: dest.y, transform: "translate(-50%,-100%)" }}
+      style={{ left: dest.x, top: dest.y, transform: "translate(-50%, -100%)" }}
     >
-      <div className="flex flex-col items-center gap-0.5 cursor-pointer group">
-        {/* Pin needle */}
+      <div className="flex flex-col items-center gap-0.5 cursor-pointer">
         <div className="relative flex flex-col items-center">
-          {/* Glow ring – only when highlighted */}
+          {/* Pulse ring when highlighted */}
           {isHighlighted && (
             <motion.div
               className="absolute -inset-1 rounded-full"
               style={{ backgroundColor: accentColor }}
-              animate={{ opacity: [0.35, 0.7, 0.35], scale: [1, 1.55, 1] }}
+              animate={{ opacity: [0.3, 0.65, 0.3], scale: [1, 1.6, 1] }}
               transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
             />
           )}
           {/* Pin head */}
           <motion.div
-            className="w-4 h-4 rounded-full border-2 border-white shadow-xl relative z-10 transition-colors duration-300"
+            className="w-3 h-3 rounded-full border-2 border-white shadow-xl relative z-10 transition-colors duration-300"
             style={{ backgroundColor: isHighlighted ? accentColor : "rgba(10,33,62,0.45)" }}
             animate={isHighlighted ? { y: [0, -3, 0] } : {}}
             transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
           />
-          {/* Needle triangle */}
+          {/* Needle tip */}
           <div
             className="w-0 h-0 z-10"
             style={{
-              borderLeft: "4px solid transparent",
-              borderRight: "4px solid transparent",
-              borderTop: `7px solid ${isHighlighted ? accentColor : "rgba(10,33,62,0.45)"}`,
+              borderLeft: "3px solid transparent",
+              borderRight: "3px solid transparent",
+              borderTop: `5px solid ${isHighlighted ? accentColor : "rgba(10,33,62,0.45)"}`,
               transition: "border-top-color 0.3s",
             }}
           />
         </div>
         {/* Label pill */}
-        <AnimatePresence>
-          <motion.div
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.25 }}
-            className="text-[9px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap shadow-md border transition-all duration-300"
-            style={{
-              backgroundColor: isHighlighted ? accentColor : "white",
-              color: isHighlighted ? "white" : "var(--color-primary)",
-              borderColor: isHighlighted ? "transparent" : "rgba(0,0,0,0.08)",
-            }}
-          >
-            {dest.label}
-          </motion.div>
-        </AnimatePresence>
+        <div
+          className="text-[7.5px] font-bold px-1.5 py-[2px] rounded-full whitespace-nowrap shadow-sm border transition-all duration-300"
+          style={{
+            backgroundColor: isHighlighted ? accentColor : "rgba(255,255,255,0.9)",
+            color: isHighlighted ? "white" : "var(--color-primary)",
+            borderColor: isHighlighted ? "transparent" : "rgba(0,0,0,0.1)",
+          }}
+        >
+          {dest.label}
+        </div>
       </div>
     </motion.div>
   );
@@ -289,15 +313,7 @@ interface TileProps {
 }
 
 function CategoryTile({
-  cat,
-  isActive,
-  isHovered,
-  onToggle,
-  onMouseEnter,
-  onMouseLeave,
-  inView,
-  delay,
-  animDir,
+  cat, isActive, isHovered, onToggle, onMouseEnter, onMouseLeave, inView, delay, animDir,
 }: TileProps) {
   const isEmphasized = isActive || isHovered;
 
@@ -313,9 +329,8 @@ function CategoryTile({
       className="relative w-full text-left cursor-pointer focus:outline-none"
       aria-pressed={isActive}
     >
-      {/* Card shell – soft grey background */}
       <div
-        className="flex items-center gap-4 rounded-2xl px-4 py-3 transition-all duration-400 overflow-hidden"
+        className="flex items-center gap-4 rounded-2xl px-4 py-3 overflow-hidden"
         style={{
           backgroundColor: isEmphasized ? "white" : "#ECECEA",
           boxShadow: isEmphasized
@@ -327,32 +342,29 @@ function CategoryTile({
       >
         {/* Circular image */}
         <div
-          className="relative flex-shrink-0 w-14 h-14 rounded-full overflow-hidden border-2 transition-all duration-400 shadow-md"
+          className="relative flex-shrink-0 w-14 h-14 rounded-full overflow-hidden border-2 shadow-md"
           style={{
             borderColor: isEmphasized ? cat.color : "transparent",
             boxShadow: isEmphasized ? `0 0 0 3px ${cat.color}30` : undefined,
+            transition: "all 0.35s ease",
           }}
         >
           <img
             src={cat.image}
             alt={cat.title}
-            className="w-full h-full object-cover transition-transform duration-500"
-            style={{ transform: isEmphasized ? "scale(1.12)" : "scale(1)" }}
+            className="w-full h-full object-cover"
+            style={{ transform: isEmphasized ? "scale(1.12)" : "scale(1)", transition: "transform 0.5s ease" }}
           />
-          {/* overlay tint on hover */}
           {isEmphasized && (
-            <div
-              className="absolute inset-0 rounded-full opacity-20"
-              style={{ backgroundColor: cat.color }}
-            />
+            <div className="absolute inset-0 rounded-full opacity-20" style={{ backgroundColor: cat.color }} />
           )}
         </div>
 
         {/* Text */}
         <div className="flex-1 min-w-0">
           <h4
-            className="font-[var(--font-heading)] font-bold text-[0.92rem] leading-tight truncate transition-colors duration-300"
-            style={{ color: isEmphasized ? cat.color : "var(--color-primary)" }}
+            className="font-[var(--font-heading)] font-bold text-[0.92rem] leading-tight truncate"
+            style={{ color: isEmphasized ? cat.color : "var(--color-primary)", transition: "color 0.3s" }}
           >
             {cat.title}
           </h4>
@@ -360,7 +372,7 @@ function CategoryTile({
             {cat.description}
           </p>
 
-          {/* Location chips on active/hover */}
+          {/* Location chips */}
           <AnimatePresence>
             {isEmphasized && (
               <motion.div
@@ -373,7 +385,7 @@ function CategoryTile({
                 {cat.locations.map((loc) => (
                   <span
                     key={loc}
-                    className="text-[9px] font-bold px-1.5 py-0.5 rounded-full text-white"
+                    className="text-[8px] font-bold px-1.5 py-[2px] rounded-full text-white"
                     style={{ backgroundColor: cat.color }}
                   >
                     📍 {loc}
@@ -384,12 +396,13 @@ function CategoryTile({
           </AnimatePresence>
         </div>
 
-        {/* Active dot indicator */}
+        {/* Active dot */}
         <div
-          className="w-2 h-2 rounded-full flex-shrink-0 transition-all duration-300"
+          className="w-2 h-2 rounded-full flex-shrink-0"
           style={{
             backgroundColor: isEmphasized ? cat.color : "transparent",
             boxShadow: isEmphasized ? `0 0 6px ${cat.color}` : "none",
+            transition: "all 0.3s",
           }}
         />
       </div>

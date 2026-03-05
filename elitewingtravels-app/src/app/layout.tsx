@@ -64,6 +64,10 @@ export const metadata: Metadata = {
     description:
       "Premium private tours, luxury fleet, and authentic Sri Lankan hospitality since 2005.",
   },
+  icons: {
+    icon: "/assets/images/elitewing.png",
+    apple: "/assets/images/elitewing.png",
+  },
   robots: {
     index: true,
     follow: true,
@@ -95,7 +99,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="any" />
+        <link rel="apple-touch-icon" href="/icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
