@@ -98,10 +98,10 @@ export default function MapSection() {
                 </motion.div>
 
                 {/* 3-column layout: Left Cards | Map | Right Cards */}
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-6 lg:gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-4 lg:gap-6">
 
                     {/* LEFT CATEGORIES */}
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-4 items-end pr-2">
                         {leftCategories.map((cat, i) => (
                             <motion.button
                                 key={cat.id}
@@ -109,25 +109,27 @@ export default function MapSection() {
                                 animate={inView ? { opacity: 1, x: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.1 * i }}
                                 onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
-                                className={`flex items-center gap-4 rounded-full pr-6 text-left transition-all duration-400 shadow-sm hover:shadow-md group ${
-                                    activeCategory === cat.id
-                                        ? "bg-[var(--color-primary)] text-white"
-                                        : "bg-white text-[var(--color-dark)] hover:bg-[var(--color-primary)]/5"
-                                }`}
+                                className="flex items-center gap-3 text-left group w-[220px]"
                             >
-                                {/* Circular image */}
-                                <div className="shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-4 border-[var(--color-gold)]/40 shadow-md m-2">
+                                {/* Circular image — no box background */}
+                                <div className={`shrink-0 w-12 h-12 rounded-full overflow-hidden border-[3px] shadow-md transition-all duration-300 ${
+                                    activeCategory === cat.id
+                                        ? "border-[var(--color-gold)] scale-110"
+                                        : "border-[var(--color-gold)]/40 group-hover:border-[var(--color-gold)]"
+                                }`}>
                                     <img
                                         src={cat.image}
                                         alt={cat.title}
                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                     />
                                 </div>
-                                <div className="py-3">
-                                    <h4 className={`text-base font-semibold font-[var(--font-heading)] leading-tight ${activeCategory === cat.id ? "text-white" : "text-[var(--color-primary)]"}`}>
+                                <div>
+                                    <h4 className={`text-sm font-semibold font-[var(--font-heading)] leading-tight transition-colors duration-300 ${
+                                        activeCategory === cat.id ? "text-[var(--color-gold)]" : "text-[var(--color-primary)] group-hover:text-[var(--color-gold)]"
+                                    }`}>
                                         {cat.title}
                                     </h4>
-                                    <p className={`text-xs mt-0.5 font-light ${activeCategory === cat.id ? "text-white/80" : "text-[var(--color-dark)]/60"}`}>
+                                    <p className="text-[11px] mt-0.5 font-light text-[var(--color-dark)]/60">
                                         {cat.description}
                                     </p>
                                 </div>
@@ -140,7 +142,7 @@ export default function MapSection() {
                         initial={{ opacity: 0, scale: 0.92 }}
                         animate={inView ? { opacity: 1, scale: 1 } : {}}
                         transition={{ duration: 0.9, delay: 0.2 }}
-                        className="relative mx-auto w-full max-w-[340px] lg:max-w-[380px] xl:max-w-[420px]"
+                        className="relative mx-auto w-full max-w-[380px] lg:max-w-[460px] xl:max-w-[520px]"
                     >
                         {/* Illustrated map */}
                         <img
@@ -174,7 +176,7 @@ export default function MapSection() {
                     </motion.div>
 
                     {/* RIGHT CATEGORIES */}
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-4 items-start pl-2">
                         {rightCategories.map((cat, i) => (
                             <motion.button
                                 key={cat.id}
@@ -182,25 +184,27 @@ export default function MapSection() {
                                 animate={inView ? { opacity: 1, x: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.1 * i }}
                                 onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
-                                className={`flex items-center gap-4 rounded-full pl-6 flex-row-reverse text-right transition-all duration-400 shadow-sm hover:shadow-md group ${
-                                    activeCategory === cat.id
-                                        ? "bg-[var(--color-primary)] text-white"
-                                        : "bg-white text-[var(--color-dark)] hover:bg-[var(--color-primary)]/5"
-                                }`}
+                                className="flex items-center gap-3 flex-row-reverse text-right group w-[220px]"
                             >
-                                {/* Circular image */}
-                                <div className="shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-4 border-[var(--color-gold)]/40 shadow-md m-2">
+                                {/* Circular image — no box background */}
+                                <div className={`shrink-0 w-12 h-12 rounded-full overflow-hidden border-[3px] shadow-md transition-all duration-300 ${
+                                    activeCategory === cat.id
+                                        ? "border-[var(--color-gold)] scale-110"
+                                        : "border-[var(--color-gold)]/40 group-hover:border-[var(--color-gold)]"
+                                }`}>
                                     <img
                                         src={cat.image}
                                         alt={cat.title}
                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                     />
                                 </div>
-                                <div className="py-3">
-                                    <h4 className={`text-base font-semibold font-[var(--font-heading)] leading-tight ${activeCategory === cat.id ? "text-white" : "text-[var(--color-primary)]"}`}>
+                                <div>
+                                    <h4 className={`text-sm font-semibold font-[var(--font-heading)] leading-tight transition-colors duration-300 ${
+                                        activeCategory === cat.id ? "text-[var(--color-gold)]" : "text-[var(--color-primary)] group-hover:text-[var(--color-gold)]"
+                                    }`}>
                                         {cat.title}
                                     </h4>
-                                    <p className={`text-xs mt-0.5 font-light ${activeCategory === cat.id ? "text-white/80" : "text-[var(--color-dark)]/60"}`}>
+                                    <p className="text-[11px] mt-0.5 font-light text-[var(--color-dark)]/60">
                                         {cat.description}
                                     </p>
                                 </div>
