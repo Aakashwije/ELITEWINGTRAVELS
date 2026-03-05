@@ -615,91 +615,181 @@ export const tours: Tour[] = [
 export interface FleetVehicle {
     slug: string;
     name: string;
-    category: string;
+    category: "Buses" | "Vans" | "Cars & SUVs";
+    subCategory?: "Sedan Cars" | "SUVs";
     capacity: string;
     image: string;
     features: string[];
     safety: string[];
     description: string;
     gallery: string[];
+    driverName?: string;
+    driverExperience?: string;
+    driverLanguages?: string[];
+    driverImage?: string;
 }
 
 export const fleet: FleetVehicle[] = [
+    // --- BUSES ---
     {
-        slug: "luxury-coach",
-        name: "Premium Luxury Coach",
-        category: "Luxury Coaches",
-        capacity: "24-45 Passengers",
-        image: "/fleet/luxury-coach.jpg",
-        features: [
-            "Reclining leather seats",
-            "Air conditioning with individual controls",
-            "On-board WiFi & entertainment",
-            "Panoramic windows",
-            "Refrigerator & refreshments",
-            "USB charging ports",
-        ],
-        safety: [
-            "ABS braking system",
-            "GPS tracking",
-            "First aid kit",
-            "Fire extinguisher",
-            "Licensed professional driver",
-        ],
-        description:
-            "Our premium luxury coaches offer the ultimate in group travel comfort. Perfect for large parties, corporate retreats, and extended tours across Sri Lanka.",
-        gallery: ["/fleet/coach-1.jpg", "/fleet/coach-2.jpg"],
+        slug: "toyota-coaster-29-seater",
+        name: "Toyota Coaster",
+        category: "Buses",
+        capacity: "29 Seater",
+        image: "/fleet/coaster.jpg",
+        features: ["Air conditioning", "Reclining seats", "On-board microphone", "Curtains for privacy", "Ample legroom"],
+        safety: ["ABS braking", "Safety belts", "First aid kit", "Experienced driver"],
+        description: "Perfect for medium-sized groups, the Toyota Coaster offers a smooth and comfortable ride with excellent visibility for sightseeing.",
+        gallery: [],
+        driverName: "To be assigned",
+        driverExperience: "10+ Years",
+        driverLanguages: ["English", "Sinhala"],
+        driverImage: "/fleet/driver-placeholder.jpg"
     },
     {
-        slug: "executive-van",
-        name: "Executive KDH Van",
-        category: "Executive Vans",
-        capacity: "6-14 Passengers",
-        image: "/fleet/executive-van.jpg",
-        features: [
-            "Premium interior",
-            "Air conditioning",
-            "Large luggage space",
-            "Entertainment system",
-            "Tinted privacy windows",
-            "Individual reading lights",
-        ],
-        safety: [
-            "Safety belts all seats",
-            "GPS tracking",
-            "Regular maintenance records",
-            "Comprehensive insurance",
-            "Licensed chauffeur",
-        ],
-        description:
-            "Our executive vans are the perfect choice for family groups and small parties. Spacious, comfortable, and equipped with modern amenities for a smooth journey.",
-        gallery: ["/fleet/van-1.jpg", "/fleet/van-2.jpg"],
+        slug: "mitsubishi-rosa-33-seater",
+        name: "Mitsubishi Rosa",
+        category: "Buses",
+        capacity: "33 Seater",
+        image: "/fleet/rosa.jpg",
+        features: ["Spacious interior", "High roof", "PA system", "Climate control", "Reading lights"],
+        safety: ["Dual airbags", "ABS", "Fire extinguisher", "Regularly maintained"],
+        description: "A reliable and spacious choice for larger tourist groups, the Mitsubishi Rosa is built for comfort during long journeys across Sri Lanka.",
+        gallery: [],
     },
     {
-        slug: "private-sedan",
-        name: "Mercedes-Benz E-Class",
-        category: "Private Sedans",
+        slug: "under-luggage-bus-37-seater",
+        name: "Luxury Coach (Under Luggage)",
+        category: "Buses",
+        capacity: "37 Seater",
+        image: "/fleet/coach-37.jpg",
+        features: ["Massive under-floor luggage", "Reclining leather seats", "Entertainment system", "Panoramic windows", "USB charging"],
+        safety: ["Speed limiter", "GPS tracking", "Air brakes", "Professional chauffeur"],
+        description: "Designed for ultimate touring comfort, this luxury coach features immense under-luggage space, perfect for groups with heavy baggage.",
+        gallery: [],
+    },
+    {
+        slug: "under-luggage-bus-41-seater",
+        name: "Premium Coach (Under Luggage)",
+        category: "Buses",
+        capacity: "41 Seater",
+        image: "/fleet/coach-41.jpg",
+        features: ["Premium seating", "Under-floor baggage compartments", "On-board WiFi", "TV/DVD", "Microphone"],
+        safety: ["Comprehensive insurance", "Air suspension", "First aid kit", "Licensed driver"],
+        description: "Travel in uncompromised luxury with our 41-seater premium coach, offering exceptional space and modern amenities for extensive tours.",
+        gallery: [],
+    },
+    {
+        slug: "under-luggage-bus-51-seater",
+        name: "Grand Coach (Under Luggage)",
+        category: "Buses",
+        capacity: "51 Seater",
+        image: "/fleet/coach-51.jpg",
+        features: ["Maximum capacity", "Extensive luggage holds", "Dual climate zones", "Reclining ergonomic seats", "Entertainment screens"],
+        safety: ["Advanced braking system", "GPS tracking", "24/7 roadside assistance", "Expert driver"],
+        description: "Our largest luxury coach. The 51-seater is the ideal solution for large corporate tours, school groups, and grand excursions with vast luggage needs.",
+        gallery: [],
+    },
+
+    // --- VANS ---
+    {
+        slug: "kdh-highroof-van-14-seater",
+        name: "KDH Highroof Van",
+        category: "Vans",
+        capacity: "14 Seater",
+        image: "/fleet/kdh-highroof.jpg",
+        features: ["High roof clearance", "Dual A/C", "Tinted windows", "Adjustable seats", "Generous legroom"],
+        safety: ["Safety belts", "ABS", "Airbags", "First aid kit"],
+        description: "The KDH Highroof provides exceptional headroom and comfort, making it the supreme choice for family vacations and small group tours.",
+        gallery: [],
+    },
+    {
+        slug: "kdh-flatroof-van-9-seater",
+        name: "KDH Flatroof Van",
+        category: "Vans",
+        capacity: "9 Seater",
+        image: "/fleet/kdh-flatroof.jpg",
+        features: ["Luxury interior", "Captain seats", "Rear A/C", "Premium sound system", "Sliding doors"],
+        safety: ["Safety belts", "Reverse camera", "Airbags", "Regularly serviced"],
+        description: "A compact yet luxurious van perfect for small families or VIP transfers, offering a nimble and extremely comfortable ride.",
+        gallery: [],
+    },
+
+    // --- CARS & SUVS (Sedans) ---
+    {
+        slug: "mercedes-c-200",
+        name: "Mercedes C200",
+        category: "Cars & SUVs",
+        subCategory: "Sedan Cars",
         capacity: "1-3 Passengers",
-        image: "/fleet/sedan.jpg",
-        features: [
-            "Premium leather interior",
-            "Climate control",
-            "Bose sound system",
-            "Rear seat entertainment",
-            "Complimentary water & refreshments",
-            "USB-C & wireless charging",
-        ],
-        safety: [
-            "Advanced driver assist",
-            "360° cameras",
-            "GPS tracking",
-            "Pre-trip inspection",
-            "Executive chauffeur",
-        ],
-        description:
-            "Experience Sri Lanka in absolute luxury with our Mercedes-Benz E-Class sedan. Ideal for couples and discerning solo travelers seeking the finest travel experience.",
-        gallery: ["/fleet/sedan-1.jpg", "/fleet/sedan-2.jpg"],
+        image: "/fleet/mercedes-c200.jpg",
+        features: ["Premium leather interior", "Climate control", "Burmester sound system", "Ambient lighting", "Rear sunshades"],
+        safety: ["Advanced driver assist", "Attention assist", "Pre-safe system", "Multiple airbags"],
+        description: "Experience absolute luxury and prestige with the Mercedes C200, the perfect sedan for business executives or honeymoon couples.",
+        gallery: [],
     },
+    {
+        slug: "toyota-prius",
+        name: "Toyota Prius",
+        category: "Cars & SUVs",
+        subCategory: "Sedan Cars",
+        capacity: "1-3 Passengers",
+        image: "/fleet/prius.jpg",
+        features: ["Hybrid engine", "Quiet cabin", "Automatic climate control", "Spacious trunk", "Comfortable seating"],
+        safety: ["Toyota Safety Sense", "Lane departure alert", "Multiple airbags", "ABS"],
+        description: "Eco-friendly, quiet, and extremely reliable. The Prius is an excellent choice for efficient and comfortable travel across the island.",
+        gallery: [],
+    },
+    {
+        slug: "honda-grace",
+        name: "Honda Grace",
+        category: "Cars & SUVs",
+        subCategory: "Sedan Cars",
+        capacity: "1-3 Passengers",
+        image: "/fleet/grace.jpg",
+        features: ["Hybrid efficiency", "Rear AC vents", "Ergonomic seats", "Spacious boot", "Touchscreen infotainment"],
+        safety: ["Honda Sensing", "VSA", "Airbags", "Emergency stop signal"],
+        description: "A stylish and modern hybrid sedan that offers excellent fuel efficiency and surprisingly spacious legroom for maximum passenger comfort.",
+        gallery: [],
+    },
+    {
+        slug: "wagon-r",
+        name: "Suzuki Wagon R",
+        category: "Cars & SUVs",
+        subCategory: "Sedan Cars",
+        capacity: "1-3 Passengers",
+        image: "/fleet/wagon-r.jpg",
+        features: ["Tall boy design", "Excellent headroom", "Compact size for city", "Fuel efficient", "Easy ingress/egress"],
+        safety: ["Dual airbags", "ABS with EBD", "Speed alert", "Seatbelt reminder"],
+        description: "The ideal compact car for city tours and narrow scenic routes. Its unique tall design ensures great headroom and a very airy cabin feel.",
+        gallery: [],
+    },
+
+    // --- CARS & SUVS (SUVs) ---
+    {
+        slug: "toyota-prado",
+        name: "Toyota Prado",
+        category: "Cars & SUVs",
+        subCategory: "SUVs",
+        capacity: "4-6 Passengers",
+        image: "/fleet/prado.jpg",
+        features: ["4x4 Capability", "Premium seating", "Tri-zone climate control", "Cool box", "Panoramic sunroof (optional)"],
+        safety: ["Kinetic Dynamic Suspension", "Multi-terrain monitor", "Crawl control", "Comprehensive airbags"],
+        description: "The ultimate luxury SUV for Sri Lanka's diverse terrain. Conquer off-road trails and cruise highways in absolute comfort and commanding style.",
+        gallery: [],
+    },
+    {
+        slug: "mitsubishi-montero",
+        name: "Mitsubishi Montero",
+        category: "Cars & SUVs",
+        subCategory: "SUVs",
+        capacity: "4-6 Passengers",
+        image: "/fleet/montero.jpg",
+        features: ["Super Select 4WD", "Spacious 7-seat capability", "Rear A/C", "Leather interior", "Premium audio"],
+        safety: ["ASTC (Active Stability)", "Reinforced Impact Safety Evolution", "Heavy-duty brakes", "Airbags"],
+        description: "A legendary robust SUV that balances rugged off-road prowess with a refined, spacious interior for the ultimate adventure safari experience.",
+        gallery: [],
+    }
 ];
 
 export const testimonials = [
