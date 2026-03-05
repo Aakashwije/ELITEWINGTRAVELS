@@ -52,7 +52,7 @@ export default function HospitalitySection() {
                             the warmth, generosity, and genuine care that defines Sri Lankan
                             hospitality.
                         </p>
-                        <p className="mb-10 text-base md:text-lg text-[var(--color-dark)]/70 font-light leading-relaxed">
+                        <p className="mb-16 text-base md:text-lg text-[var(--color-dark)]/70 font-light leading-relaxed text-justify">
                             At EliteWing Travels, we carry this philosophy into everything we
                             do. From your first inquiry to your fond farewell, every detail is
                             handled with meticulous care, ensuring your experience is not just
