@@ -4,52 +4,45 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-// ─── Coordinates calibrated against the actual srilanka_illustrated.png image ─
-// The island landmass sits approximately within this image region:
-//   Left edge  (west coast): ~38% from image left
-//   Right edge (east coast): ~85% from image left
-//   Top edge   (north tip):  ~44% from image top
-//   Bottom edge(south tip):  ~97% from image top
-//
-// Reference points verified visually:
-//   Anuradhapura  → x:52%, y:52%
-//   Wilpattu      → x:42%, y:47%
-//   Colombo       → x:40%, y:71%
-//   Kandy         → x:55%, y:65%
-//   Galle         → x:44%, y:90%
+// ─── Coordinates recalibrated from live DOM measurements (% of image container)
+// West coast (Colombo–Negombo): ~39–44% left
+// South coast (Galle–Mirissa):  ~44–57% left, 85–88% top
+// Central highlands (Kandy):    ~52% left, 69% top
+// North (Anuradhapura):         ~51% left, 55% top
+// East (Polonnaruwa, Arugam):   ~60–71% left
 
 const allDestinations = [
   // ── North / North-central ──
-  { label: "Anuradhapura",  x: "51%", y: "53%" },
-  { label: "Wilpattu",      x: "42%", y: "48%" },
-  { label: "Minneriya",     x: "63%", y: "57%" },
-  { label: "Sigiriya",      x: "60%", y: "60%" },
-  { label: "Polonnaruwa",   x: "68%", y: "61%" },
-  { label: "Gammaduwa",     x: "56%", y: "63%" },
-  // ── Central ──
-  { label: "Kandy",         x: "55%", y: "68%" },
-  { label: "Kithulgala",    x: "49%", y: "70%" },
-  { label: "Rathnapura",    x: "48%", y: "75%" },
-  { label: "Horton Plains", x: "58%", y: "74%" },
-  { label: "Ella",          x: "64%", y: "75%" },
+  { label: "Anuradhapura",  x: "51%", y: "55%" },
+  { label: "Wilpattu",      x: "46%", y: "51%" },
+  { label: "Minneriya",     x: "57%", y: "59%" },
+  { label: "Sigiriya",      x: "55%", y: "62%" },
+  { label: "Polonnaruwa",   x: "60%", y: "62%" },
+  { label: "Gammaduwa",     x: "53%", y: "64%" },
+  // ── Central / Hill Country ──
+  { label: "Kandy",         x: "53%", y: "69%" },
+  { label: "Kithulgala",    x: "50%", y: "71%" },
+  { label: "Rathnapura",    x: "49%", y: "76%" },
+  { label: "Horton Plains", x: "55%", y: "75%" },
+  { label: "Ella",          x: "57%", y: "76%" },
   { label: "Ranamure",      x: "51%", y: "78%" },
-  { label: "Sinharaja",     x: "50%", y: "80%" },
-  { label: "Maduru Oya",    x: "69%", y: "65%" },
+  { label: "Sinharaja",     x: "50%", y: "81%" },
+  { label: "Maduru Oya",    x: "64%", y: "65%" },
   // ── West coast ──
-  { label: "Negombo",       x: "39%", y: "66%" },
-  { label: "Colombo",       x: "39%", y: "71%" },
-  { label: "Bentota",       x: "42%", y: "77%" },
-  { label: "Ingiriya",      x: "44%", y: "74%" },
+  { label: "Negombo",       x: "44%", y: "67%" },
+  { label: "Colombo",       x: "44%", y: "72%" },
+  { label: "Bentota",       x: "46%", y: "78%" },
+  { label: "Ingiriya",      x: "48%", y: "75%" },
   // ── South coast ──
-  { label: "Galle",         x: "44%", y: "85%" },
-  { label: "Unawatuna",     x: "47%", y: "86%" },
+  { label: "Galle",         x: "47%", y: "85%" },
+  { label: "Unawatuna",     x: "49%", y: "86%" },
   { label: "Weligama",      x: "51%", y: "87%" },
-  { label: "Mirissa",       x: "54%", y: "88%" },
-  { label: "Polhena",       x: "57%", y: "88%" },
+  { label: "Mirissa",       x: "52%", y: "88%" },
+  { label: "Polhena",       x: "55%", y: "88%" },
   // ── East coast ──
-  { label: "Arugam Bay",    x: "71%", y: "68%" },
+  { label: "Arugam Bay",    x: "62%", y: "69%" },
   // ── South-east ──
-  { label: "Yala",          x: "62%", y: "79%" },
+  { label: "Yala",          x: "56%", y: "80%" },
 ];
 
 // ─── Category definitions ──────────────────────────────────────────────────────
@@ -120,10 +113,17 @@ export default function MapSection() {
   const leftCategories  = categories.filter((c) => c.side === "left");
   const rightCategories = categories.filter((c) => c.side === "right");
 
-  const currentCategory      = hoveredCategory ?? activeCategory;
-  const activeCat            = categories.find((c) => c.id === currentCategory);
-  const highlightedLocations = activeCat ? activeCat.locations : [];
-  const accentColor          = activeCat?.color ?? "var(--color-gold)";
+  const currentCategory = hoveredCategory ?? activeCategory;
+  const activeCat       = categories.find((c) => c.id === currentCategory);
+  const accentColor     = activeCat?.color ?? "var(--color-gold)";
+
+  // Only the locations for the active/hovered category — none when idle
+  const visibleLocations: string[] = activeCat ? activeCat.locations : [];
+  const visibleDests = allDestinations.filter((d) =>
+    visibleLocations.some(
+      (l) => l.toLowerCase().replace(/\s/g, "") === d.label.toLowerCase().replace(/\s/g, "")
+    )
+  );
 
   return (
     <section className="py-20 md:py-28 bg-[#f5f4f0]" ref={ref}>
@@ -190,26 +190,44 @@ export default function MapSection() {
               className="w-full h-auto drop-shadow-2xl"
             />
 
-            {allDestinations.map((dest, i) => {
-              const label = dest.label.toLowerCase().replace(/\s/g, "");
-              const isHighlighted =
-                highlightedLocations.length === 0 ||
-                highlightedLocations.some((l) => l.toLowerCase().replace(/\s/g, "") === label);
-              const isDimmed =
-                highlightedLocations.length > 0 &&
-                !highlightedLocations.some((l) => l.toLowerCase().replace(/\s/g, "") === label);
-              return (
+            {/* Idle hint — visible only when no category is selected */}
+            <AnimatePresence>
+              {!currentCategory && (
+                <motion.div
+                  key="idle-hint"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                >
+                  <div className="flex flex-col items-center gap-2 mt-16">
+                    <motion.div
+                      animate={{ y: [0, -6, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className="text-2xl select-none"
+                    >
+                      👆
+                    </motion.div>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-primary)]/50 text-center">
+                      Hover a category<br />to explore
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Per-category pins — only relevant pins rendered */}
+            <AnimatePresence mode="wait">
+              {visibleDests.map((dest, i) => (
                 <DestinationPin
-                  key={dest.label}
+                  key={`${currentCategory}-${dest.label}`}
                   dest={dest}
-                  isHighlighted={isHighlighted}
-                  isDimmed={isDimmed}
                   accentColor={accentColor}
-                  inView={inView}
-                  delay={0.55 + i * 0.04}
+                  delay={i * 0.06}
                 />
-              );
-            })}
+              ))}
+            </AnimatePresence>
           </motion.div>
 
           {/* RIGHT TILES */}
@@ -238,38 +256,34 @@ export default function MapSection() {
 // ─── Destination Pin ──────────────────────────────────────────────────────────
 interface PinProps {
   dest: { label: string; x: string; y: string };
-  isHighlighted: boolean;
-  isDimmed: boolean;
   accentColor: string;
-  inView: boolean;
   delay: number;
 }
 
-function DestinationPin({ dest, isHighlighted, isDimmed, accentColor, inView, delay }: PinProps) {
+function DestinationPin({ dest, accentColor, delay }: PinProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0, y: 8 }}
-      animate={inView ? { opacity: isDimmed ? 0.18 : 1, scale: isHighlighted ? 1.25 : 1, y: 0 } : {}}
-      transition={{ duration: 0.4, delay, ease: "easeOut" }}
+      initial={{ opacity: 0, scale: 0, y: -6 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0, y: -6 }}
+      transition={{ duration: 0.35, delay, ease: [0.22, 1, 0.36, 1] }}
       className="absolute"
       style={{ left: dest.x, top: dest.y, transform: "translate(-50%, -100%)" }}
     >
       <div className="flex flex-col items-center gap-0.5 cursor-pointer">
         <div className="relative flex flex-col items-center">
-          {/* Pulse ring when highlighted */}
-          {isHighlighted && (
-            <motion.div
-              className="absolute -inset-1 rounded-full"
-              style={{ backgroundColor: accentColor }}
-              animate={{ opacity: [0.3, 0.65, 0.3], scale: [1, 1.6, 1] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            />
-          )}
+          {/* Pulse ring */}
+          <motion.div
+            className="absolute -inset-1 rounded-full"
+            style={{ backgroundColor: accentColor }}
+            animate={{ opacity: [0.3, 0.65, 0.3], scale: [1, 1.6, 1] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          />
           {/* Pin head */}
           <motion.div
-            className="w-3 h-3 rounded-full border-2 border-white shadow-xl relative z-10 transition-colors duration-300"
-            style={{ backgroundColor: isHighlighted ? accentColor : "rgba(10,33,62,0.45)" }}
-            animate={isHighlighted ? { y: [0, -3, 0] } : {}}
+            className="w-3 h-3 rounded-full border-2 border-white shadow-xl relative z-10"
+            style={{ backgroundColor: accentColor }}
+            animate={{ y: [0, -3, 0] }}
             transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
           />
           {/* Needle tip */}
@@ -278,19 +292,14 @@ function DestinationPin({ dest, isHighlighted, isDimmed, accentColor, inView, de
             style={{
               borderLeft: "3px solid transparent",
               borderRight: "3px solid transparent",
-              borderTop: `5px solid ${isHighlighted ? accentColor : "rgba(10,33,62,0.45)"}`,
-              transition: "border-top-color 0.3s",
+              borderTop: `5px solid ${accentColor}`,
             }}
           />
         </div>
         {/* Label pill */}
         <div
-          className="text-[7.5px] font-bold px-1.5 py-[2px] rounded-full whitespace-nowrap shadow-sm border transition-all duration-300"
-          style={{
-            backgroundColor: isHighlighted ? accentColor : "rgba(255,255,255,0.9)",
-            color: isHighlighted ? "white" : "var(--color-primary)",
-            borderColor: isHighlighted ? "transparent" : "rgba(0,0,0,0.1)",
-          }}
+          className="text-[7.5px] font-bold px-1.5 py-[2px] rounded-full whitespace-nowrap shadow-sm"
+          style={{ backgroundColor: accentColor, color: "white" }}
         >
           {dest.label}
         </div>
