@@ -5,76 +5,145 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import {
+    Users,
+    CalendarDays,
+    MapPin,
+    Car,
+    Mail,
+    Check,
+    ArrowRight,
+    ArrowLeft,
+    Send,
+    Loader2,
+    CheckCircle2,
+    Heart,
+    Briefcase,
+    Users2,
+    PartyPopper,
+    Globe,
+    Star,
+} from "lucide-react";
 
+/* ─── Schema ──────────────────────────────────────────────── */
 const tourSchema = z.object({
-    travelers: z.string().min(1, "Number of travelers is required"),
+    travelers: z.string().min(1, "Please select group size"),
     startDate: z.string().min(1, "Start date is required"),
     endDate: z.string().min(1, "End date is required"),
     destinations: z.array(z.string()).min(1, "Select at least one destination"),
     vehicleType: z.string().min(1, "Select a vehicle type"),
     name: z.string().min(2, "Name is required"),
-    email: z.string().email("Valid email is required"),
+    email: z.string().email("Valid email required"),
     specialRequests: z.string().optional(),
     honeypot: z.string().max(0),
 });
-
 type TourFormData = z.infer<typeof tourSchema>;
 
-const steps = [
-    { number: 1, title: "Travelers" },
-    { number: 2, title: "Dates" },
-    { number: 3, title: "Destinations" },
-    { number: 4, title: "Vehicle" },
-    { number: 5, title: "Details" },
+/* ─── Step metadata ───────────────────────────────────────── */
+const STEPS = [
+    { id: 1, label: "Travelers", Icon: Users },
+    { id: 2, label: "Dates", Icon: CalendarDays },
+    { id: 3, label: "Destinations", Icon: MapPin },
+    { id: 4, label: "Vehicle", Icon: Car },
+    { id: 5, label: "Details", Icon: Mail },
 ];
 
-const destinationOptions = [
-    "Sigiriya", "Kandy", "Galle", "Ella", "Nuwara Eliya",
-    "Polonnaruwa", "Anuradhapura", "Bentota", "Mirissa", "Yala",
+/* ─── Traveler options ────────────────────────────────────── */
+const TRAVELER_OPTIONS = [
+    { value: "1-2",   range: "1 – 2",  tag: "Just us",        Icon: Heart,       hint: "Perfect for couples & solo" },
+    { value: "3-5",   range: "3 – 5",  tag: "Family",         Icon: Users,       hint: "Ideal for families" },
+    { value: "6-10",  range: "6 – 10", tag: "Friends",        Icon: Users2,      hint: "Small group adventure" },
+    { value: "11-20", range: "11 – 20",tag: "Large group",    Icon: Briefcase,   hint: "Extended families & tours" },
+    { value: "21-30", range: "21 – 30",tag: "Corporate",      Icon: Globe,       hint: "Corporate & incentive trips" },
+    { value: "30+",   range: "30+",    tag: "Grand tour",     Icon: PartyPopper, hint: "Big events & celebrations" },
 ];
 
-const vehicleOptions = [
-    { value: "sedan", label: "Private Sedan (1-3 pax)" },
-    { value: "van", label: "Executive Van (6-14 pax)" },
-    { value: "coach", label: "Luxury Coach (24-45 pax)" },
+/* ─── Destination options ─────────────────────────────────── */
+const DESTINATIONS = [
+    { name: "Sigiriya",      region: "Cultural Triangle" },
+    { name: "Kandy",         region: "Hill Country" },
+    { name: "Galle",         region: "Southern Coast" },
+    { name: "Ella",          region: "Highlands" },
+    { name: "Nuwara Eliya",  region: "Tea Country" },
+    { name: "Polonnaruwa",   region: "Ancient Kingdom" },
+    { name: "Anuradhapura",  region: "Sacred City" },
+    { name: "Bentota",       region: "West Coast" },
+    { name: "Mirissa",       region: "Whale Watching" },
+    { name: "Yala",          region: "Wildlife" },
 ];
 
+/* ─── Vehicle options ─────────────────────────────────────── */
+const VEHICLES = [
+    {
+        value:    "sedan",
+        name:     "Private Sedan",
+        pax:      "1 – 3 passengers",
+        tagline:  "Sleek, air-conditioned comfort with a professional chauffeur.",
+        badge:    "Most popular",
+    },
+    {
+        value:    "van",
+        name:     "Executive Van",
+        pax:      "6 – 14 passengers",
+        tagline:  "Spacious interior, reclining seats & onboard Wi-Fi.",
+        badge:    "",
+    },
+    {
+        value:    "coach",
+        name:     "Luxury Coach",
+        pax:      "24 – 45 passengers",
+        tagline:  "First-class touring coach for large groups & corporate travel.",
+        badge:    "",
+    },
+];
+
+/* ─── Helpers ─────────────────────────────────────────────── */
+function daysBetween(a: string, b: string) {
+    if (!a || !b) return 0;
+    const diff = new Date(b).getTime() - new Date(a).getTime();
+    return Math.max(0, Math.floor(diff / 86_400_000));
+}
+
+/* ─── Component ───────────────────────────────────────────── */
 export default function TourBuilderSection() {
     const [step, setStep] = useState(1);
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const ref = useRef(null);
-    const inView = useInView(ref, { once: true, margin: "-100px" });
+    const inView = useInView(ref, { once: true, margin: "-80px" });
 
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        watch,
-        formState: { errors },
-    } = useForm<TourFormData>({
-        resolver: zodResolver(tourSchema),
-        defaultValues: {
-            travelers: "",
-            startDate: "",
-            endDate: "",
-            destinations: [],
-            vehicleType: "",
-            name: "",
-            email: "",
-            specialRequests: "",
-            honeypot: "",
-        },
-    });
+    const { register, handleSubmit, setValue, watch, formState: { errors } } =
+        useForm<TourFormData>({
+            resolver: zodResolver(tourSchema),
+            defaultValues: {
+                travelers: "", startDate: "", endDate: "",
+                destinations: [], vehicleType: "",
+                name: "", email: "", specialRequests: "", honeypot: "",
+            },
+        });
 
     const selectedDests = watch("destinations") || [];
+    const travelers = watch("travelers");
+    const vehicleType = watch("vehicleType");
+    const startDate = watch("startDate");
+    const endDate = watch("endDate");
 
-    const toggleDest = (dest: string) => {
-        const current = selectedDests;
-        const updated = current.includes(dest)
-            ? current.filter((d) => d !== dest)
-            : [...current, dest];
-        setValue("destinations", updated);
+    const toggleDest = (name: string) => {
+        const next = selectedDests.includes(name)
+            ? selectedDests.filter((d) => d !== name)
+            : [...selectedDests, name];
+        setValue("destinations", next);
+    };
+
+    const canProceed = () => {
+        switch (step) {
+            case 1: return !!travelers;
+            case 2: return !!startDate && !!endDate;
+            case 3: return selectedDests.length > 0;
+            case 4: return !!vehicleType;
+            case 5: return !!watch("name") && !!watch("email");
+            default: return false;
+        }
     };
 
     const onSubmit = async (data: TourFormData) => {
@@ -94,227 +163,337 @@ export default function TourBuilderSection() {
         }
     };
 
-    const canProceed = () => {
-        switch (step) {
-            case 1: return !!watch("travelers");
-            case 2: return !!watch("startDate") && !!watch("endDate");
-            case 3: return selectedDests.length > 0;
-            case 4: return !!watch("vehicleType");
-            case 5: return !!watch("name") && !!watch("email");
-            default: return false;
-        }
-    };
-
+    /* ── Success screen ───────────────────────────────────── */
     if (submitted) {
         return (
             <section className="section-luxury-lg bg-[var(--color-primary)]" id="tour-builder">
                 <div className="container-luxury text-center">
                     <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 200 }}
-                        className="w-24 h-24 rounded-full bg-green-500 mx-auto mb-6 flex items-center justify-center"
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ type: "spring", stiffness: 180, damping: 14 }}
+                        className="inline-flex items-center justify-center w-24 h-24 rounded-full
+                                   bg-[var(--color-gold)] mb-8 shadow-2xl shadow-[var(--color-gold)]/30"
                     >
-                        <svg width="48" height="48" fill="white" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                        </svg>
+                        <CheckCircle2 size={44} className="text-white" strokeWidth={1.5} />
                     </motion.div>
-                    <h2 className="!text-white mb-4">Tour Request Received!</h2>
-                    <p className="!text-white/80 text-lg max-w-xl mx-auto">
-                        Thank you for choosing EliteWing Travels. Our team will craft your
-                        perfect itinerary and contact you within 24 hours.
-                    </p>
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
+                        <h2 className="!text-white mb-3">Your journey begins here.</h2>
+                        <p className="!text-white/65 text-lg max-w-lg mx-auto leading-relaxed">
+                            We&apos;ve received your request. Our team will craft a personalised
+                            itinerary and reach out within{" "}
+                            <span className="text-[var(--color-gold)] font-semibold">24 hours</span>.
+                        </p>
+                    </motion.div>
                 </div>
             </section>
         );
     }
 
+    /* ── Main form ────────────────────────────────────────── */
     return (
-        <section className="section-luxury-lg bg-[var(--color-primary)]" id="tour-builder" ref={ref}>
-            <div className="container-luxury">
+        <section
+            id="tour-builder"
+            ref={ref}
+            className="relative bg-[var(--color-primary)] py-24 overflow-hidden"
+        >
+            {/* Soft ambient blobs */}
+            <div className="pointer-events-none absolute top-0 left-0 w-[500px] h-[500px]
+                            rounded-full bg-white/[0.025] blur-[120px] -translate-x-1/2 -translate-y-1/2" />
+            <div className="pointer-events-none absolute bottom-0 right-0 w-[400px] h-[400px]
+                            rounded-full bg-[var(--color-gold)]/10 blur-[100px] translate-x-1/3 translate-y-1/3" />
+
+            <div className="container-luxury relative z-10">
+
+                {/* ── Header ───────────────────────────────────────── */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 24 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-12"
+                    transition={{ duration: 0.7 }}
+                    className="text-center mb-14"
                 >
                     <span className="section-label justify-center !text-[var(--color-gold)]">
                         Private Tour Builder
                     </span>
-                    <h2 className="!text-white">
+                    <h2 className="!text-white mt-1 mb-4">
                         Design Your{" "}
                         <span className="text-gradient-gold">Dream Journey</span>
                     </h2>
-                    <p className="!text-white/70 max-w-xl mx-auto mt-4">
-                        Tell us about your perfect trip and we&apos;ll create a bespoke
+                    <p className="!text-white/55 max-w-md mx-auto text-base">
+                        Tell us about your perfect trip and we&apos;ll craft a bespoke
                         itinerary tailored just for you.
                     </p>
                 </motion.div>
 
-                {/* Progress Steps */}
-                <div className="flex items-center justify-center gap-2 mb-10 flex-wrap">
-                    {steps.map((s, i) => (
-                        <div key={s.number} className="flex items-center gap-2">
-                            <div
-                                className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${step >= s.number
-                                    ? "bg-[var(--color-gold)] text-white"
-                                    : "bg-white/10 text-white/40"
-                                    }`}
-                            >
-                                {step > s.number ? "✓" : s.number}
-                            </div>
-                            <span
-                                className={`text-sm hidden sm:block ${step >= s.number ? "text-white" : "text-white/40"
-                                    }`}
-                            >
-                                {s.title}
-                            </span>
-                            {i < steps.length - 1 && (
-                                <div
-                                    className={`w-8 h-0.5 mx-1 ${step > s.number ? "bg-[var(--color-gold)]" : "bg-white/10"
-                                        }`}
-                                />
-                            )}
-                        </div>
-                    ))}
-                </div>
+                {/* ── Step bar ─────────────────────────────────────── */}
+                <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.7, delay: 0.1 }}
+                    className="flex items-start justify-center gap-1 sm:gap-2 mb-12"
+                >
+                    {STEPS.map(({ id, label, Icon }, i) => {
+                        const done   = step > id;
+                        const active = step === id;
+                        return (
+                            <div key={id} className="flex items-center">
+                                <div className="flex flex-col items-center gap-1.5">
+                                    <div
+                                        className={`
+                                            w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center
+                                            border-2 transition-all duration-400
+                                            ${done
+                                                ? "bg-[var(--color-gold)] border-[var(--color-gold)]"
+                                                : active
+                                                    ? "bg-transparent border-[var(--color-gold)] ring-4 ring-[var(--color-gold)]/20"
+                                                    : "bg-transparent border-white/15"
+                                            }
+                                        `}
+                                    >
+                                        {done
+                                            ? <Check size={14} className="text-white" strokeWidth={2.5} />
+                                            : <Icon size={14} className={active ? "text-[var(--color-gold)]" : "text-white/30"} strokeWidth={1.8} />
+                                        }
+                                    </div>
+                                    <span className={`text-[11px] font-medium hidden sm:block transition-colors duration-300
+                                        ${done || active ? "text-white/80" : "text-white/25"}`}>
+                                        {label}
+                                    </span>
+                                </div>
 
-                {/* Form */}
+                                {/* Connector */}
+                                {i < STEPS.length - 1 && (
+                                    <div className="mx-1 sm:mx-2 mb-5 w-8 sm:w-14 h-px bg-white/10 relative overflow-hidden">
+                                        <motion.div
+                                            animate={{ scaleX: step > id ? 1 : 0 }}
+                                            initial={{ scaleX: 0 }}
+                                            transition={{ duration: 0.4 }}
+                                            style={{ originX: 0 }}
+                                            className="absolute inset-0 bg-[var(--color-gold)]"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
+                </motion.div>
+
+                {/* ── Card ─────────────────────────────────────────── */}
                 <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto">
                     <input type="text" {...register("honeypot")} className="hidden" tabIndex={-1} autoComplete="off" />
 
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={step}
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -50 }}
-                            transition={{ duration: 0.3 }}
-                            className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10"
+                            initial={{ opacity: 0, y: 18 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -18 }}
+                            transition={{ duration: 0.28, ease: "easeOut" }}
+                            className="rounded-3xl border border-white/10 bg-white/[0.055] backdrop-blur-lg
+                                       p-7 sm:p-10 shadow-xl shadow-black/20"
                         >
-                            {/* Step 1: Travelers */}
+
+                            {/* ── Step 1 – Travelers ───────────────── */}
                             {step === 1 && (
                                 <div>
-                                    <h3 className="!text-white text-2xl mb-6">How many travelers?</h3>
-                                    <div className="grid grid-cols-3 gap-4">
-                                        {["1-2", "3-5", "6-10", "11-20", "21-30", "30+"].map((opt) => (
-                                            <label
-                                                key={opt}
-                                                className={`cursor-pointer rounded-2xl p-4 text-center transition-all duration-300 border-2 ${watch("travelers") === opt
-                                                    ? "border-[var(--color-gold)] bg-[var(--color-gold)]/20 text-white"
-                                                    : "border-white/10 text-white/70 hover:border-white/30"
-                                                    }`}
-                                            >
-                                                <input
-                                                    type="radio"
-                                                    value={opt}
-                                                    {...register("travelers")}
-                                                    className="hidden"
-                                                />
-                                                <span className="text-lg font-bold block">{opt}</span>
-                                                <span className="text-xs opacity-60">guests</span>
-                                            </label>
-                                        ))}
+                                    <StepHeading Icon={Users} title="How many travelers?" sub="We'll match your group to the ideal vehicle & accommodations." />
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-7">
+                                        {TRAVELER_OPTIONS.map(({ value, range, tag, Icon: TIcon, hint }) => {
+                                            const sel = travelers === value;
+                                            return (
+                                                <label
+                                                    key={value}
+                                                    className={`
+                                                        relative cursor-pointer rounded-2xl p-4 sm:p-5 transition-all duration-250 border
+                                                        ${sel
+                                                            ? "border-[var(--color-gold)] bg-[var(--color-gold)]/12 shadow-md shadow-[var(--color-gold)]/15"
+                                                            : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
+                                                        }
+                                                    `}
+                                                >
+                                                    <input type="radio" value={value} {...register("travelers")} className="sr-only" />
+
+                                                    {/* Check badge */}
+                                                    {sel && (
+                                                        <motion.span
+                                                            initial={{ scale: 0 }} animate={{ scale: 1 }}
+                                                            className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full
+                                                                       bg-[var(--color-gold)] flex items-center justify-center"
+                                                        >
+                                                            <Check size={10} className="text-white" strokeWidth={3} />
+                                                        </motion.span>
+                                                    )}
+
+                                                    <TIcon
+                                                        size={22}
+                                                        strokeWidth={1.6}
+                                                        className={`mb-3 transition-colors duration-250
+                                                            ${sel ? "text-[var(--color-gold)]" : "text-white/35"}`}
+                                                    />
+                                                    <p className={`text-xl font-bold leading-none mb-0.5 transition-colors
+                                                        ${sel ? "text-white" : "text-white/75"}`}>
+                                                        {range}
+                                                    </p>
+                                                    <p className={`text-[11px] font-semibold uppercase tracking-widest mb-2 transition-colors
+                                                        ${sel ? "text-[var(--color-gold)]" : "text-white/30"}`}>
+                                                        {tag}
+                                                    </p>
+                                                    <p className={`text-[11px] leading-tight transition-colors
+                                                        ${sel ? "text-white/60" : "text-white/25"}`}>
+                                                        {hint}
+                                                    </p>
+                                                </label>
+                                            );
+                                        })}
                                     </div>
+                                    {travelers && (
+                                        <Tip>
+                                            Perfect — we&apos;ll curate the ideal Sri Lanka experience for{" "}
+                                            <strong className="text-[var(--color-gold)]">{travelers} guests</strong>.
+                                        </Tip>
+                                    )}
                                 </div>
                             )}
 
-                            {/* Step 2: Dates */}
+                            {/* ── Step 2 – Dates ───────────────────── */}
                             {step === 2 && (
                                 <div>
-                                    <h3 className="!text-white text-2xl mb-6">When are you traveling?</h3>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                        <div>
-                                            <label className="form-label !text-white/80">Start Date</label>
-                                            <input type="date" {...register("startDate")} className="form-input" />
-                                        </div>
-                                        <div>
-                                            <label className="form-label !text-white/80">End Date</label>
-                                            <input type="date" {...register("endDate")} className="form-input" />
-                                        </div>
+                                    <StepHeading Icon={CalendarDays} title="When are you traveling?" sub="Choose your dates and we'll plan every day to perfection." />
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-7">
+                                        <DateField label="Departure date" id="startDate" {...register("startDate")} />
+                                        <DateField label="Return date" id="endDate" {...register("endDate")} />
                                     </div>
+                                    {startDate && endDate && daysBetween(startDate, endDate) > 0 && (
+                                        <Tip>
+                                            Your journey spans{" "}
+                                            <strong className="text-[var(--color-gold)]">{daysBetween(startDate, endDate)} days</strong>{" "}
+                                            of unforgettable experiences.
+                                        </Tip>
+                                    )}
                                 </div>
                             )}
 
-                            {/* Step 3: Destinations */}
+                            {/* ── Step 3 – Destinations ────────────── */}
                             {step === 3 && (
                                 <div>
-                                    <h3 className="!text-white text-2xl mb-6">Where would you like to go?</h3>
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                        {destinationOptions.map((dest) => (
-                                            <button
-                                                key={dest}
-                                                type="button"
-                                                onClick={() => toggleDest(dest)}
-                                                className={`rounded-2xl p-3 text-sm font-medium transition-all duration-300 border-2 cursor-pointer ${selectedDests.includes(dest)
-                                                    ? "border-[var(--color-gold)] bg-[var(--color-gold)]/20 text-white"
-                                                    : "border-white/10 text-white/70 hover:border-white/30 bg-transparent"
-                                                    }`}
-                                            >
-                                                {dest}
-                                            </button>
-                                        ))}
+                                    <StepHeading Icon={MapPin} title="Where would you like to go?" sub="Pick any destinations that spark your interest — we'll weave them into a seamless route." />
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mt-7">
+                                        {DESTINATIONS.map(({ name, region }) => {
+                                            const sel = selectedDests.includes(name);
+                                            return (
+                                                <button
+                                                    key={name}
+                                                    type="button"
+                                                    onClick={() => toggleDest(name)}
+                                                    className={`
+                                                        relative text-left rounded-xl px-4 py-3.5 border transition-all duration-250 cursor-pointer group
+                                                        ${sel
+                                                            ? "border-[var(--color-gold)] bg-[var(--color-gold)]/12"
+                                                            : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
+                                                        }
+                                                    `}
+                                                >
+                                                    <MapPin
+                                                        size={13}
+                                                        strokeWidth={2}
+                                                        className={`absolute top-3 right-3 transition-colors
+                                                            ${sel ? "text-[var(--color-gold)]" : "text-white/20 group-hover:text-white/35"}`}
+                                                    />
+                                                    <p className={`text-sm font-semibold leading-tight transition-colors
+                                                        ${sel ? "text-white" : "text-white/70"}`}>
+                                                        {name}
+                                                    </p>
+                                                    <p className={`text-[11px] mt-0.5 transition-colors
+                                                        ${sel ? "text-[var(--color-gold)]/70" : "text-white/25"}`}>
+                                                        {region}
+                                                    </p>
+                                                </button>
+                                            );
+                                        })}
                                     </div>
+                                    {selectedDests.length > 0 && (
+                                        <Tip>
+                                            <strong className="text-[var(--color-gold)]">{selectedDests.length}</strong>{" "}
+                                            destination{selectedDests.length > 1 ? "s" : ""} selected.
+                                        </Tip>
+                                    )}
                                 </div>
                             )}
 
-                            {/* Step 4: Vehicle */}
+                            {/* ── Step 4 – Vehicle ─────────────────── */}
                             {step === 4 && (
                                 <div>
-                                    <h3 className="!text-white text-2xl mb-6">Choose your vehicle</h3>
-                                    <div className="space-y-4">
-                                        {vehicleOptions.map((v) => (
-                                            <label
-                                                key={v.value}
-                                                className={`cursor-pointer rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 border-2 ${watch("vehicleType") === v.value
-                                                    ? "border-[var(--color-gold)] bg-[var(--color-gold)]/20"
-                                                    : "border-white/10 hover:border-white/30"
-                                                    }`}
-                                            >
-                                                <input
-                                                    type="radio"
-                                                    value={v.value}
-                                                    {...register("vehicleType")}
-                                                    className="hidden"
-                                                />
-                                                <div
-                                                    className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${watch("vehicleType") === v.value
-                                                        ? "border-[var(--color-gold)]"
-                                                        : "border-white/30"
-                                                        }`}
+                                    <StepHeading Icon={Car} title="Choose your vehicle" sub="Every vehicle includes a professional chauffeur and complimentary Wi-Fi." />
+                                    <div className="space-y-3 mt-7">
+                                        {VEHICLES.map(({ value, name, pax, tagline, badge }) => {
+                                            const sel = vehicleType === value;
+                                            return (
+                                                <label
+                                                    key={value}
+                                                    className={`
+                                                        flex items-center gap-4 rounded-2xl px-5 py-4 border cursor-pointer
+                                                        transition-all duration-250
+                                                        ${sel
+                                                            ? "border-[var(--color-gold)] bg-[var(--color-gold)]/12"
+                                                            : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
+                                                        }
+                                                    `}
                                                 >
-                                                    {watch("vehicleType") === v.value && (
-                                                        <div className="w-2.5 h-2.5 rounded-full bg-[var(--color-gold)]" />
-                                                    )}
-                                                </div>
-                                                <span className="text-white font-medium">{v.label}</span>
-                                            </label>
-                                        ))}
+                                                    <input type="radio" value={value} {...register("vehicleType")} className="sr-only" />
+
+                                                    {/* Radio dot */}
+                                                    <div className={`shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all
+                                                        ${sel ? "border-[var(--color-gold)] bg-[var(--color-gold)]" : "border-white/25"}`}>
+                                                        {sel && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}
+                                                            className="w-2 h-2 rounded-full bg-white" />}
+                                                    </div>
+
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="flex items-center flex-wrap gap-2 mb-0.5">
+                                                            <span className={`text-sm font-bold transition-colors
+                                                                ${sel ? "text-white" : "text-white/80"}`}>
+                                                                {name}
+                                                            </span>
+                                                            <span className={`text-[11px] px-2 py-0.5 rounded-full font-medium transition-all
+                                                                ${sel ? "bg-[var(--color-gold)]/20 text-[var(--color-gold)]" : "bg-white/8 text-white/35"}`}>
+                                                                {pax}
+                                                            </span>
+                                                            {badge && (
+                                                                <span className="flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full
+                                                                                bg-[var(--color-gold)]/15 text-[var(--color-gold)] font-medium">
+                                                                    <Star size={9} className="fill-[var(--color-gold)]" />
+                                                                    {badge}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                        <p className={`text-xs leading-relaxed transition-colors
+                                                            ${sel ? "text-white/60" : "text-white/30"}`}>
+                                                            {tagline}
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             )}
 
-                            {/* Step 5: Contact */}
+                            {/* ── Step 5 – Contact details ──────────── */}
                             {step === 5 && (
                                 <div>
-                                    <h3 className="!text-white text-2xl mb-6">Almost there! Your details</h3>
-                                    <div className="space-y-4">
+                                    <StepHeading Icon={Mail} title="Last step — your details" sub="Our travel experts will reach out with your bespoke itinerary." />
+                                    <div className="space-y-5 mt-7">
+                                        <FormField label="Full name" id="name" type="text" placeholder="Your full name" register={register("name")} error={errors.name?.message} />
+                                        <FormField label="Email address" id="email" type="email" placeholder="you@example.com" register={register("email")} error={errors.email?.message} />
                                         <div>
-                                            <label className="form-label !text-white/80">Full Name</label>
-                                            <input type="text" {...register("name")} className="form-input" placeholder="Your full name" />
-                                            {errors.name && <span className="form-error">{errors.name.message}</span>}
-                                        </div>
-                                        <div>
-                                            <label className="form-label !text-white/80">Email Address</label>
-                                            <input type="email" {...register("email")} className="form-input" placeholder="your@email.com" />
-                                            {errors.email && <span className="form-error">{errors.email.message}</span>}
-                                        </div>
-                                        <div>
-                                            <label className="form-label !text-white/80">Special Requests</label>
+                                            <FieldLabel label="Special requests" optional />
                                             <textarea
                                                 {...register("specialRequests")}
-                                                className="form-input min-h-[120px] resize-none"
-                                                placeholder="Any special requirements, dietary needs, celebrations..."
+                                                rows={4}
+                                                placeholder="Dietary needs, special celebrations, accessibility…"
+                                                className="w-full px-4 py-3.5 rounded-xl border border-white/15 bg-white/[0.055]
+                                                           text-white text-sm placeholder:text-white/25 outline-none resize-none
+                                                           focus:border-[var(--color-gold)] focus:bg-white/[0.08] transition-all"
                                             />
                                         </div>
                                     </div>
@@ -323,44 +502,131 @@ export default function TourBuilderSection() {
                         </motion.div>
                     </AnimatePresence>
 
-                    {/* Navigation */}
-                    <div className="flex items-center justify-between mt-8">
+                    {/* ── Navigation bar ───────────────────────────── */}
+                    <div className="flex items-center justify-between mt-5">
                         {step > 1 ? (
                             <button
                                 type="button"
                                 onClick={() => setStep(step - 1)}
-                                className="btn-secondary !border-white/30 !text-white hover:!bg-white/10"
+                                className="flex items-center gap-2 text-sm text-white/50 hover:text-white/90
+                                           transition-colors duration-200 font-medium px-1 py-2"
                             >
+                                <ArrowLeft size={15} strokeWidth={2} />
                                 Back
                             </button>
-                        ) : (
-                            <div />
-                        )}
+                        ) : <div />}
+
+                        <span className="text-white/20 text-xs tracking-wider hidden sm:block">
+                            {step} / {STEPS.length}
+                        </span>
 
                         {step < 5 ? (
                             <button
                                 type="button"
                                 onClick={() => canProceed() && setStep(step + 1)}
-                                className={`btn-primary ${!canProceed() ? "opacity-50 cursor-not-allowed" : ""}`}
+                                disabled={!canProceed()}
+                                className="btn-primary !bg-[var(--color-gold)] !border-[var(--color-gold)]
+                                           !py-3.5 !px-7 disabled:opacity-35 disabled:cursor-not-allowed
+                                           hover:!bg-amber-500 hover:!border-amber-500"
                             >
                                 Continue
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
+                                <ArrowRight size={15} strokeWidth={2.2} />
                             </button>
                         ) : (
                             <button
                                 type="submit"
                                 disabled={submitting || !canProceed()}
-                                className={`btn-primary !bg-[var(--color-gold)] !border-[var(--color-gold)] ${submitting ? "opacity-50" : ""
-                                    }`}
+                                className="btn-primary !bg-[var(--color-gold)] !border-[var(--color-gold)]
+                                           !py-3.5 !px-7 disabled:opacity-35 disabled:cursor-not-allowed
+                                           hover:!bg-amber-500 hover:!border-amber-500"
                             >
-                                {submitting ? "Sending..." : "Submit Inquiry"}
+                                {submitting ? (
+                                    <><Loader2 size={15} className="animate-spin" /> Sending…</>
+                                ) : (
+                                    <>Submit inquiry <Send size={14} strokeWidth={2} /></>
+                                )}
                             </button>
                         )}
                     </div>
                 </form>
             </div>
         </section>
+    );
+}
+
+/* ─── Small reusable sub-components ──────────────────────── */
+
+function StepHeading({ Icon, title, sub }: { Icon: React.ElementType; title: string; sub: string }) {
+    return (
+        <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
+            <div className="shrink-0 w-10 h-10 rounded-full bg-[var(--color-gold)]/15 border border-[var(--color-gold)]/30
+                            flex items-center justify-center mt-0.5">
+                <Icon size={18} className="text-[var(--color-gold)]" strokeWidth={1.8} />
+            </div>
+            <div>
+                <h3 className="!text-white text-xl sm:text-2xl !font-semibold m-0 leading-tight">{title}</h3>
+                <p className="text-white/45 text-sm mt-1 leading-relaxed">{sub}</p>
+            </div>
+        </div>
+    );
+}
+
+function Tip({ children }: { children: React.ReactNode }) {
+    return (
+        <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-5 text-sm text-white/50 text-center"
+        >
+            {children}
+        </motion.p>
+    );
+}
+
+function FieldLabel({ label, optional }: { label: string; optional?: boolean }) {
+    return (
+        <label className="block text-sm text-white/60 font-medium mb-2">
+            {label}{" "}
+            {optional && <span className="text-white/25 font-normal">(optional)</span>}
+        </label>
+    );
+}
+
+function DateField({ label, id, ...rest }: { label: string; id: string } & React.InputHTMLAttributes<HTMLInputElement>) {
+    return (
+        <div>
+            <FieldLabel label={label} />
+            <input
+                type="date"
+                id={id}
+                {...rest}
+                className="w-full px-4 py-3.5 rounded-xl border border-white/15 bg-white/[0.055]
+                           text-white text-sm outline-none focus:border-[var(--color-gold)]
+                           focus:bg-white/[0.08] transition-all [color-scheme:dark]"
+            />
+        </div>
+    );
+}
+
+function FormField({
+    label, id, type, placeholder, register, error,
+}: {
+    label: string; id: string; type: string;
+    placeholder: string; register: object; error?: string;
+}) {
+    return (
+        <div>
+            <FieldLabel label={label} />
+            <input
+                type={type}
+                id={id}
+                placeholder={placeholder}
+                {...register}
+                className="w-full px-4 py-3.5 rounded-xl border border-white/15 bg-white/[0.055]
+                           text-white text-sm placeholder:text-white/25 outline-none
+                           focus:border-[var(--color-gold)] focus:bg-white/[0.08] transition-all"
+            />
+            {error && <p className="text-red-400 text-xs mt-1.5">{error}</p>}
+        </div>
     );
 }
