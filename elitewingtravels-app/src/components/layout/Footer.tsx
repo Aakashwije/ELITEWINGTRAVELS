@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { siteConfig, navLinks } from "@/lib/data";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, Star } from "lucide-react";
+
+const socialIcons: Record<string, React.ReactNode> = {
+    facebook: <Facebook className="w-4 h-4" />,
+    instagram: <Instagram className="w-4 h-4" />,
+    youtube: <Youtube className="w-4 h-4" />,
+    tripadvisor: <Star className="w-4 h-4" />,
+};
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -8,15 +15,15 @@ export default function Footer() {
     return (
         <footer className="bg-[var(--color-dark)] text-white">
             {/* Main Footer */}
-            <div className="section-luxury">
+            <div className="py-10">
                 <div className="container-luxury">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                         {/* Brand */}
                         <div>
                             <div className="mb-6 flex items-center gap-4">
-                                <img 
-                                    src="/assets/images/elitewing.png" 
-                                    alt="EliteWing Travels Logo" 
+                                <img
+                                    src="/assets/images/elitewing.png"
+                                    alt="EliteWing Travels Logo"
                                     className="w-14 h-14 object-cover rounded-full border border-white/20 shadow-lg"
                                 />
                                 <div>
@@ -40,7 +47,7 @@ export default function Footer() {
                                         className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[var(--color-gold)] transition-all duration-300 no-underline text-sm"
                                         aria-label={platform}
                                     >
-                                        {platform[0].toUpperCase()}
+                                        {socialIcons[platform] ?? <span className="text-xs font-bold">{platform[0].toUpperCase()}</span>}
                                     </a>
                                 ))}
                             </div>
