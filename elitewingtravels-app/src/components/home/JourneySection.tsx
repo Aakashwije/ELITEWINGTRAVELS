@@ -103,7 +103,7 @@ export default function JourneySection() {
 
                 {/* Bottom content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 z-[2]">
-                  <h3 className="text-white text-2xl font-bold mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="!text-white text-2xl font-bold mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     {journey.title}
                   </h3>
                   <div className="flex items-center justify-between">

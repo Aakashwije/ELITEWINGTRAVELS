@@ -46,7 +46,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 z-0">
                 {/* Fallback to simple img tag to guarantee visibility and avoid Next.js Image fill layout issues */}
                 <img
-                    src="/assets/images/home1.jpg"
+                    src="/assets/images/home1.png"
                     alt="EliteWing Travels Background"
                     className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -56,19 +56,17 @@ export default function HeroSection() {
 
             {/* Content */}
             <div className="relative z-[2] h-full flex flex-col items-center justify-center text-center px-4 w-full">
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
-                    className="container-luxury relative z-10 w-full max-w-6xl mx-auto backdrop-blur-md bg-white/5 border border-white/20 p-8 py-16 md:p-16 md:py-24 lg:p-20 lg:py-32 rounded-3xl shadow-2xl overflow-hidden min-h-[300px] flex flex-col justify-center"
+                    className="container-luxury relative z-10 w-full max-w-6xl mx-auto flex flex-col justify-center"
                 >
-                    {/* Glassmorphism ambient glow */}
-                    <div className="absolute top-0 left-1/2 -top-10 -translate-x-1/2 w-3/4 h-24 bg-[var(--color-gold)]/20 blur-[60px] pointer-events-none" />
-                  
+
 
                     <h1
                         ref={headlineRef}
-                       className="!text-white text-5xl md:text-6xl lg:text-[5.5rem] font-bold mb-20 sm:mb-24 leading-[1.1] tracking-tight text-shadow-lg drop-shadow-md"
+                        className="!text-white text-5xl md:text-6xl lg:text-[5.5rem] font-bold mb-20 sm:mb-24 leading-[1.1] tracking-tight text-shadow-lg drop-shadow-md"
                     >
                         The Home of Sri Lankan Hospitality
                     </h1>
