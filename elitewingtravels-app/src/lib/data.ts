@@ -842,3 +842,13 @@ export const mapHotspots = [
     { id: "nuwara-eliya", label: "Nuwara Eliya", category: "Hill Country", x: 49.74, y: 86.62, description: "Misty highlands & colonial tea estates" },
     { id: "ella", label: "Ella", category: "Adventure", x: 57.18, y: 88.98, description: "Mountain trails & the famous Nine Arches Bridge" },
 ];
+
+export const memories = [
+    { id: 1, image: "/destinations/sigiriya-gen.jpg", title: "Cultural Tour 2024" },
+    { id: 2, image: "/destinations/yala-gen.jpg", title: "Wildlife Safari" },
+    { id: 3, image: "/destinations/ella-gen.jpg", title: "Hill Country Adventure" },
+    { id: 4, image: "/destinations/galle-gen.jpg", title: "Coastal Heritage" },
+    { id: 5, image: "/destinations/bentota-gen.jpg", title: "Beach Relaxation" },
+    { id: 6, image: "/destinations/kandy-gen.jpg", title: "Temple Visit" },
+];
+
