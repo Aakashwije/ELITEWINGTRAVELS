@@ -41,14 +41,15 @@ export default function DestinationsSection() {
                                 <Link href={`/destinations/${dest.slug}`} className="block no-underline group">
                                     <div className="card-luxury overflow-hidden">
                                         <div className="relative h-72 overflow-hidden group">
-                                            <div
-                                                className="w-full h-full bg-[var(--color-primary)] transition-transform duration-700 group-hover:scale-110"
-                                                style={{
-                                                    backgroundImage: `url(${dest.image})`,
-                                                    backgroundSize: "cover",
-                                                    backgroundPosition: "center",
-                                                }}
-                                            />
+                                            <div className="w-full h-full absolute inset-0 grid grid-cols-2 grid-rows-2 transition-transform duration-700 group-hover:scale-110">
+                                                {dest.gallery.slice(0, 4).map((img, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className="w-full h-full bg-cover bg-center"
+                                                        style={{ backgroundImage: `url('${img}')` }}
+                                                    />
+                                                ))}
+                                            </div>
                                             {/* Static overlay (Always visible) */}
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-opacity duration-500 group-hover:opacity-0" />
 

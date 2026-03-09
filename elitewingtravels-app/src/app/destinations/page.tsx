@@ -38,14 +38,15 @@ export default function DestinationsPage() {
                             >
                                 <div className="card-luxury overflow-hidden">
                                     <div className="relative h-72 overflow-hidden">
-                                        <div
-                                            className="w-full h-full bg-gradient-to-br from-[var(--color-primary)] to-[#0a2d6b] transition-transform duration-700 group-hover:scale-110"
-                                            style={{
-                                                backgroundImage: `url(${dest.image})`,
-                                                backgroundSize: "cover",
-                                                backgroundPosition: "center",
-                                            }}
-                                        />
+                                        <div className="w-full h-full absolute inset-0 grid grid-cols-2 grid-rows-2 transition-transform duration-700 group-hover:scale-110">
+                                            {dest.gallery.slice(0, 4).map((img, idx) => (
+                                                <div
+                                                    key={idx}
+                                                    className="w-full h-full bg-cover bg-center"
+                                                    style={{ backgroundImage: `url('${img}')` }}
+                                                />
+                                            ))}
+                                        </div>
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                                         <div className="absolute bottom-4 left-5 right-5">
                                             <span className="inline-block px-3 py-1 bg-[var(--color-gold)] text-white text-xs font-semibold rounded-full mb-2">
