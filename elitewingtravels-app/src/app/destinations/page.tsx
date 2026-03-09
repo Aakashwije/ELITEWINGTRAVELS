@@ -37,7 +37,7 @@ export default function DestinationsPage() {
                                 className="block no-underline group"
                             >
                                 <div className="card-luxury overflow-hidden">
-                                    <div className="relative h-72 overflow-hidden">
+                                    <div className="relative h-80 overflow-hidden group">
                                         <div className="w-full h-full absolute inset-0 grid grid-cols-2 grid-rows-2 transition-transform duration-700 group-hover:scale-110">
                                             {dest.gallery.slice(0, 4).map((img, idx) => (
                                                 <div
@@ -47,26 +47,38 @@ export default function DestinationsPage() {
                                                 />
                                             ))}
                                         </div>
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                                        <div className="absolute bottom-4 left-5 right-5">
-                                            <span className="inline-block px-3 py-1 bg-[var(--color-gold)] text-white text-xs font-semibold rounded-full mb-2">
+
+                                        {/* Static overlay (Always visible) */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-opacity duration-500 group-hover:opacity-0" />
+
+                                        {/* Hover overlay (Visible on hover) */}
+                                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6" />
+
+                                        {/* Static Content (Hidden on hover) */}
+                                        <div className="absolute bottom-4 left-5 right-5 transition-transform duration-500 group-hover:translate-y-8 group-hover:opacity-0">
+                                            <span className="inline-block px-3 py-1 bg-[var(--color-gold)] text-white text-[10px] font-bold tracking-widest uppercase rounded-full mb-2">
                                                 Best: {dest.bestTime}
                                             </span>
                                             <h3 className="!text-white text-3xl mb-1">{dest.name}</h3>
-                                            <p className="!text-white/80 text-sm">{dest.tagline}</p>
+                                            <p className="!text-white/80 text-xs tracking-wide uppercase font-medium">{dest.tagline}</p>
                                         </div>
-                                    </div>
-                                    <div className="p-6">
-                                        <p className="text-sm mb-4 line-clamp-2">{dest.description}</p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {dest.highlights.slice(0, 4).map((h) => (
-                                                <span
-                                                    key={h}
-                                                    className="px-3 py-1 bg-[var(--color-sky)] text-[var(--color-primary)] text-xs font-medium rounded-full"
-                                                >
-                                                    {h}
-                                                </span>
-                                            ))}
+
+                                        {/* Hover Content (Visible on hover) */}
+                                        <div className="absolute inset-x-5 bottom-6 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+                                            <h3 className="!text-white text-2xl font-bold mb-3">{dest.name}</h3>
+                                            <p className="text-white/90 text-sm mb-5 line-clamp-4 leading-relaxed">
+                                                {dest.description}
+                                            </p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {dest.highlights.slice(0, 3).map((h) => (
+                                                    <span
+                                                        key={h}
+                                                        className="px-2.5 py-1 bg-white/20 text-white text-[10px] font-bold tracking-wider uppercase rounded-full backdrop-blur-md border border-white/10"
+                                                    >
+                                                        {h}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
