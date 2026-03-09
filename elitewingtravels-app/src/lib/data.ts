@@ -52,7 +52,7 @@ export const destinations: Destination[] = [
         tagline: "The Lion Rock Fortress",
         description:
             "Rising dramatically from the central plains, the ancient rock citadel of Sigiriya is a UNESCO World Heritage Site and one of Sri Lanka's most iconic landmarks. Marvel at the ancient frescoes, ascend the lion's stairway, and explore the sprawling royal gardens.",
-        image: "/destinations/sigiriya.jpg",
+        image: "/Locations/Sigiriya/sigiriya_1.png",
         bestTime: "January - April",
         highlights: [
             "Lion Rock Fortress",
@@ -67,9 +67,10 @@ export const destinations: Destination[] = [
             "Aliya Resort & Spa",
         ],
         gallery: [
-            "/destinations/sigiriya.jpg",
-            "/destinations/sigiriya-2.jpg",
-            "/destinations/sigiriya-3.jpg",
+            "/Locations/Sigiriya/sigiriya_1.png",
+            "/Locations/Sigiriya/sigiriya_2.png",
+            "/Locations/Sigiriya/sigiriya_3 .png",
+            "/Locations/Sigiriya/Sigiriya_4.jpg"
         ],
     },
     {
@@ -78,7 +79,7 @@ export const destinations: Destination[] = [
         tagline: "Colonial Charm Meets Coastal Beauty",
         description:
             "The historic Galle Fort, a UNESCO World Heritage Site, blends Dutch colonial architecture with vibrant Sri Lankan culture. Wander cobblestone streets lined with boutique shops, art galleries, and oceanfront cafés in this enchanting coastal gem.",
-        image: "/destinations/galle.jpg",
+        image: "/Locations/Galle/Galle_1.png",
         bestTime: "December - April",
         highlights: [
             "Galle Fort",
@@ -93,9 +94,10 @@ export const destinations: Destination[] = [
             "KK Beach",
         ],
         gallery: [
-            "/destinations/galle.jpg",
-            "/destinations/galle-2.jpg",
-            "/destinations/galle-3.jpg",
+            "/Locations/Galle/Galle_1.png",
+            "/Locations/Galle/Galle_2.png",
+            "/Locations/Galle/Galle_3.png",
+            "/Locations/Galle/Galle_4.png"
         ],
     },
     {
@@ -104,7 +106,7 @@ export const destinations: Destination[] = [
         tagline: "Golden Sands & Turquoise Waters",
         description:
             "Bentota is Sri Lanka's premier beach resort destination, offering pristine golden sands, world-class water sports, and luxurious beachfront villas. A paradise for romance and relaxation on the southwestern coast.",
-        image: "/destinations/bentota.jpg",
+        image: "/Locations/Bentota/Bentota_1.png",
         bestTime: "November - April",
         highlights: [
             "Bentota Beach",
@@ -119,9 +121,10 @@ export const destinations: Destination[] = [
             "Vivanta by Taj",
         ],
         gallery: [
-            "/destinations/bentota.jpg",
-            "/destinations/bentota-2.jpg",
-            "/destinations/bentota-3.jpg",
+            "/Locations/Bentota/Bentota_1.png",
+            "/Locations/Bentota/Bentota_2.png",
+            "/Locations/Bentota/Bentota_3.png",
+            "/Locations/Bentota/Bentota_4.png"
         ],
     },
     {
@@ -130,7 +133,7 @@ export const destinations: Destination[] = [
         tagline: "The Medieval Capital",
         description:
             "Once the thriving capital of the island, Polonnaruwa is a treasure trove of ancient ruins, sacred temples, and stunning Buddha statues. This UNESCO World Heritage Site showcases the pinnacle of ancient Sinhalese civilization.",
-        image: "/destinations/polonnaruwa.jpg",
+        image: "/Locations/Polonnaruwa/Polonnaruwa_1.jpg",
         bestTime: "May - September",
         highlights: [
             "Gal Vihara",
@@ -145,9 +148,10 @@ export const destinations: Destination[] = [
             "Fresco Water Villa",
         ],
         gallery: [
-            "/destinations/polonnaruwa.jpg",
-            "/destinations/polonnaruwa-2.jpg",
-            "/destinations/polonnaruwa-3.jpg",
+            "/Locations/Polonnaruwa/Polonnaruwa_1.jpg",
+            "/Locations/Polonnaruwa/Polonnaruwa_2.jpg",
+            "/Locations/Polonnaruwa/Polonnaruwa_3.JPG",
+            "/Locations/Polonnaruwa/Polonnaruwa_4.jpg"
         ],
     },
     {
@@ -156,11 +160,16 @@ export const destinations: Destination[] = [
         tagline: "The Ancient Sacred City",
         description:
             "A UNESCO World Heritage site showcasing the majestic remnants of Sri Lanka's first capital, featuring colossal stupas and the sacred Sri Maha Bodhi tree.",
-        image: "/destinations/anuradhapura.jpg",
+        image: "/Locations/Anuradhapura/Anuradhapura_1.png",
         bestTime: "May - September",
         highlights: ["Sri Maha Bodhi", "Ruwanwelisaya", "Jetavanaramaya", "Abhayagiri Dagoba", "Mihintale"],
         hotels: ["Ulagalla by Uga Escapes", "Kapuruge Hotel", "Heritage Hotel"],
-        gallery: ["/destinations/anuradhapura.jpg", "/destinations/anuradhapura-2.jpg", "/destinations/anuradhapura-3.jpg"],
+        gallery: [
+            "/Locations/Anuradhapura/Anuradhapura_1.png",
+            "/Locations/Anuradhapura/Anuradhapura_2.jpg",
+            "/Locations/Anuradhapura/Anuradhapura_3.png",
+            "/Locations/Anuradhapura/Anuradhapura_4.png"
+        ],
     },
     {
         slug: "arugambay",
@@ -168,11 +177,16 @@ export const destinations: Destination[] = [
         tagline: "Surfer's Paradise",
         description:
             "Renowned as one of the best surfing destinations in the world, Arugam Bay offers laid-back coastal vibes, thrilling waves, and nearby wildlife safaris.",
-        image: "/destinations/arugambay.jpg",
+        image: "/Locations/Arugambay/Arugambay_1.png",
         bestTime: "May - September",
         highlights: ["Surfing Point", "Kumana National Park", "Muhudu Maha Viharaya", "Elephant Rock", "Whiskey Point"],
         hotels: ["Jetwing Surf", "Hideaway Resort", "Kottukal Beach House"],
-        gallery: ["/destinations/arugambay.jpg", "/destinations/arugambay-2.jpg", "/destinations/arugambay-3.jpg"],
+        gallery: [
+            "/Locations/Arugambay/Arugambay_1.png",
+            "/Locations/Arugambay/Arugambay_2.png",
+            "/Locations/Arugambay/Arugambay_3.png",
+            "/Locations/Arugambay/Arugambay_4.png"
+        ],
     },
     {
         slug: "colombo",
@@ -180,11 +194,16 @@ export const destinations: Destination[] = [
         tagline: "The Vibrant Commercial Capital",
         description:
             "A bustling metropolis where colonial heritage meets modern development. Explore bustling markets, world-class dining, and exciting urban culture.",
-        image: "/destinations/colombo.jpg",
+        image: "/Locations/Colombo/Colombo_1.png",
         bestTime: "January - March",
         highlights: ["Galle Face Green", "Gangaramaya Temple", "National Museum", "Pettah Market", "Lotus Tower"],
         hotels: ["Shangri-La Colombo", "Cinnamon Grand", "Galle Face Hotel"],
-        gallery: ["/destinations/colombo.jpg", "/destinations/colombo-2.jpg", "/destinations/colombo-3.jpg"],
+        gallery: [
+            "/Locations/Colombo/Colombo_1.png",
+            "/Locations/Colombo/Colombo_2.png",
+            "/Locations/Colombo/Colombo_3.png",
+            "/Locations/Colombo/Colombo_4.png"
+        ],
     },
     {
         slug: "dambulla",
@@ -192,11 +211,16 @@ export const destinations: Destination[] = [
         tagline: "The Cave Temple Complex",
         description:
             "Famous for its stunning UNESCO World Heritage cave temples, Dambulla is a spiritual and historical marvel at the heart of the cultural triangle.",
-        image: "/destinations/dambulla.jpg",
+        image: "/Locations/Dambulla/Dambulla_1.png",
         bestTime: "January - April",
         highlights: ["Golden Temple", "Dambulla Cave Temple", "Popham's Arboretum", "Minneriya Safari", "Ibbankatuwa Megalithic Tombs"],
         hotels: ["Heritance Kandalama", "Amaya Lake", "Jetwing Lake"],
-        gallery: ["/destinations/dambulla.jpg", "/destinations/dambulla-2.jpg", "/destinations/dambulla-3.jpg"],
+        gallery: [
+            "/Locations/Dambulla/Dambulla_1.png",
+            "/Locations/Dambulla/Dambulla_2.png",
+            "/Locations/Dambulla/Dambulla_3.png",
+            "/Locations/Dambulla/Dambulla_4.png"
+        ],
     },
     {
         slug: "ella",
@@ -204,11 +228,16 @@ export const destinations: Destination[] = [
         tagline: "Nature's Masterpiece",
         description:
             "A misty, mountain-clad village surrounded by tea plantations, cascading waterfalls, and breathtaking hiking trails like Ella Rock and Little Adam's Peak.",
-        image: "/destinations/ella.jpg",
+        image: "/Locations/Ella/Ella_1.png",
         bestTime: "January - May",
         highlights: ["Nine Arches Bridge", "Ella Rock", "Little Adam's Peak", "Ravana Falls", "Tea Factories"],
         hotels: ["98 Acres Resort & Spa", "Ekho Ella", "Mountain Heavens"],
-        gallery: ["/destinations/ella.jpg", "/destinations/ella-2.jpg", "/destinations/ella-3.jpg"],
+        gallery: [
+            "/Locations/Ella/Ella_1.png",
+            "/Locations/Ella/Ella_2.png",
+            "/Locations/Ella/Ella_3.png",
+            "/Locations/Ella/Ella_4.png"
+        ],
     },
     {
         slug: "habarana",
@@ -216,11 +245,16 @@ export const destinations: Destination[] = [
         tagline: "The Safari Hub",
         description:
             "The perfect starting point for wildlife enthusiasts looking to explore the gathering of wild elephants at nearby Minneriya and Kaudulla National Parks.",
-        image: "/destinations/habarana.jpg",
+        image: "/Locations/Habarana/Habarana_1.jpg",
         bestTime: "July - September",
         highlights: ["Minneriya National Park", "Kaudulla National Park", "Hurulu Eco Park", "Habarana Lake", "Village Safaris"],
         hotels: ["Cinnamon Lodge", "Habarana Village", "Aliya Resort"],
-        gallery: ["/destinations/habarana.jpg", "/destinations/habarana-2.jpg", "/destinations/habarana-3.jpg"],
+        gallery: [
+            "/Locations/Habarana/Habarana_1.jpg",
+            "/Locations/Habarana/Habarana_2.jpg",
+            "/Locations/Habarana/Habarana_3.jpg",
+            "/Locations/Habarana/Habarana_4jpg.jpg"
+        ],
     },
     {
         slug: "hatton",
@@ -228,11 +262,17 @@ export const destinations: Destination[] = [
         tagline: "Heart of the Tea Country",
         description:
             "Set amidst lush, rolling hills of vibrant green tea estates, Hatton is the epitome of Sri Lanka's colonial tea heritage and cool central highlands.",
-        image: "/destinations/hatton.jpg",
+        image: "/Locations/Hatton/Hatton_1.jpg",
         bestTime: "December - April",
         highlights: ["Ceylon Tea Trails", "Castlereagh Reservoir", "Adam's Peak", "Devon Falls", "St. Clair's Falls"],
         hotels: ["Ceylon Tea Trails", "Dickoya by Zinc Journeys", "Argyle"],
-        gallery: ["/destinations/hatton.jpg", "/destinations/hatton-2.jpg", "/destinations/hatton-3.jpg"],
+        gallery: [
+            "/Locations/Hatton/Hatton_1.jpg",
+            "/Locations/Hatton/Hatton_2.JPG",
+            "/Locations/Hatton/Hatton_3.jpg",
+            "/Locations/Hatton/Hatton_4.jpg",
+            "/Locations/Hatton/Hatton_5.jpg"
+        ],
     },
     {
         slug: "hikkaduwa",
@@ -240,11 +280,16 @@ export const destinations: Destination[] = [
         tagline: "Vibrant Coastal Town",
         description:
             "Known for its excellent coral sanctuary, vibrant nightlife, and surfing opportunities, Hikkaduwa is a lively beach town with an energetic atmosphere.",
-        image: "/destinations/hikkaduwa.jpg",
+        image: "/Locations/Hikkaduwa/Hikkaduwa_2.jpg",
         bestTime: "November - April",
         highlights: ["Coral Sanctuary", "Hikkaduwa Beach", "Turtle Hatchery", "Surfing Points", "Seenigama Vihara"],
         hotels: ["Hikka Tranz by Cinnamon", "Riff Hikkaduwa", "Citrus Hikkaduwa"],
-        gallery: ["/destinations/hikkaduwa.jpg", "/destinations/hikkaduwa-2.jpg", "/destinations/hikkaduwa-3.jpg"],
+        gallery: [
+            "/Locations/Hikkaduwa/Hikkaduwa_2.jpg",
+            "/Locations/Hikkaduwa/Hikkaduwa_3.jpg",
+            "/Locations/Hikkaduwa/Hikkaduwa_4.jpg",
+            "/Locations/Hikkaduwa/Hikkaduwa_5.jpg"
+        ],
     },
     {
         slug: "jaffna",
@@ -252,11 +297,17 @@ export const destinations: Destination[] = [
         tagline: "Northern Cultural Tapestry",
         description:
             "A city shaped by unique Tamil culture, resilient history, and flavorful cuisine. Explore ancient forts, sacred kovils, and pristine northern islands.",
-        image: "/destinations/jaffna.jpg",
+        image: "/Locations/Jaffna/Jaffna_1.jpg",
         bestTime: "January - September",
         highlights: ["Nallur Kandaswamy Temple", "Jaffna Fort", "Delft Island", "Casuarina Beach", "Jaffna Public Library"],
         hotels: ["Jetwing Jaffna", "Fox Resorts", "Valampuri Hotel"],
-        gallery: ["/destinations/jaffna.jpg", "/destinations/jaffna-2.jpg", "/destinations/jaffna-3.jpg"],
+        gallery: [
+            "/Locations/Jaffna/Jaffna_1.jpg",
+            "/Locations/Jaffna/Jaffna_2.jpg",
+            "/Locations/Jaffna/Jaffna_3.jpg",
+            "/Locations/Jaffna/Jaffna_4.jpg",
+            "/Locations/Jaffna/Jaffna_5.jpg"
+        ],
     },
     {
         slug: "kalpitiya",
@@ -264,11 +315,17 @@ export const destinations: Destination[] = [
         tagline: "Kite Surfing & Dolphins",
         description:
             "A scenic peninsula famous for ideal kite surfing winds, abundant dolphin watching, and undiscovered pristine beaches on the north-western coast.",
-        image: "/destinations/kalpitiya.jpg",
+        image: "/Locations/Kalpitiya/Kalpitiya_1.jpg",
         bestTime: "November - April",
         highlights: ["Dolphin Watching", "Kite Surfing", "Kalpitiya Fort", "Bar Reef", "Alankuda Beach"],
         hotels: ["Bar Reef Resort", "Palagama Beach", "Kite Surfing Lanka"],
-        gallery: ["/destinations/kalpitiya.jpg", "/destinations/kalpitiya-2.jpg", "/destinations/kalpitiya-3.jpg"],
+        gallery: [
+            "/Locations/Kalpitiya/Kalpitiya_1.jpg",
+            "/Locations/Kalpitiya/Kalpitiya_2.jpg",
+            "/Locations/Kalpitiya/Kalpitiya_3.jpg",
+            "/Locations/Kalpitiya/Kalpitiya_4.jpg",
+            "/Locations/Kalpitiya/Kalpitiya_5.jpg"
+        ],
     },
     {
         slug: "kandy",
@@ -276,11 +333,16 @@ export const destinations: Destination[] = [
         tagline: "The Sacred Mountain City",
         description:
             "The cultural capital of Sri Lanka and home to the sacred Temple of the Tooth. Kandy is nestled among mist-covered hills and a tranquil central lake.",
-        image: "/destinations/kandy.jpg",
+        image: "/Locations/Kandy/Kandy_1.jpg",
         bestTime: "December - April",
         highlights: ["Temple of the Tooth", "Royal Botanical Gardens", "Kandy Lake", "Udawatta Kele Sanctuary", "Cultural Dance Shows"],
         hotels: ["The Golden Crown", "Earl's Regency", "OZO Kandy"],
-        gallery: ["/destinations/kandy.jpg", "/destinations/kandy-2.jpg", "/destinations/kandy-3.jpg"],
+        gallery: [
+            "/Locations/Kandy/Kandy_1.jpg",
+            "/Locations/Kandy/Kandy_2.jpg",
+            "/Locations/Kandy/Kandy_3.jpg",
+            "/Locations/Kandy/Kandy_4.jpg"
+        ],
     },
     {
         slug: "kithulgala",
@@ -288,11 +350,16 @@ export const destinations: Destination[] = [
         tagline: "Adventure & Rapids",
         description:
             "Sri Lanka's adventure capital, offering thrilling white-water rafting, lush rainforest trekking, and cinematic history along the Kelani River.",
-        image: "/destinations/kithulgala.jpg",
+        image: "/Locations/Kitulgala/Kitulgala_1.jpg",
         bestTime: "January - March",
         highlights: ["White Water Rafting", "Kelani River", "Makandawa Forest Reserve", "Belilena Cave", "Canyoning"],
         hotels: ["Palmstone Retreat", "Borderlands", "Kitulgala Rest House"],
-        gallery: ["/destinations/kithulgala.jpg", "/destinations/kithulgala-2.jpg", "/destinations/kithulgala-3.jpg"],
+        gallery: [
+            "/Locations/Kitulgala/Kitulgala_1.jpg",
+            "/Locations/Kitulgala/Kitulgala_2.jpg",
+            "/Locations/Kitulgala/Kitulgala_3.jpg",
+            "/Locations/Kitulgala/Kitulgala_4.jpg"
+        ],
     },
     {
         slug: "mirissa",
@@ -300,11 +367,16 @@ export const destinations: Destination[] = [
         tagline: "Whale Watching Capital",
         description:
             "A stunning crescent-shaped beach that serves as one of the world's best locations for spotting majestic blue whales and playful dolphins.",
-        image: "/destinations/mirissa.jpg",
+        image: "/Locations/Mirissa/Mirissa_1.JPG",
         bestTime: "November - April",
         highlights: ["Whale Watching", "Secret Beach", "Coconut Tree Hill", "Parrot Rock", "Surfing"],
         hotels: ["Weligama Bay Marriott", "Sri Sharavi Beach Villas", "Ubuntu Beach Villas"],
-        gallery: ["/destinations/mirissa.jpg", "/destinations/mirissa-2.jpg", "/destinations/mirissa-3.jpg"],
+        gallery: [
+            "/Locations/Mirissa/Mirissa_1.JPG",
+            "/Locations/Mirissa/Mirissa_2.jpg",
+            "/Locations/Mirissa/Mirissa_3.jpg",
+            "/Locations/Mirissa/Mirissa_4.jpg"
+        ],
     },
     {
         slug: "negombo",
@@ -312,11 +384,16 @@ export const destinations: Destination[] = [
         tagline: "The Coastal Gateway",
         description:
             "Located near the airport, Negombo features historic Dutch canals, grand Catholic churches, bustling fish markets, and wide sandy beaches.",
-        image: "/destinations/negombo.jpg",
+        image: "/Locations/Negombo/Negombo-.jpg",
         bestTime: "December - April",
         highlights: ["Negombo Beach", "Dutch Fort", "Fish Market", "Muthurajawela Marsh", "St. Mary's Church"],
         hotels: ["Jetwing Blue", "Heritance Negombo", "Amagi Aria"],
-        gallery: ["/destinations/negombo.jpg", "/destinations/negombo-2.jpg", "/destinations/negombo-3.jpg"],
+        gallery: [
+            "/Locations/Negombo/Negombo-.jpg",
+            "/Locations/Negombo/Negombo_2.jpg",
+            "/Locations/Negombo/Negombo_3.jpg",
+            "/Locations/Negombo/Negombo_4.jpg"
+        ],
     },
     {
         slug: "nuwaraeliya",
@@ -324,11 +401,16 @@ export const destinations: Destination[] = [
         tagline: "Little England",
         description:
             "The highest town in Sri Lanka, boasting crisp weather, colonial-style architecture, manicured gardens, and endless carpets of emerald tea.",
-        image: "/destinations/nuwaraeliya.jpg",
+        image: "/Locations/Nuwaraeliya/Nuwara Eliya_1.jpg",
         bestTime: "February - May",
         highlights: ["Horton Plains", "Gregory Lake", "Victoria Park", "Pedro Tea Estate", "Hakgala Botanical Garden"],
         hotels: ["The Grand Hotel", "Heritance Tea Factory", "Araliya Green Hills"],
-        gallery: ["/destinations/nuwaraeliya.jpg", "/destinations/nuwaraeliya-2.jpg", "/destinations/nuwaraeliya-3.jpg"],
+        gallery: [
+            "/Locations/Nuwaraeliya/Nuwara Eliya_1.jpg",
+            "/Locations/Nuwaraeliya/Nuwara eliya_2.jpg",
+            "/Locations/Nuwaraeliya/Nuwara eliya_4.jpg",
+            "/Locations/Nuwaraeliya/Nuwara eliy_3.jpg"
+        ],
     },
     {
         slug: "pasisikudah",
@@ -336,11 +418,16 @@ export const destinations: Destination[] = [
         tagline: "Shallow Coastal Waters",
         description:
             "Famous for its remarkably shallow and calm waters, Pasikudah is a pristine eastern beach resort perfect for swimming and ultimate luxury relaxation.",
-        image: "/destinations/pasisikudah.jpg",
+        image: "/Locations/Pasisikudah/Pasikudah_2.jpg",
         bestTime: "May - September",
         highlights: ["Pasikudah Bay", "Kalkudah Beach", "Water Sports", "Snorkeling", "Batticaloa Fort"],
         hotels: ["Uga Bay", "Amethyst Resort", "Sun Aqua Pasikudah"],
-        gallery: ["/destinations/pasisikudah.jpg", "/destinations/pasisikudah-2.jpg", "/destinations/pasisikudah-3.jpg"],
+        gallery: [
+            "/Locations/Pasisikudah/Pasikudah_2.jpg",
+            "/Locations/Pasisikudah/Pasikudah_3.jpg",
+            "/Locations/Pasisikudah/Pasikudha_1.jpg",
+            "/Locations/Pasisikudah/Psikudah_4.jpg"
+        ],
     },
     {
         slug: "sinharaja",
@@ -348,11 +435,16 @@ export const destinations: Destination[] = [
         tagline: "The Rainforest Retreat",
         description:
             "A UNESCO World Heritage nature reserve and Sri Lanka's last viable area of primary tropical rainforest featuring high endemism of flora and fauna.",
-        image: "/destinations/sinharaja.jpg",
+        image: "/Locations/Sinharaja/Sinharaja_1.jpg",
         bestTime: "December - early April",
         highlights: ["Bird Watching", "Jungle Trekking", "Endemic Wildlife", "Waterfalls", "Moulawella Peak"],
         hotels: ["Rainforest Eco Lodge", "Blue Magpie Lodge", "Jansen's Bungalow"],
-        gallery: ["/destinations/sinharaja.jpg", "/destinations/sinharaja-2.jpg", "/destinations/sinharaja-3.jpg"],
+        gallery: [
+            "/Locations/Sinharaja/Sinharaja_1.jpg",
+            "/Locations/Sinharaja/Sinharaja_2.jpg",
+            "/Locations/Sinharaja/Sinharaja_3.jpg",
+            "/Locations/Sinharaja/Sinharaja_4.jpg"
+        ],
     },
     {
         slug: "tamgalle",
@@ -360,11 +452,16 @@ export const destinations: Destination[] = [
         tagline: "Serene Southern Beaches",
         description:
             "An upscale hideaway boasting sweeping untouched bays, romantic coves, and luxury resorts along the deep blue Indian Ocean.",
-        image: "/destinations/tamgalle.jpg",
+        image: "/Locations/Tangalle/Tangalle_1.jpg",
         bestTime: "November - April",
         highlights: ["Goyambokka Beach", "Mulkirigala Rock Temple", "Rekawa Turtle Watch", "Hummanaya Blowhole", "Marakolliya Beach"],
         hotels: ["Amanwella", "Anantara Peace Haven", "Cinnamon Nature Trails"],
-        gallery: ["/destinations/tamgalle.jpg", "/destinations/tamgalle-2.jpg", "/destinations/tamgalle-3.jpg"],
+        gallery: [
+            "/Locations/Tangalle/Tangalle_1.jpg",
+            "/Locations/Tangalle/Tangalle_2.jpg",
+            "/Locations/Tangalle/Tangalle_3.jpg",
+            "/Locations/Tangalle/Tangalle_4.jpg"
+        ],
     },
     {
         slug: "trincomalee",
@@ -372,11 +469,16 @@ export const destinations: Destination[] = [
         tagline: "East Coast Elegance",
         description:
             "Boasting one of the world's finest natural harbors, Trincomalee features breathtaking deep-water beaches and rich multicultural history.",
-        image: "/destinations/trincomalee.jpg",
+        image: "/Locations/Trincomalee/Trincomalee_1.jpg",
         bestTime: "May - October",
         highlights: ["Pigeon Island", "Nilaveli Beach", "Koneswaram Temple", "Fort Fredrick", "Marble Beach"],
         hotels: ["Trinco Blu by Cinnamon", "Uga Jungle Beach", "Amaranthe Bay"],
-        gallery: ["/destinations/trincomalee.jpg", "/destinations/trincomalee-2.jpg", "/destinations/trincomalee-3.jpg"],
+        gallery: [
+            "/Locations/Trincomalee/Trincomalee_1.jpg",
+            "/Locations/Trincomalee/Trincomalee_2.jpg",
+            "/Locations/Trincomalee/Trincomalee_3.jpg",
+            "/Locations/Trincomalee/Trincomalee_4.jpeg"
+        ],
     },
     {
         slug: "udawalawe",
@@ -384,11 +486,16 @@ export const destinations: Destination[] = [
         tagline: "The Elephant Sanctuary",
         description:
             "One of the best places in Sri Lanka to see herds of wild elephants up close, offering reliable sightings against the spectacular backdrop of the central hills.",
-        image: "/destinations/udawalawe.jpg",
+        image: "/Locations/Udawalawe/Udawalawe_1.jpg",
         bestTime: "October - April",
         highlights: ["Udawalawe National Park", "Elephant Transit Home", "Udawalawe Reservoir", "Bird Watching", "Safari Camping"],
         hotels: ["Grand Udawalawe Safari Resort", "Kalu's Hideaway", "Athgira River Camp"],
-        gallery: ["/destinations/udawalawe.jpg", "/destinations/udawalawe-2.jpg", "/destinations/udawalawe-3.jpg"],
+        gallery: [
+            "/Locations/Udawalawe/Udawalawe_1.jpg",
+            "/Locations/Udawalawe/Udawalawe_2.jpg",
+            "/Locations/Udawalawe/Udawalawe_3.jpg",
+            "/Locations/Udawalawe/Udawalawe_4.jpg"
+        ],
     },
     {
         slug: "unawatuna",
@@ -396,11 +503,16 @@ export const destinations: Destination[] = [
         tagline: "The Curved Bay",
         description:
             "A popular horseshoe-shaped beach with calm swimmable waters, lively beach bars, and vibrant coral reefs waiting to be explored.",
-        image: "/destinations/unawatuna.jpg",
+        image: "/Locations/Unawatuna/Unawatuna_1.jpg",
         bestTime: "December - April",
         highlights: ["Unawatuna Beach", "Japanese Peace Pagoda", "Jungle Beach", "Rumassala Sanctuary", "Scuba Diving"],
         hotels: ["Cantaloupe Aqua", "Thaproban Pavilion", "Araliya Beach Resort"],
-        gallery: ["/destinations/unawatuna.jpg", "/destinations/unawatuna-2.jpg", "/destinations/unawatuna-3.jpg"],
+        gallery: [
+            "/Locations/Unawatuna/Unawatuna_1.jpg",
+            "/Locations/Unawatuna/Unawatuna_2.jpg",
+            "/Locations/Unawatuna/Unawatuna_3.jpg",
+            "/Locations/Unawatuna/Unawatuna_4.jpg"
+        ],
     },
     {
         slug: "weligama",
@@ -408,11 +520,16 @@ export const destinations: Destination[] = [
         tagline: "Sandy Surfing Bays",
         description:
             "A magnificent sandy bay and an ideal destination for beginner surfers, featuring charming boutique hotels and traditional stilt fishermen.",
-        image: "/destinations/weligama.jpg",
+        image: "/Locations/Weligama/Weligama_1.jpg",
         bestTime: "November - May",
         highlights: ["Surfing Lessons", "Taprobane Island", "Stilt Fishing", "Kushtarajagala Statue", "Midigama Beach"],
         hotels: ["Cape Weligama", "W Marriott", "W15 Weligama"],
-        gallery: ["/destinations/weligama.jpg", "/destinations/weligama-2.jpg", "/destinations/weligama-3.jpg"],
+        gallery: [
+            "/Locations/Weligama/Weligama_1.jpg",
+            "/Locations/Weligama/Weligama_2.jpg",
+            "/Locations/Weligama/weligama_3.jpg",
+            "/Locations/Weligama/Weligama_4.jpg"
+        ],
     },
     {
         slug: "wellawaya",
@@ -420,11 +537,16 @@ export const destinations: Destination[] = [
         tagline: "Gateway to the East",
         description:
             "An untouched region of stunning natural beauty wrapped in history, featuring giant rock carvings, roaring waterfalls, and extensive eco-resorts.",
-        image: "/destinations/wellawaya.jpg",
+        image: "/Locations/Wellawaya/Wellawaya_1.jpg",
         bestTime: "January - March",
         highlights: ["Buduruwagala", "Diyaluma Falls", "Ella Gap", "Handapanagala Lake", "Bambaragama Falls"],
         hotels: ["Jetwing Kaduruketha", "Living Heritage Koslanda", "Melheim Resort"],
-        gallery: ["/destinations/wellawaya.jpg", "/destinations/wellawaya-2.jpg", "/destinations/wellawaya-3.jpg"],
+        gallery: [
+            "/Locations/Wellawaya/Wellawaya_1.jpg",
+            "/Locations/Wellawaya/Wellawaya_2.jpg",
+            "/Locations/Wellawaya/Wellawaya_3.jpg",
+            "/Locations/Wellawaya/Wellawaya_4.jpg"
+        ],
     },
     {
         slug: "wilpattu",
@@ -432,11 +554,16 @@ export const destinations: Destination[] = [
         tagline: "Land of Lakes and Leopards",
         description:
             "Sri Lanka's largest and oldest national park, characterized by unique natural lakes (villus) and diverse wildlife, including elusive leopards and sloth bears.",
-        image: "/destinations/wilpattu.jpg",
+        image: "/Locations/Wilpattu/Wilpattu_2.jpg",
         bestTime: "February - October",
         highlights: ["Wilpattu National Park", "Leopard Safari", "Natural Villus", "Bird Watching", "Ancient Ruins"],
         hotels: ["Mahoora Tented Safari", "Big Game Camp", "Thamaravila"],
-        gallery: ["/destinations/wilpattu.jpg", "/destinations/wilpattu-2.jpg", "/destinations/wilpattu-3.jpg"],
+        gallery: [
+            "/Locations/Wilpattu/Wilpattu_2.jpg",
+            "/Locations/Wilpattu/Wilpattu_3.jpg",
+            "/Locations/Wilpattu/Wilpattu_4.jpg",
+            "/Locations/Wilpattu/Wilpattu_5.jpg"
+        ],
     },
     {
         slug: "yala",
@@ -444,11 +571,16 @@ export const destinations: Destination[] = [
         tagline: "The Leopard Country",
         description:
             "The most visited national park in Sri Lanka, offering incredible biodiversity and renowned for having one of the highest leopard densities in the world.",
-        image: "/destinations/yala.jpg",
+        image: "/Locations/Yala/Yala_1.jpg",
         bestTime: "February - July",
         highlights: ["Leopard Tracking", "Sithulpawwa", "Magul Maha Viharaya", "Sloth Bear Watching", "Birding"],
         hotels: ["Wild Coast Tented Lodge", "Cinnamon Wild", "Jetwing Yala"],
-        gallery: ["/destinations/yala.jpg", "/destinations/yala-2.jpg", "/destinations/yala-3.jpg"],
+        gallery: [
+            "/Locations/Yala/Yala_1.jpg",
+            "/Locations/Yala/Yala_2.jpg",
+            "/Locations/Yala/Yala_3.jpg",
+            "/Locations/Yala/Yala_4.jpg"
+        ],
     }
 ];
 
