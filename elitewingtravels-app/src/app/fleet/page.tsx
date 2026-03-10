@@ -15,11 +15,8 @@ export default function FleetPage() {
                 style={{ backgroundImage: "url('/Vehicles/Buses/Coaster 29 Seater/TOYOTA COASTER 29 SEATER.png')" }}
             >
                 {/* Layered overlays for depth */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30 z-0" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 z-0" />
-
-                {/* Decorative gold line */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--color-gold)] to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20 z-0" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 z-0" />
 
                 <div className="relative z-10 text-center container-luxury px-6">
                     {/* Section label */}
