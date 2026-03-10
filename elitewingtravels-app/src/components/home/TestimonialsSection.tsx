@@ -61,7 +61,7 @@ export default function TestimonialsSection() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.8 }}
-                        className="text-center mt-12"
+                        className="text-center mt-20"
                     >
                         <Link href="/memories" className="btn-secondary group">
                             <span>View more memories</span>
