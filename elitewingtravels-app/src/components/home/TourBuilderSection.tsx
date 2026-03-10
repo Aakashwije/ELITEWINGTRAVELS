@@ -339,6 +339,7 @@ export default function TourBuilderSection() {
                                                     key={value}
                                                     className={`
                                                         relative cursor-pointer rounded-2xl p-4 sm:p-5 transition-all duration-250 border
+                                                        flex flex-col items-center text-center
                                                         ${sel
                                                             ? "border-[var(--color-gold)] bg-[var(--color-gold)]/12 shadow-md shadow-[var(--color-gold)]/15"
                                                             : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
@@ -420,7 +421,7 @@ export default function TourBuilderSection() {
                                                     type="button"
                                                     onClick={() => toggleDest(name)}
                                                     className={`
-                                                        relative text-left rounded-xl px-4 py-3.5 border transition-all duration-250 cursor-pointer group
+                                                        relative text-center rounded-xl px-4 py-3.5 border transition-all duration-250 cursor-pointer group
                                                         ${sel
                                                             ? "border-[var(--color-gold)] bg-[var(--color-gold)]/12"
                                                             : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
@@ -431,7 +432,7 @@ export default function TourBuilderSection() {
                                                         size={13}
                                                         strokeWidth={2}
                                                         className={`absolute top-3 right-3 transition-colors
-                                                            ${sel ? "text-[var(--color-gold)]" : "text-white/20 group-hover:text-white/35"}`}
+                                                            ${sel ? "text-[var(--color-gold)]" : "text-white/10 group-hover:text-white/25"}`}
                                                     />
                                                     <p className={`text-sm font-semibold leading-tight transition-colors
                                                         ${sel ? "text-white" : "text-white/70"}`}>
@@ -467,28 +468,28 @@ export default function TourBuilderSection() {
                                                         type="button"
                                                         onClick={() => setSelectedCategory(isCatSelected ? null : cat.id)}
                                                         className={`
-                                                            w-full flex items-center gap-4 rounded-2xl px-5 py-5 border cursor-pointer
-                                                            transition-all duration-300 relative overflow-hidden group
+                                                            w-full flex flex-col items-center gap-3 rounded-2xl px-5 py-6 border cursor-pointer
+                                                            transition-all duration-300 relative overflow-hidden group text-center
                                                             ${isCatSelected
                                                                 ? "border-[var(--color-gold)] bg-[var(--color-gold)]/10 shadow-lg shadow-[var(--color-gold)]/5"
                                                                 : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
                                                             }
                                                         `}
                                                     >
-                                                        <div className={`shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500
+                                                        <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500
                                                             ${isCatSelected ? "bg-[var(--color-gold)] text-white" : "bg-white/5 text-white/30 group-hover:text-white/50"}`}>
-                                                            <cat.icon size={22} strokeWidth={1.5} />
+                                                            <cat.icon size={24} strokeWidth={1.5} />
                                                         </div>
-                                                        <div className="flex-1 text-left">
-                                                            <div className="flex items-center justify-between">
+                                                        <div className="text-center">
+                                                            <div className="flex flex-col items-center gap-1">
                                                                 <span className={`text-base font-bold transition-colors
                                                                     ${isCatSelected ? "text-white" : "text-white/80"}`}>
                                                                     {cat.name}
                                                                 </span>
-                                                                <ArrowRight size={16} className={`transition-transform duration-400
-                                                                    ${isCatSelected ? "rotate-90 text-[var(--color-gold)]" : "text-white/20"}`} />
+                                                                <ArrowRight size={16} className={`transition-all duration-400
+                                                                    ${isCatSelected ? "rotate-90 text-[var(--color-gold)]" : "text-white/10 group-hover:text-white/25"}`} />
                                                             </div>
-                                                            <p className={`text-xs mt-0.5 leading-relaxed transition-colors
+                                                            <p className={`text-xs mt-1 leading-relaxed transition-colors max-w-[200px] mx-auto
                                                                 ${isCatSelected ? "text-white/60" : "text-white/30"}`}>
                                                                 {cat.tagline}
                                                             </p>
@@ -511,8 +512,8 @@ export default function TourBuilderSection() {
                                                                             <label
                                                                                 key={opt.value}
                                                                                 className={`
-                                                                                    flex items-center gap-4 rounded-xl px-4 py-3 border cursor-pointer
-                                                                                    transition-all duration-200
+                                                                                    flex flex-col items-center gap-2 rounded-xl px-4 py-4 border cursor-pointer
+                                                                                    transition-all duration-200 text-center
                                                                                     ${isSelected
                                                                                         ? "border-[var(--color-gold)]/40 bg-[var(--color-gold)]/15"
                                                                                         : "border-transparent bg-transparent hover:bg-white/5"
@@ -520,23 +521,25 @@ export default function TourBuilderSection() {
                                                                                 `}
                                                                             >
                                                                                 <input type="radio" value={opt.value} {...register("vehicleType")} className="sr-only" />
-                                                                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all
+                                                                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all mb-1
                                                                                     ${isSelected ? "border-[var(--color-gold)] bg-[var(--color-gold)]" : "border-white/20"}`}>
                                                                                     {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
                                                                                 </div>
-                                                                                <div className="flex-1">
-                                                                                    <div className="flex items-center gap-2">
+                                                                                <div>
+                                                                                    <div className="flex flex-col items-center gap-1">
                                                                                         <span className={`text-sm font-semibold ${isSelected ? "text-white" : "text-white/70"}`}>
                                                                                             {opt.name}
                                                                                         </span>
-                                                                                        <span className={`text-[10px] uppercase tracking-wider font-bold ${isSelected ? "text-[var(--color-gold)]" : "text-white/25"}`}>
-                                                                                            {opt.pax}
-                                                                                        </span>
-                                                                                        {opt.badge && (
-                                                                                            <span className="text-[10px] bg-[var(--color-gold)]/20 text-[var(--color-gold)] px-1.5 py-0.5 rounded leading-none font-bold">
-                                                                                                {opt.badge}
+                                                                                        <div className="flex items-center gap-2">
+                                                                                            <span className={`text-[10px] uppercase tracking-wider font-bold ${isSelected ? "text-[var(--color-gold)]" : "text-white/25"}`}>
+                                                                                                {opt.pax}
                                                                                             </span>
-                                                                                        )}
+                                                                                            {opt.badge && (
+                                                                                                <span className="text-[10px] bg-[var(--color-gold)]/20 text-[var(--color-gold)] px-1.5 py-0.5 rounded leading-none font-bold">
+                                                                                                    {opt.badge}
+                                                                                                </span>
+                                                                                            )}
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </label>
@@ -567,7 +570,7 @@ export default function TourBuilderSection() {
                                                 rows={4}
                                                 placeholder="Dietary needs, special celebrations, accessibility…"
                                                 className="w-full px-4 py-3.5 rounded-xl border border-white/15 bg-white/[0.055]
-                                                           text-white text-sm placeholder:text-white/25 outline-none resize-none
+                                                           text-white text-sm placeholder:text-white/25 outline-none resize-none text-center
                                                            focus:border-[var(--color-gold)] focus:bg-white/[0.08] transition-all"
                                             />
                                         </div>
@@ -633,14 +636,14 @@ export default function TourBuilderSection() {
 
 function StepHeading({ Icon, title, sub }: { Icon: React.ElementType; title: string; sub: string }) {
     return (
-        <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
-            <div className="shrink-0 w-10 h-10 rounded-full bg-[var(--color-gold)]/15 border border-[var(--color-gold)]/30
-                            flex items-center justify-center mt-0.5">
-                <Icon size={18} className="text-[var(--color-gold)]" strokeWidth={1.8} />
+        <div className="flex flex-col items-center text-center gap-3">
+            <div className="shrink-0 w-12 h-12 rounded-full bg-[var(--color-gold)]/15 border border-[var(--color-gold)]/30
+                            flex items-center justify-center">
+                <Icon size={22} className="text-[var(--color-gold)]" strokeWidth={1.8} />
             </div>
             <div>
                 <h3 className="!text-white text-xl sm:text-2xl !font-semibold m-0 leading-tight">{title}</h3>
-                <p className="text-white/45 text-sm mt-1 leading-relaxed">{sub}</p>
+                <p className="text-white/45 text-sm mt-2 leading-relaxed max-w-md mx-auto">{sub}</p>
             </div>
         </div>
     );
@@ -660,7 +663,7 @@ function Tip({ children }: { children: React.ReactNode }) {
 
 function FieldLabel({ label, optional }: { label: string; optional?: boolean }) {
     return (
-        <label className="block text-sm text-white/60 font-medium mb-2">
+        <label className="block text-sm text-white/60 font-medium mb-2 text-center">
             {label}{" "}
             {optional && <span className="text-white/25 font-normal">(optional)</span>}
         </label>
@@ -676,7 +679,7 @@ function DateField({ label, id, ...rest }: { label: string; id: string } & React
                 id={id}
                 {...rest}
                 className="w-full px-4 py-3.5 rounded-xl border border-white/15 bg-white/[0.055]
-                           text-white text-sm outline-none focus:border-[var(--color-gold)]
+                           text-white text-sm outline-none focus:border-[var(--color-gold)] text-center
                            focus:bg-white/[0.08] transition-all [color-scheme:dark]"
             />
         </div>
@@ -698,10 +701,10 @@ function FormField({
                 placeholder={placeholder}
                 {...register}
                 className="w-full px-4 py-3.5 rounded-xl border border-white/15 bg-white/[0.055]
-                           text-white text-sm placeholder:text-white/25 outline-none
+                           text-white text-sm placeholder:text-white/25 outline-none text-center
                            focus:border-[var(--color-gold)] focus:bg-white/[0.08] transition-all"
             />
-            {error && <p className="text-red-400 text-xs mt-1.5">{error}</p>}
+            {error && <p className="text-red-400 text-xs mt-1.5 text-center">{error}</p>}
         </div>
     );
 }
