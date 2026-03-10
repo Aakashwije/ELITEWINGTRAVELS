@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { stats } from "@/lib/data";
 
@@ -13,13 +14,16 @@ export default function AboutPage() {
             {/* Hero */}
             <section
                 className="relative h-[56vh] md:h-[62vh] min-h-[320px] md:min-h-[420px] flex items-center justify-center overflow-hidden"
-                style={{
-                    backgroundImage: "url('/destinations/galle-gen.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                }}
             >
+                <Image
+                    src="/assets/images/about-page.jpeg"
+                    alt=""
+                    fill
+                    priority
+                    quality={100}
+                    sizes="100vw"
+                    className="pointer-events-none select-none absolute inset-0 object-cover object-center z-0"
+                />
                 <div className="absolute -top-24 -left-20 h-64 w-64 rounded-full bg-[var(--color-gold)]/12 blur-3xl" />
                 <div className="absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-white/8 blur-3xl" />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,26,61,0.58),rgba(6,26,61,0.76))]" />
