@@ -16,8 +16,8 @@ export default function ToursPage() {
     return (
         <>
             {/* Hero */}
-            <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center bg-gradient-to-br from-[var(--color-primary)] via-[#0a2d6b] to-[#061a3d]">
-                <div className="absolute inset-0 bg-[url('/tours/tours-hero.jpg')] bg-cover bg-center opacity-30" />
+            <section className="relative h-[75vh] min-h-[400px] flex items-center justify-center bg-black">
+                <div className="absolute inset-0 bg-[url('/assets/images/about-page.jpeg')] bg-cover bg-center opacity-60" />
                 <div className="relative z-10 text-center container-luxury">
                     <span className="section-label justify-center !text-[var(--color-gold)]">
                         Curated Experiences
