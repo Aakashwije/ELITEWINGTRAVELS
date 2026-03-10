@@ -17,7 +17,7 @@ export default function AboutPage() {
                 className="relative h-[56vh] md:h-[62vh] min-h-[320px] md:min-h-[420px] flex items-center justify-center overflow-hidden"
             >
                 <Image
-                    src="/assets/images/about-page.jpeg"
+                    src="/assets/images/about-us-top.png"
                     alt=""
                     fill
                     priority
