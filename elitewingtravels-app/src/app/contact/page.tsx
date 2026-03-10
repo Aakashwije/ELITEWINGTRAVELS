@@ -69,7 +69,12 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="text-sm font-semibold mb-1">Email</h4>
-                                        <a href={`mailto:${siteConfig.email}`} className="text-sm text-[var(--color-primary)] no-underline hover:text-[var(--color-gold)] transition-colors">
+                                        <a
+                                            href={`https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(siteConfig.email)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-sm text-[var(--color-primary)] no-underline hover:text-[var(--color-gold)] transition-colors"
+                                        >
                                             {siteConfig.email}
                                         </a>
                                     </div>

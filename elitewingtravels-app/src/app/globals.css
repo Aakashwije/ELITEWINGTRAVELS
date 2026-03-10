@@ -52,21 +52,21 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(2rem, 4vw, 3.6rem);
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(1.65rem, 3.2vw, 2.8rem);
 }
 
 h3 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
 }
 
 p {
   color: var(--color-muted);
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 0.98rem;
+  line-height: 1.75;
 }
 
 /* ===== LUXURY SECTION SPACING ===== */

@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { siteConfig, navLinks } from "@/lib/data";
-import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, Star } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Instagram, Star } from "lucide-react";
 
 const socialIcons: Record<string, React.ReactNode> = {
     facebook: <Facebook className="w-4 h-4" />,
     instagram: <Instagram className="w-4 h-4" />,
-    youtube: <Youtube className="w-4 h-4" />,
     tripadvisor: <Star className="w-4 h-4" />,
 };
 
@@ -107,7 +106,9 @@ export default function Footer() {
                                 <div className="flex items-start gap-3 group">
                                     <Mail className="text-[var(--color-gold)] mt-1 w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                                     <a
-                                        href={`mailto:${siteConfig.email}`}
+                                        href={`https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(siteConfig.email)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="text-gray-400 hover:text-[var(--color-gold)] transition-colors no-underline text-sm"
                                     >
                                         {siteConfig.email}

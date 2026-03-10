@@ -154,14 +154,21 @@ export default function TourBuilderSection() {
         if (data.honeypot) return;
         setSubmitting(true);
         try {
-            await fetch("/api/tour-inquiry", {
+            const response = await fetch("/api/tour-inquiry", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
+
+            if (!response.ok) {
+                const result = (await response.json().catch(() => null)) as { error?: string } | null;
+                throw new Error(result?.error || "Failed to submit inquiry.");
+            }
+
             setSubmitted(true);
-        } catch {
-            alert("Something went wrong. Please try again.");
+        } catch (error) {
+            const message = error instanceof Error ? error.message : "Something went wrong. Please try again.";
+            alert(message);
         } finally {
             setSubmitting(false);
         }

@@ -88,11 +88,13 @@ export default function RootLayout({
       "Premium luxury travel and private tours in Sri Lanka since 2005.",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "372/3, Kirillawala",
+      addressLocality: "Kadawatha",
       addressCountry: "LK",
     },
     sameAs: [
-      "https://facebook.com/elitewingtravels",
-      "https://instagram.com/elitewingtravels",
+      "https://www.facebook.com/share/18Cf7t487G/",
+      "https://www.instagram.com/elitewing_travels?igsh=cG12dm80bnByNjBx",
     ],
   };
 
