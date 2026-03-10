@@ -76,11 +76,7 @@ export default function AboutPage() {
                                 }}
                             >
                                 <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(6,26,61,0.66)_100%)]" />
-                                <div className="absolute bottom-5 left-5 right-5 rounded-xl border border-white/35 bg-[rgba(6,26,61,0.48)] backdrop-blur-md p-3 text-white shadow-[0_8px_24px_rgba(0,0,0,0.25)]">
-                                    <p className="text-xs tracking-[0.16em] uppercase text-white font-semibold" style={{ textShadow: "0 1px 2px rgba(0,0,0,0.45)" }}>
-                                        Memorable Group Adventures
-                                    </p>
-                                </div>
+                                { /* Removing text overlay as per user request */}
                                 <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]" />
                             </div>
                         </div>
@@ -102,49 +98,15 @@ export default function AboutPage() {
                         </p>
                     </div>
 
-                    <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                        {[
-                            {
-                                title: "Cars & SUVs",
-                                desc: "Ideal for couples, families, and executive travel with premium comfort.",
-                                tag: "Private Travel",
-                                image: "/Vehicles/Cars/Sedan/TOYOTA%20PRIUS.png",
-                            },
-                            {
-                                title: "Luxury Vans",
-                                desc: "Perfect for small groups needing spacious seating and luggage convenience.",
-                                tag: "Group Comfort",
-                                image: "/Vehicles/Vans/KDH%20Highroof%2014%20Seater/KFH%20HIGHROOF.png",
-                            },
-                            {
-                                title: "Tour Coaches",
-                                desc: "Reliable buses for larger groups, events, and islandwide tours.",
-                                tag: "Large Groups",
-                                image: "/Vehicles/Buses/Coaster%2029%20Seater/TOYOTA%20COASTER%2029%20SEATER.png",
-                            },
-                        ].map((item, index) => (
-                            <div
-                                key={item.title}
-                                className="group relative overflow-hidden rounded-3xl bg-white border-2 border-[#d6e4fa] shadow-[0_12px_30px_rgba(11,61,145,0.09)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_38px_rgba(11,61,145,0.13)]"
-                            >
-                                <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,var(--color-primary),var(--color-gold))] opacity-65" />
-                                <div
-                                    className="relative h-24 overflow-hidden"
-                                    style={{ backgroundImage: `url('${item.image}')`, backgroundSize: "cover", backgroundPosition: "center" }}
-                                >
-                                    <div className="absolute inset-0 bg-[rgba(6,26,61,0.26)] backdrop-blur-[1px]" />
-                                </div>
-                                <div className="p-5 md:p-6">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="h-2.5 w-2.5 rounded-full bg-[var(--color-gold)] group-hover:scale-110 transition-transform" />
-                                        <p className="text-[11px] uppercase tracking-[0.14em] text-[var(--color-primary)] font-semibold">{item.tag}</p>
-                                    </div>
-                                    <h3 className="text-xl md:text-2xl mb-3">{item.title}</h3>
-                                    <p className="text-sm leading-relaxed">{item.desc}</p>
-                                </div>
-                                <span className="absolute bottom-4 right-5 text-xs text-[var(--color-primary)]/35 font-semibold">0{index + 1}</span>
-                            </div>
-                        ))}
+                    <div className="max-w-5xl mx-auto mt-8 group relative flex justify-center">
+                        <div className="relative overflow-hidden rounded-2xl border border-[#d6e4fa] shadow-[0_15px_40px_rgba(11,61,145,0.1)]">
+                            <img
+                                src="/Vehicles/2026_03_10_17_06_IMG_9079.JPG"
+                                alt="EliteWing Travels Fleet"
+                                className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#061a3d]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
                     </div>
 
                     <div className="text-center mt-12">
