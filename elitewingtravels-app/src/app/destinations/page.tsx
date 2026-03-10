@@ -12,7 +12,7 @@ export default function DestinationsPage() {
     return (
         <>
             {/* Hero */}
-            <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+            <section className="relative h-[70vh] md:h-[80vh] min-h-[450px] md:min-h-[550px] flex items-center justify-center overflow-hidden">
                 <Image
                     src="/assets/images/Destinations.png"
                     alt=""

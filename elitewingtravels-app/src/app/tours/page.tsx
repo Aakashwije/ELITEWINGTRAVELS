@@ -16,7 +16,7 @@ export default function ToursPage() {
     return (
         <>
             {/* Hero */}
-            <section className="relative h-[75vh] min-h-[400px] flex items-center justify-center bg-black">
+            <section className="relative h-[70vh] md:h-[80vh] min-h-[450px] md:min-h-[550px] flex items-center justify-center bg-black overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/assets/images/about-page.jpeg')] bg-cover bg-center opacity-85" />
                 <div className="relative z-10 text-center container-luxury">
                     <span className="section-label justify-center !text-[var(--color-gold)]">

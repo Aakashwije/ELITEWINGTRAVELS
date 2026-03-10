@@ -13,7 +13,7 @@ export default function ContactPage() {
     return (
         <>
             {/* Hero */}
-            <section className="relative h-[50vh] min-h-[350px] flex items-center justify-center overflow-hidden">
+            <section className="relative h-[70vh] md:h-[80vh] min-h-[450px] md:min-h-[550px] flex items-center justify-center overflow-hidden">
                 <Image
                     src="/assets/images/contact-us.png"
                     alt=""

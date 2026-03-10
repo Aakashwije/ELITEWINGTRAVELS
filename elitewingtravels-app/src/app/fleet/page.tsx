@@ -11,7 +11,7 @@ export default function FleetPage() {
         <>
             {/* Hero */}
             <section
-                className="relative h-[70vh] min-h-[500px] flex items-center justify-center bg-cover bg-center"
+                className="relative h-[70vh] md:h-[80vh] min-h-[450px] md:min-h-[550px] flex items-center justify-center bg-cover bg-center overflow-hidden"
                 style={{ backgroundImage: "url('/Vehicles/Buses/Coaster 29 Seater/TOYOTA COASTER 29 SEATER.png')" }}
             >
                 {/* Layered overlays for depth */}

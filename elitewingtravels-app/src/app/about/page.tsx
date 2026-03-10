@@ -14,7 +14,7 @@ export default function AboutPage() {
         <>
             {/* Hero */}
             <section
-                className="relative h-[56vh] md:h-[62vh] min-h-[320px] md:min-h-[420px] flex items-center justify-center overflow-hidden"
+                className="relative h-[70vh] md:h-[80vh] min-h-[450px] md:min-h-[550px] flex items-center justify-center overflow-hidden"
             >
                 <Image
                     src="/assets/images/about_us_landing.png"
