@@ -17,8 +17,8 @@ export default function AboutPage() {
                 className="relative h-[56vh] md:h-[62vh] min-h-[320px] md:min-h-[420px] flex items-center justify-center overflow-hidden"
             >
                 <Image
-                    src="/assets/images/about-page.jpeg"
-                    alt=""
+                    src="/assets/images/about_us_landing.png"
+                    alt="EliteWing Travels Story"
                     fill
                     priority
                     quality={100}
