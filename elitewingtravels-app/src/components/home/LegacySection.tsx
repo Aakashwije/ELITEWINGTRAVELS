@@ -43,7 +43,7 @@ function AnimatedCounter({
 const timelineEvents = [
     { year: "2005", title: "Founded", desc: "EliteWing Travels established in Colombo" },
     { year: "2010", title: "Fleet Expansion", desc: "Luxury coach fleet introduced" },
-    { year: "2015", title: "International Recognition", desc: "TripAdvisor Certificate of Excellence" },
+    { year: "2015", title: "International Recognition", desc: "Certificate of Excellence" },
     { year: "2020", title: "Digital Transformation", desc: "Online booking & virtual tours launched" },
     { year: "2026", title: "21 Years Strong", desc: "10,000+ travelers served, premium service leader" },
 ];

@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { siteConfig, navLinks } from "@/lib/data";
-import { MapPin, Phone, Mail, Facebook, Instagram, Star } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Instagram } from "lucide-react";
 
 const socialIcons: Record<string, React.ReactNode> = {
     facebook: <Facebook className="w-4 h-4" />,
     instagram: <Instagram className="w-4 h-4" />,
-    tripadvisor: <Star className="w-4 h-4" />,
 };
 
 export default function Footer() {

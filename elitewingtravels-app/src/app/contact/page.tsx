@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import ContactForm from "./ContactForm";
 import { siteConfig } from "@/lib/data";
 
@@ -11,7 +12,17 @@ export default function ContactPage() {
     return (
         <>
             {/* Hero */}
-            <section className="relative h-[50vh] min-h-[350px] flex items-center justify-center bg-gradient-to-br from-[var(--color-primary)] via-[#0a2d6b] to-[#061a3d]">
+            <section className="relative h-[50vh] min-h-[350px] flex items-center justify-center overflow-hidden">
+                <Image
+                    src="/assets/images/contact-us.png"
+                    alt=""
+                    fill
+                    priority
+                    quality={100}
+                    sizes="100vw"
+                    className="pointer-events-none select-none absolute inset-0 object-cover object-center z-0"
+                />
+                <div className="absolute inset-0 bg-black/35 z-0" />
                 <div className="relative z-10 text-center container-luxury">
                     <span className="section-label justify-center !text-[var(--color-gold)]">
                         Get in Touch
