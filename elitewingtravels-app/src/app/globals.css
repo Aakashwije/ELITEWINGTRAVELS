@@ -233,11 +233,16 @@ p {
   margin-bottom: 20px;
 }
 
-.section-label::before {
+.section-label::before,
+.section-label::after {
   content: '';
   width: 40px;
   height: 2px;
   background: var(--color-gold);
+}
+
+.section-label:not(.justify-center)::after {
+  display: none;
 }
 
 /* ===== FLOATING WHATSAPP ===== */

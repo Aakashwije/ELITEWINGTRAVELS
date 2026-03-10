@@ -92,19 +92,17 @@ export default function AboutPage() {
             {/* Vehicles */}
             <section className="py-14 md:py-20 bg-[radial-gradient(circle_at_50%_0%,#f8fbff_0%,#eef5ff_45%,#e7f1ff_100%)] border-y border-[#d9e7fb]">
                 <div className="container-luxury">
-                    <div className="text-center mb-10 max-w-3xl mx-auto">
+                    <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
                         <span className="section-label justify-center">Our Fleet</span>
-                        <h2>
+                        <h2 className="mb-6">
                             Vehicles Built for <span className="text-gradient-gold">Every Journey</span>
                         </h2>
-                        <p className="max-w-2xl mx-auto mt-4 text-[var(--color-primary)]/80">
+                        <p className="max-w-[800px] mx-auto mb-10 text-[var(--color-primary)]/80 text-center">
                             From private sedans to group coaches, our fleet is selected for comfort,
                             safety, and smooth travel across Sri Lanka.
                         </p>
-                    </div>
 
-                    <div className="max-w-5xl mx-auto mt-8 group relative flex justify-center">
-                        <div className="relative overflow-hidden rounded-2xl border border-[#d6e4fa] shadow-[0_15px_40px_rgba(11,61,145,0.1)]">
+                        <div className="group relative overflow-hidden rounded-2xl border border-[#d6e4fa] shadow-[0_15px_40px_rgba(11,61,145,0.1)] w-full mx-auto block">
                             <img
                                 src="/Vehicles/2026_03_10_17_06_IMG_9079.JPG"
                                 alt="EliteWing Travels Fleet"
@@ -112,12 +110,12 @@ export default function AboutPage() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#061a3d]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
-                    </div>
 
-                    <div className="text-center mt-12">
-                        <Link href="/fleet" className="btn-primary shadow-[0_10px_22px_rgba(11,61,145,0.20)] hover:shadow-[0_14px_28px_rgba(11,61,145,0.24)]">
-                            View Full Fleet
-                        </Link>
+                        <div className="mt-12">
+                            <Link href="/fleet" className="btn-primary shadow-[0_10px_22px_rgba(11,61,145,0.20)] hover:shadow-[0_14px_28px_rgba(11,61,145,0.24)]">
+                                View Full Fleet
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>

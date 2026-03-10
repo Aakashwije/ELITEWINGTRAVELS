@@ -78,14 +78,25 @@ export default function ToursPage() {
 
 
             {/* CTA */}
-            <section className="section-luxury bg-[var(--color-primary)]">
-                <div className="container-luxury text-center">
-                    <h2 className="!text-white mb-4">
+            <section className="relative section-luxury-lg overflow-hidden min-h-[400px] flex items-center">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/assets/images/design%20custom%20tour.png"
+                        alt="Bespoke Tour"
+                        fill
+                        priority
+                        className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/45 z-10" />
+                </div>
+
+                <div className="relative z-20 container-luxury text-center w-full">
+                    <h2 className="!text-white mb-4 text-3xl md:text-5xl font-light">
                         Can&apos;t Find Your Perfect Tour?
                     </h2>
-                    <p className="!text-white/70 text-lg max-w-xl mx-auto mb-8">
-                        Let us design a bespoke journey tailored exclusively to your
-                        preferences and desires.
+                    <p className="!text-white/90 text-lg max-w-xl mx-auto mb-10 leading-relaxed font-light text-center">
+                        Let us design a bespoke journey tailored exclusively to your preferences and desires.
                     </p>
                     <Link href="/contact" className="btn-white">
                         Design a Custom Tour
