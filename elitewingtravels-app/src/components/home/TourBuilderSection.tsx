@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,50 +51,62 @@ const STEPS = [
 
 /* ─── Traveler options ────────────────────────────────────── */
 const TRAVELER_OPTIONS = [
-    { value: "1-2",   range: "1 – 2",  tag: "Just us",        Icon: Heart,       hint: "Perfect for couples & solo" },
-    { value: "3-5",   range: "3 – 5",  tag: "Family",         Icon: Users,       hint: "Ideal for families" },
-    { value: "6-10",  range: "6 – 10", tag: "Friends",        Icon: Users2,      hint: "Small group adventure" },
-    { value: "11-20", range: "11 – 20",tag: "Large group",    Icon: Briefcase,   hint: "Extended families & tours" },
-    { value: "21-30", range: "21 – 30",tag: "Corporate",      Icon: Globe,       hint: "Corporate & incentive trips" },
-    { value: "30+",   range: "30+",    tag: "Grand tour",     Icon: PartyPopper, hint: "Big events & celebrations" },
+    { value: "1-2", range: "1 – 2", tag: "Just us", Icon: Heart, hint: "Perfect for couples & solo" },
+    { value: "3-5", range: "3 – 5", tag: "Family", Icon: Users, hint: "Ideal for families" },
+    { value: "6-10", range: "6 – 10", tag: "Friends", Icon: Users2, hint: "Small group adventure" },
+    { value: "11-20", range: "11 – 20", tag: "Large group", Icon: Briefcase, hint: "Extended families & tours" },
+    { value: "21-30", range: "21 – 30", tag: "Corporate", Icon: Globe, hint: "Corporate & incentive trips" },
+    { value: "30+", range: "30+", tag: "Grand tour", Icon: PartyPopper, hint: "Big events & celebrations" },
 ];
 
 /* ─── Destination options ─────────────────────────────────── */
 const DESTINATIONS = [
-    { name: "Sigiriya",      region: "Cultural Triangle" },
-    { name: "Kandy",         region: "Hill Country" },
-    { name: "Galle",         region: "Southern Coast" },
-    { name: "Ella",          region: "Highlands" },
-    { name: "Nuwara Eliya",  region: "Tea Country" },
-    { name: "Polonnaruwa",   region: "Ancient Kingdom" },
-    { name: "Anuradhapura",  region: "Sacred City" },
-    { name: "Bentota",       region: "West Coast" },
-    { name: "Mirissa",       region: "Whale Watching" },
-    { name: "Yala",          region: "Wildlife" },
+    { name: "Sigiriya", region: "Cultural Triangle" },
+    { name: "Kandy", region: "Hill Country" },
+    { name: "Galle", region: "Southern Coast" },
+    { name: "Ella", region: "Highlands" },
+    { name: "Nuwara Eliya", region: "Tea Country" },
+    { name: "Polonnaruwa", region: "Ancient Kingdom" },
+    { name: "Anuradhapura", region: "Sacred City" },
+    { name: "Bentota", region: "West Coast" },
+    { name: "Mirissa", region: "Whale Watching" },
+    { name: "Yala", region: "Wildlife" },
 ];
 
 /* ─── Vehicle options ─────────────────────────────────────── */
-const VEHICLES = [
+const VEHICLE_CATEGORIES = [
     {
-        value:    "sedan",
-        name:     "Private Sedan",
-        pax:      "1 – 3 passengers",
-        tagline:  "Sleek, air-conditioned comfort with a professional chauffeur.",
-        badge:    "Most popular",
+        id: "sedan-suv",
+        name: "Private Sedan & SUV",
+        icon: Car,
+        tagline: "Sleek, air-conditioned comfort with a professional chauffeur.",
+        options: [
+            { value: "private-sedan", name: "Private Sedan", pax: "Max 2 passengers", badge: "Most popular" },
+            { value: "suv", name: "Luxury SUV", pax: "3 – 4 passengers", badge: "" },
+        ],
     },
     {
-        value:    "van",
-        name:     "Executive Van",
-        pax:      "6 – 14 passengers",
-        tagline:  "Spacious interior, reclining seats & onboard Wi-Fi.",
-        badge:    "",
+        id: "van",
+        name: "Executive Van",
+        icon: Users2,
+        tagline: "Spacious interior, reclining seats & onboard Wi-Fi.",
+        options: [
+            { value: "kdh-flatroof", name: "KDH Flatroof", pax: "Max 6 passengers", badge: "" },
+            { value: "kdh-highroof", name: "KDH Highroof", pax: "Max 8 passengers", badge: "" },
+        ],
     },
     {
-        value:    "coach",
-        name:     "Luxury Coach",
-        pax:      "24 – 45 passengers",
-        tagline:  "First-class touring coach for large groups & corporate travel.",
-        badge:    "",
+        id: "coach",
+        name: "Luxury Coach & Bus",
+        icon: Globe,
+        tagline: "First-class touring coach for large groups & corporate travel.",
+        options: [
+            { value: "mini-coach", name: "Mini Coach", pax: "Max 14 passengers", badge: "" },
+            { value: "long-coach", name: "Long Coach", pax: "Max 16 passengers", badge: "" },
+            { value: "luxury-coach", name: "Luxury Coach", pax: "Max 25 passengers", badge: "" },
+            { value: "premium-coach", name: "Premium Coach", pax: "Max 30 passengers", badge: "" },
+            { value: "grand-coach", name: "Grand Coach", pax: "Max 40 passengers", badge: "" },
+        ],
     },
 ];
 
@@ -107,6 +120,7 @@ function daysBetween(a: string, b: string) {
 /* ─── Component ───────────────────────────────────────────── */
 export default function TourBuilderSection() {
     const [step, setStep] = useState(1);
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const ref = useRef(null);
@@ -166,8 +180,21 @@ export default function TourBuilderSection() {
     /* ── Success screen ───────────────────────────────────── */
     if (submitted) {
         return (
-            <section className="section-luxury-lg bg-[var(--color-primary)]" id="tour-builder">
-                <div className="container-luxury text-center">
+            <section className="relative py-24 overflow-hidden" id="tour-builder">
+                {/* Background Image & Overlay */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/assets/images/design your dream journey.png"
+                        alt="Design Your Dream Journey"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/80 via-transparent to-[var(--color-primary)]/80" />
+                </div>
+
+                <div className="container-luxury relative z-10 text-center">
                     <motion.div
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
@@ -178,7 +205,7 @@ export default function TourBuilderSection() {
                         <CheckCircle2 size={44} className="text-white" strokeWidth={1.5} />
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
-                        <h2 className="!text-white mb-3">Your journey begins here.</h2>
+                        <h2 className="!text-white mb-3 text-3xl sm:text-4xl">Your journey begins here.</h2>
                         <p className="!text-white/65 text-lg max-w-lg mx-auto leading-relaxed">
                             We&apos;ve received your request. Our team will craft a personalised
                             itinerary and reach out within{" "}
@@ -197,11 +224,18 @@ export default function TourBuilderSection() {
             ref={ref}
             className="relative bg-[var(--color-primary)] py-24 overflow-hidden"
         >
-            {/* Soft ambient blobs */}
-            <div className="pointer-events-none absolute top-0 left-0 w-[500px] h-[500px]
-                            rounded-full bg-white/[0.025] blur-[120px] -translate-x-1/2 -translate-y-1/2" />
-            <div className="pointer-events-none absolute bottom-0 right-0 w-[400px] h-[400px]
-                            rounded-full bg-[var(--color-gold)]/10 blur-[100px] translate-x-1/3 translate-y-1/3" />
+            {/* Background Image & Overlay */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/assets/images/design your dream journey.png"
+                    alt="Design Your Dream Journey"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+                <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/80 via-transparent to-[var(--color-primary)]/80" />
+            </div>
 
             <div className="container-luxury relative z-10">
 
@@ -233,7 +267,7 @@ export default function TourBuilderSection() {
                     className="flex items-start justify-center gap-1 sm:gap-2 mb-12"
                 >
                     {STEPS.map(({ id, label, Icon }, i) => {
-                        const done   = step > id;
+                        const done = step > id;
                         const active = step === id;
                         return (
                             <div key={id} className="flex items-center">
@@ -424,54 +458,95 @@ export default function TourBuilderSection() {
                             {step === 4 && (
                                 <div>
                                     <StepHeading Icon={Car} title="Choose your vehicle" sub="Every vehicle includes a professional chauffeur and complimentary Wi-Fi." />
-                                    <div className="space-y-3 mt-7">
-                                        {VEHICLES.map(({ value, name, pax, tagline, badge }) => {
-                                            const sel = vehicleType === value;
+                                    <div className="space-y-4 mt-7">
+                                        {VEHICLE_CATEGORIES.map((cat) => {
+                                            const isCatSelected = selectedCategory === cat.id;
                                             return (
-                                                <label
-                                                    key={value}
-                                                    className={`
-                                                        flex items-center gap-4 rounded-2xl px-5 py-4 border cursor-pointer
-                                                        transition-all duration-250
-                                                        ${sel
-                                                            ? "border-[var(--color-gold)] bg-[var(--color-gold)]/12"
-                                                            : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
-                                                        }
-                                                    `}
-                                                >
-                                                    <input type="radio" value={value} {...register("vehicleType")} className="sr-only" />
-
-                                                    {/* Radio dot */}
-                                                    <div className={`shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all
-                                                        ${sel ? "border-[var(--color-gold)] bg-[var(--color-gold)]" : "border-white/25"}`}>
-                                                        {sel && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}
-                                                            className="w-2 h-2 rounded-full bg-white" />}
-                                                    </div>
-
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="flex items-center flex-wrap gap-2 mb-0.5">
-                                                            <span className={`text-sm font-bold transition-colors
-                                                                ${sel ? "text-white" : "text-white/80"}`}>
-                                                                {name}
-                                                            </span>
-                                                            <span className={`text-[11px] px-2 py-0.5 rounded-full font-medium transition-all
-                                                                ${sel ? "bg-[var(--color-gold)]/20 text-[var(--color-gold)]" : "bg-white/8 text-white/35"}`}>
-                                                                {pax}
-                                                            </span>
-                                                            {badge && (
-                                                                <span className="flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full
-                                                                                bg-[var(--color-gold)]/15 text-[var(--color-gold)] font-medium">
-                                                                    <Star size={9} className="fill-[var(--color-gold)]" />
-                                                                    {badge}
-                                                                </span>
-                                                            )}
+                                                <div key={cat.id} className="space-y-3">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setSelectedCategory(isCatSelected ? null : cat.id)}
+                                                        className={`
+                                                            w-full flex items-center gap-4 rounded-2xl px-5 py-5 border cursor-pointer
+                                                            transition-all duration-300 relative overflow-hidden group
+                                                            ${isCatSelected
+                                                                ? "border-[var(--color-gold)] bg-[var(--color-gold)]/10 shadow-lg shadow-[var(--color-gold)]/5"
+                                                                : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
+                                                            }
+                                                        `}
+                                                    >
+                                                        <div className={`shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500
+                                                            ${isCatSelected ? "bg-[var(--color-gold)] text-white" : "bg-white/5 text-white/30 group-hover:text-white/50"}`}>
+                                                            <cat.icon size={22} strokeWidth={1.5} />
                                                         </div>
-                                                        <p className={`text-xs leading-relaxed transition-colors
-                                                            ${sel ? "text-white/60" : "text-white/30"}`}>
-                                                            {tagline}
-                                                        </p>
-                                                    </div>
-                                                </label>
+                                                        <div className="flex-1 text-left">
+                                                            <div className="flex items-center justify-between">
+                                                                <span className={`text-base font-bold transition-colors
+                                                                    ${isCatSelected ? "text-white" : "text-white/80"}`}>
+                                                                    {cat.name}
+                                                                </span>
+                                                                <ArrowRight size={16} className={`transition-transform duration-400
+                                                                    ${isCatSelected ? "rotate-90 text-[var(--color-gold)]" : "text-white/20"}`} />
+                                                            </div>
+                                                            <p className={`text-xs mt-0.5 leading-relaxed transition-colors
+                                                                ${isCatSelected ? "text-white/60" : "text-white/30"}`}>
+                                                                {cat.tagline}
+                                                            </p>
+                                                        </div>
+                                                    </button>
+
+                                                    <AnimatePresence>
+                                                        {isCatSelected && (
+                                                            <motion.div
+                                                                initial={{ height: 0, opacity: 0 }}
+                                                                animate={{ height: "auto", opacity: 1 }}
+                                                                exit={{ height: 0, opacity: 0 }}
+                                                                transition={{ duration: 0.35, ease: "easeInOut" }}
+                                                                className="overflow-hidden bg-white/[0.02] rounded-2xl border border-white/5 ml-4 sm:ml-8"
+                                                            >
+                                                                <div className="p-3 space-y-2">
+                                                                    {cat.options.map((opt) => {
+                                                                        const isSelected = vehicleType === opt.value;
+                                                                        return (
+                                                                            <label
+                                                                                key={opt.value}
+                                                                                className={`
+                                                                                    flex items-center gap-4 rounded-xl px-4 py-3 border cursor-pointer
+                                                                                    transition-all duration-200
+                                                                                    ${isSelected
+                                                                                        ? "border-[var(--color-gold)]/40 bg-[var(--color-gold)]/15"
+                                                                                        : "border-transparent bg-transparent hover:bg-white/5"
+                                                                                    }
+                                                                                `}
+                                                                            >
+                                                                                <input type="radio" value={opt.value} {...register("vehicleType")} className="sr-only" />
+                                                                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all
+                                                                                    ${isSelected ? "border-[var(--color-gold)] bg-[var(--color-gold)]" : "border-white/20"}`}>
+                                                                                    {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
+                                                                                </div>
+                                                                                <div className="flex-1">
+                                                                                    <div className="flex items-center gap-2">
+                                                                                        <span className={`text-sm font-semibold ${isSelected ? "text-white" : "text-white/70"}`}>
+                                                                                            {opt.name}
+                                                                                        </span>
+                                                                                        <span className={`text-[10px] uppercase tracking-wider font-bold ${isSelected ? "text-[var(--color-gold)]" : "text-white/25"}`}>
+                                                                                            {opt.pax}
+                                                                                        </span>
+                                                                                        {opt.badge && (
+                                                                                            <span className="text-[10px] bg-[var(--color-gold)]/20 text-[var(--color-gold)] px-1.5 py-0.5 rounded leading-none font-bold">
+                                                                                                {opt.badge}
+                                                                                            </span>
+                                                                                        )}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </label>
+                                                                        );
+                                                                    })}
+                                                                </div>
+                                                            </motion.div>
+                                                        )}
+                                                    </AnimatePresence>
+                                                </div>
                                             );
                                         })}
                                     </div>
