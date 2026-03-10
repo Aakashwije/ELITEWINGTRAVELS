@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { stats } from "@/lib/data";
+import { ShieldCheck, Gem, Heart } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "About Us",
@@ -183,23 +184,25 @@ export default function AboutPage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
                             {
-                                icon: "🛡️",
+                                icon: ShieldCheck,
                                 title: "Safety & Trust",
                                 desc: "Every journey is backed by licensed chauffeurs, comprehensive insurance, and rigorous safety protocols.",
                             },
                             {
-                                icon: "💎",
+                                icon: Gem,
                                 title: "Premium Quality",
                                 desc: "From our luxury fleet to handpicked accommodations, we never compromise on quality or comfort.",
                             },
                             {
-                                icon: "❤️",
+                                icon: Heart,
                                 title: "Authentic Hospitality",
                                 desc: "True to our Ayubowan spirit, we treat every traveler as an honored guest, ensuring genuine warmth.",
                             },
                         ].map((value) => (
                             <div key={value.title} className="card-luxury p-8 text-center">
-                                <span className="text-4xl mb-4 block">{value.icon}</span>
+                                <div className="w-14 h-14 rounded-2xl bg-[var(--color-sky)] mx-auto mb-4 flex items-center justify-center">
+                                    <value.icon size={28} className="text-[var(--color-primary)]" strokeWidth={1.6} />
+                                </div>
                                 <h3 className="text-xl mb-3">{value.title}</h3>
                                 <p className="text-sm">{value.desc}</p>
                             </div>
