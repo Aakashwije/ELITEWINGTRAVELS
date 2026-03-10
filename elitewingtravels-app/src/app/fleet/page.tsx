@@ -41,7 +41,7 @@ export default function FleetPage() {
                     {/* Stats row */}
                     <div className="flex flex-wrap justify-center gap-8 md:gap-16">
                         {[
-                            { value: "13+", label: "Premium Vehicles" },
+                            { value: "40+", label: "Premium Vehicles" },
                             { value: "100%", label: "Licensed Chauffeurs" },
                             { value: "21", label: "Years Experience" },
                         ].map((stat) => (
