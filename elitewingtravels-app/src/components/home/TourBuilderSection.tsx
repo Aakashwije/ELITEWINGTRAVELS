@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,7 +24,6 @@ import {
     PartyPopper,
     Globe,
     Star,
-    Sparkles,
 } from "lucide-react";
 
 /* ─── Schema ──────────────────────────────────────────────── */
@@ -51,53 +51,62 @@ const STEPS = [
 
 /* ─── Traveler options ────────────────────────────────────── */
 const TRAVELER_OPTIONS = [
-    { value: "1-2",   range: "1 – 2",  tag: "Just Us",       Icon: Heart,       hint: "Perfect for couples & solo" },
-    { value: "3-5",   range: "3 – 5",  tag: "Family",        Icon: Users,       hint: "Ideal for families" },
-    { value: "6-10",  range: "6 – 10", tag: "Friends",       Icon: Users2,      hint: "Small group adventure" },
-    { value: "11-20", range: "11–20",  tag: "Large Group",   Icon: Briefcase,   hint: "Extended families & tours" },
-    { value: "21-30", range: "21–30",  tag: "Corporate",     Icon: Globe,       hint: "Corporate & incentive trips" },
-    { value: "30+",   range: "30+",    tag: "Grand Tour",    Icon: PartyPopper, hint: "Big events & celebrations" },
+    { value: "1-2", range: "1 – 2", tag: "Just us", Icon: Heart, hint: "Perfect for couples & solo" },
+    { value: "3-5", range: "3 – 5", tag: "Family", Icon: Users, hint: "Ideal for families" },
+    { value: "6-10", range: "6 – 10", tag: "Friends", Icon: Users2, hint: "Small group adventure" },
+    { value: "11-20", range: "11 – 20", tag: "Large group", Icon: Briefcase, hint: "Extended families & tours" },
+    { value: "21-30", range: "21 – 30", tag: "Corporate", Icon: Globe, hint: "Corporate & incentive trips" },
+    { value: "30+", range: "30+", tag: "Grand tour", Icon: PartyPopper, hint: "Big events & celebrations" },
 ];
 
 /* ─── Destination options ─────────────────────────────────── */
 const DESTINATIONS = [
-    { name: "Sigiriya",     region: "Cultural Triangle" },
-    { name: "Kandy",        region: "Hill Country" },
-    { name: "Galle",        region: "Southern Coast" },
-    { name: "Ella",         region: "Highlands" },
+    { name: "Sigiriya", region: "Cultural Triangle" },
+    { name: "Kandy", region: "Hill Country" },
+    { name: "Galle", region: "Southern Coast" },
+    { name: "Ella", region: "Highlands" },
     { name: "Nuwara Eliya", region: "Tea Country" },
-    { name: "Polonnaruwa",  region: "Ancient Kingdom" },
+    { name: "Polonnaruwa", region: "Ancient Kingdom" },
     { name: "Anuradhapura", region: "Sacred City" },
-    { name: "Bentota",      region: "West Coast" },
-    { name: "Mirissa",      region: "Whale Watching" },
-    { name: "Yala",         region: "Wildlife" },
+    { name: "Bentota", region: "West Coast" },
+    { name: "Mirissa", region: "Whale Watching" },
+    { name: "Yala", region: "Wildlife" },
 ];
 
 /* ─── Vehicle options ─────────────────────────────────────── */
-const VEHICLES = [
+const VEHICLE_CATEGORIES = [
     {
-        value:   "sedan",
-        name:    "Private Sedan",
-        pax:     "1 – 3 passengers",
+        id: "sedan-suv",
+        name: "Private Sedan & SUV",
+        icon: Car,
         tagline: "Sleek, air-conditioned comfort with a professional chauffeur.",
-        badge:   "Most popular",
-        emoji:   "🚗",
+        options: [
+            { value: "private-sedan", name: "Private Sedan", pax: "Max 2 passengers", badge: "Most popular" },
+            { value: "suv", name: "Luxury SUV", pax: "3 – 4 passengers", badge: "" },
+        ],
     },
     {
-        value:   "van",
-        name:    "Executive Van",
-        pax:     "6 – 14 passengers",
+        id: "van",
+        name: "Executive Van",
+        icon: Users2,
         tagline: "Spacious interior, reclining seats & onboard Wi-Fi.",
-        badge:   "",
-        emoji:   "🚐",
+        options: [
+            { value: "kdh-flatroof", name: "KDH Flatroof", pax: "Max 6 passengers", badge: "" },
+            { value: "kdh-highroof", name: "KDH Highroof", pax: "Max 8 passengers", badge: "" },
+        ],
     },
     {
-        value:   "coach",
-        name:    "Luxury Coach",
-        pax:     "24 – 45 passengers",
+        id: "coach",
+        name: "Luxury Coach & Bus",
+        icon: Globe,
         tagline: "First-class touring coach for large groups & corporate travel.",
-        badge:   "",
-        emoji:   "🚌",
+        options: [
+            { value: "mini-coach", name: "Mini Coach", pax: "Max 14 passengers", badge: "" },
+            { value: "long-coach", name: "Long Coach", pax: "Max 16 passengers", badge: "" },
+            { value: "luxury-coach", name: "Luxury Coach", pax: "Max 25 passengers", badge: "" },
+            { value: "premium-coach", name: "Premium Coach", pax: "Max 30 passengers", badge: "" },
+            { value: "grand-coach", name: "Grand Coach", pax: "Max 40 passengers", badge: "" },
+        ],
     },
 ];
 
@@ -111,6 +120,7 @@ function daysBetween(a: string, b: string) {
 /* ─── Component ───────────────────────────────────────────── */
 export default function TourBuilderSection() {
     const [step, setStep] = useState(1);
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const ref = useRef(null);
@@ -177,8 +187,21 @@ export default function TourBuilderSection() {
     /* ── Success screen ───────────────────────────────────── */
     if (submitted) {
         return (
-            <section className="section-luxury-lg bg-[var(--color-primary)]" id="tour-builder">
-                <div className="container-luxury text-center">
+            <section className="relative py-24 overflow-hidden" id="tour-builder">
+                {/* Background Image & Overlay */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/assets/images/design your dream journey.png"
+                        alt="Design Your Dream Journey"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/80 via-transparent to-[var(--color-primary)]/80" />
+                </div>
+
+                <div className="container-luxury relative z-10 text-center">
                     <motion.div
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
@@ -189,7 +212,7 @@ export default function TourBuilderSection() {
                         <CheckCircle2 size={44} className="text-white" strokeWidth={1.5} />
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
-                        <h2 className="!text-white mb-3">Your journey begins here.</h2>
+                        <h2 className="!text-white mb-3 text-3xl sm:text-4xl">Your journey begins here.</h2>
                         <p className="!text-white/65 text-lg max-w-lg mx-auto leading-relaxed">
                             We&apos;ve received your request. Our team will craft a personalised
                             itinerary and reach out within{" "}
@@ -206,454 +229,411 @@ export default function TourBuilderSection() {
         <section
             id="tour-builder"
             ref={ref}
-            className="relative bg-[var(--color-primary)] py-28 overflow-hidden"
+            className="relative bg-[var(--color-primary)] py-24 overflow-hidden"
         >
-            {/* ── Background decoration ── */}
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full
-                                bg-[var(--color-gold)]/5 blur-[130px] -translate-x-1/2 -translate-y-1/3" />
-                <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full
-                                bg-white/[0.025] blur-[110px] translate-x-1/3 translate-y-1/3" />
-                <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] rounded-full
-                                bg-[var(--color-gold)]/[0.04] blur-[90px] -translate-x-1/2 -translate-y-1/2" />
-                {/* Subtle grid lines */}
-                <div className="absolute inset-0 opacity-[0.03]"
-                    style={{
-                        backgroundImage: "linear-gradient(var(--color-gold) 1px, transparent 1px), linear-gradient(90deg, var(--color-gold) 1px, transparent 1px)",
-                        backgroundSize: "80px 80px",
-                    }} />
+            {/* Background Image & Overlay */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/assets/images/design your dream journey.png"
+                    alt="Design Your Dream Journey"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+                <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/80 via-transparent to-[var(--color-primary)]/80" />
             </div>
 
             <div className="container-luxury relative z-10">
 
-                {/* ── Header ─────────────────────────────────────── */}
+                {/* ── Header ───────────────────────────────────────── */}
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.7 }}
-                    className="text-center mb-16"
+                    className="text-center mb-14"
                 >
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full
-                                    border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/8 mb-5">
-                        <Sparkles size={12} className="text-[var(--color-gold)]" />
-                        <span className="text-[var(--color-gold)] text-xs font-semibold tracking-[0.15em] uppercase">
-                            Private Tour Builder
-                        </span>
-                        <Sparkles size={12} className="text-[var(--color-gold)]" />
-                    </div>
+                    <span className="section-label justify-center !text-[var(--color-gold)]">
+                        Private Tour Builder
+                    </span>
                     <h2 className="!text-white mt-1 mb-4">
                         Design Your{" "}
                         <span className="text-gradient-gold">Dream Journey</span>
                     </h2>
-                    <p className="!text-white/50 max-w-md mx-auto text-base leading-relaxed">
+                    <p className="!text-white/55 max-w-md mx-auto text-base">
                         Tell us about your perfect trip and we&apos;ll craft a bespoke
                         itinerary tailored just for you.
                     </p>
                 </motion.div>
 
-                {/* ── Outer premium wrapper ── */}
+                {/* ── Step bar ─────────────────────────────────────── */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 16 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.7, delay: 0.08 }}
-                    className="max-w-2xl mx-auto"
+                    transition={{ duration: 0.7, delay: 0.1 }}
+                    className="flex items-start justify-center gap-1 sm:gap-2 mb-12"
                 >
-                    {/* Golden top-border accent */}
-                    <div className="h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/60 to-transparent mb-0 rounded-t-3xl" />
-
-                    <div className="rounded-3xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl
-                                    shadow-2xl shadow-black/40 overflow-hidden">
-
-                        {/* ── Step progress bar (top of card) ─────── */}
-                        <div className="px-8 pt-8 pb-6 border-b border-white/[0.06]">
-                            <div className="flex items-center justify-between mb-3">
-                                <span className="text-[var(--color-gold)] text-xs font-semibold tracking-widest uppercase">
-                                    Step {step} of {STEPS.length}
-                                </span>
-                                <span className="text-white/30 text-xs">
-                                    {Math.round(((step - 1) / (STEPS.length - 1)) * 100)}% complete
-                                </span>
-                            </div>
-                            {/* Track */}
-                            <div className="relative h-1 bg-white/[0.07] rounded-full overflow-hidden">
-                                <motion.div
-                                    animate={{ width: `${((step - 1) / (STEPS.length - 1)) * 100}%` }}
-                                    transition={{ duration: 0.5, ease: "easeOut" }}
-                                    className="absolute inset-y-0 left-0 rounded-full"
-                                    style={{
-                                        background: "linear-gradient(90deg, var(--color-gold), #f59e0b)",
-                                        boxShadow: "0 0 8px rgba(var(--color-gold-rgb, 180,134,60),0.7)",
-                                    }}
-                                />
-                            </div>
-
-                            {/* Step dots */}
-                            <div className="flex items-center justify-between mt-4">
-                                {STEPS.map(({ id, label, Icon }) => {
-                                    const done   = step > id;
-                                    const active = step === id;
-                                    return (
-                                        <div key={id} className="flex flex-col items-center gap-1.5">
-                                            <motion.div
-                                                animate={{
-                                                    scale: active ? 1.15 : 1,
-                                                    borderColor: done
-                                                        ? "var(--color-gold)"
-                                                        : active
-                                                            ? "var(--color-gold)"
-                                                            : "rgba(255,255,255,0.12)",
-                                                }}
-                                                transition={{ duration: 0.3 }}
-                                                className={`
-                                                    w-8 h-8 rounded-full border-2 flex items-center justify-center transition-colors
-                                                    ${done
-                                                        ? "bg-[var(--color-gold)]"
-                                                        : active
-                                                            ? "bg-[var(--color-gold)]/15"
-                                                            : "bg-transparent"
-                                                    }
-                                                `}
-                                            >
-                                                {done
-                                                    ? <Check size={12} className="text-white" strokeWidth={3} />
-                                                    : <Icon size={12} className={active ? "text-[var(--color-gold)]" : "text-white/25"} strokeWidth={1.8} />
-                                                }
-                                            </motion.div>
-                                            <span className={`text-[10px] font-medium hidden sm:block transition-colors
-                                                ${done || active ? "text-white/70" : "text-white/20"}`}>
-                                                {label}
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-                        {/* ── Form content ─────────────────────────── */}
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <input type="text" {...register("honeypot")} className="hidden" tabIndex={-1} autoComplete="off" />
-
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={step}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -20 }}
-                                    transition={{ duration: 0.28, ease: "easeOut" }}
-                                    className="p-8 sm:p-10"
-                                >
-                                    {/* ── Step 1 – Travelers ─────────── */}
-                                    {step === 1 && (
-                                        <div>
-                                            <StepHeading Icon={Users} title="How many travelers?" sub="We'll match your group to the ideal vehicle & accommodations." />
-                                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-8">
-                                                {TRAVELER_OPTIONS.map(({ value, range, tag, Icon: TIcon, hint }) => {
-                                                    const sel = travelers === value;
-                                                    return (
-                                                        <label
-                                                            key={value}
-                                                            className={`
-                                                                relative cursor-pointer rounded-2xl p-4 sm:p-5 transition-all duration-300
-                                                                border group overflow-hidden
-                                                                ${sel
-                                                                    ? "border-[var(--color-gold)] bg-[var(--color-gold)]/10 shadow-lg shadow-[var(--color-gold)]/10"
-                                                                    : "border-white/8 bg-white/[0.03] hover:border-white/18 hover:bg-white/[0.06]"
-                                                                }
-                                                            `}
-                                                        >
-                                                            <input type="radio" value={value} {...register("travelers")} className="sr-only" />
-
-                                                            {/* Shimmer bg on selected */}
-                                                            {sel && (
-                                                                <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-gold)]/5 to-transparent pointer-events-none" />
-                                                            )}
-
-                                                            {/* Check badge */}
-                                                            {sel && (
-                                                                <motion.span
-                                                                    initial={{ scale: 0 }} animate={{ scale: 1 }}
-                                                                    className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full
-                                                                               bg-[var(--color-gold)] flex items-center justify-center shadow-md"
-                                                                >
-                                                                    <Check size={10} className="text-white" strokeWidth={3} />
-                                                                </motion.span>
-                                                            )}
-
-                                                            <TIcon
-                                                                size={22}
-                                                                strokeWidth={1.6}
-                                                                className={`mb-3 transition-colors duration-300
-                                                                    ${sel ? "text-[var(--color-gold)]" : "text-white/30 group-hover:text-white/50"}`}
-                                                            />
-                                                            <p className={`text-xl font-bold leading-none mb-0.5 transition-colors
-                                                                ${sel ? "text-white" : "text-white/75"}`}>
-                                                                {range}
-                                                            </p>
-                                                            <p className={`text-[10px] font-bold uppercase tracking-[0.12em] mb-2 transition-colors
-                                                                ${sel ? "text-[var(--color-gold)]" : "text-white/28"}`}>
-                                                                {tag}
-                                                            </p>
-                                                            <p className={`text-[11px] leading-tight transition-colors
-                                                                ${sel ? "text-white/55" : "text-white/22"}`}>
-                                                                {hint}
-                                                            </p>
-                                                        </label>
-                                                    );
-                                                })}
-                                            </div>
-                                            {travelers && (
-                                                <Tip>
-                                                    Perfect — we&apos;ll curate the ideal Sri Lanka experience for{" "}
-                                                    <strong className="text-[var(--color-gold)]">{travelers} guests</strong>.
-                                                </Tip>
-                                            )}
-                                        </div>
-                                    )}
-
-                                    {/* ── Step 2 – Dates ─────────────── */}
-                                    {step === 2 && (
-                                        <div>
-                                            <StepHeading Icon={CalendarDays} title="When are you traveling?" sub="Choose your dates and we'll plan every day to perfection." />
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8">
-                                                <DateField label="Departure date" id="startDate" {...register("startDate")} />
-                                                <DateField label="Return date" id="endDate" {...register("endDate")} />
-                                            </div>
-                                            {startDate && endDate && daysBetween(startDate, endDate) > 0 && (
-                                                <Tip>
-                                                    Your journey spans{" "}
-                                                    <strong className="text-[var(--color-gold)]">{daysBetween(startDate, endDate)} days</strong>{" "}
-                                                    of unforgettable experiences.
-                                                </Tip>
-                                            )}
-                                        </div>
-                                    )}
-
-                                    {/* ── Step 3 – Destinations ──────── */}
-                                    {step === 3 && (
-                                        <div>
-                                            <StepHeading Icon={MapPin} title="Where would you like to go?" sub="Pick any destinations that spark your interest — we'll weave them into a seamless route." />
-                                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mt-8">
-                                                {DESTINATIONS.map(({ name, region }) => {
-                                                    const sel = selectedDests.includes(name);
-                                                    return (
-                                                        <button
-                                                            key={name}
-                                                            type="button"
-                                                            onClick={() => toggleDest(name)}
-                                                            className={`
-                                                                relative text-left rounded-xl px-4 py-3.5 border transition-all duration-250
-                                                                cursor-pointer group overflow-hidden
-                                                                ${sel
-                                                                    ? "border-[var(--color-gold)] bg-[var(--color-gold)]/10 shadow-md shadow-[var(--color-gold)]/10"
-                                                                    : "border-white/8 bg-white/[0.03] hover:border-white/18 hover:bg-white/[0.06]"
-                                                                }
-                                                            `}
-                                                        >
-                                                            {sel && (
-                                                                <motion.div
-                                                                    initial={{ scale: 0 }} animate={{ scale: 1 }}
-                                                                    className="absolute top-2.5 right-2.5 w-4 h-4 rounded-full
-                                                                               bg-[var(--color-gold)] flex items-center justify-center"
-                                                                >
-                                                                    <Check size={8} className="text-white" strokeWidth={3} />
-                                                                </motion.div>
-                                                            )}
-                                                            <p className={`text-sm font-semibold leading-tight transition-colors
-                                                                ${sel ? "text-white" : "text-white/65"}`}>
-                                                                {name}
-                                                            </p>
-                                                            <p className={`text-[11px] mt-0.5 transition-colors
-                                                                ${sel ? "text-[var(--color-gold)]/75" : "text-white/22"}`}>
-                                                                {region}
-                                                            </p>
-                                                        </button>
-                                                    );
-                                                })}
-                                            </div>
-                                            {selectedDests.length > 0 && (
-                                                <Tip>
-                                                    <strong className="text-[var(--color-gold)]">{selectedDests.length}</strong>{" "}
-                                                    destination{selectedDests.length > 1 ? "s" : ""} selected.
-                                                </Tip>
-                                            )}
-                                        </div>
-                                    )}
-
-                                    {/* ── Step 4 – Vehicle ───────────── */}
-                                    {step === 4 && (
-                                        <div>
-                                            <StepHeading Icon={Car} title="Choose your vehicle" sub="Every vehicle includes a professional chauffeur and complimentary Wi-Fi." />
-                                            <div className="space-y-3 mt-8">
-                                                {VEHICLES.map(({ value, name, pax, tagline, badge, emoji }) => {
-                                                    const sel = vehicleType === value;
-                                                    return (
-                                                        <label
-                                                            key={value}
-                                                            className={`
-                                                                flex items-center gap-4 rounded-2xl px-5 py-4 border cursor-pointer
-                                                                transition-all duration-300 group relative overflow-hidden
-                                                                ${sel
-                                                                    ? "border-[var(--color-gold)] bg-[var(--color-gold)]/10 shadow-lg shadow-[var(--color-gold)]/10"
-                                                                    : "border-white/8 bg-white/[0.03] hover:border-white/18 hover:bg-white/[0.06]"
-                                                                }
-                                                            `}
-                                                        >
-                                                            <input type="radio" value={value} {...register("vehicleType")} className="sr-only" />
-
-                                                            {sel && (
-                                                                <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-gold)]/5 to-transparent pointer-events-none" />
-                                                            )}
-
-                                                            {/* Emoji icon */}
-                                                            <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-xl
-                                                                transition-all duration-300
-                                                                ${sel ? "bg-[var(--color-gold)]/20" : "bg-white/5 group-hover:bg-white/8"}`}>
-                                                                {emoji}
-                                                            </div>
-
-                                                            <div className="flex-1 min-w-0">
-                                                                <div className="flex items-center flex-wrap gap-2 mb-0.5">
-                                                                    <span className={`text-sm font-bold transition-colors
-                                                                        ${sel ? "text-white" : "text-white/80"}`}>
-                                                                        {name}
-                                                                    </span>
-                                                                    <span className={`text-[11px] px-2 py-0.5 rounded-full font-medium border transition-all
-                                                                        ${sel
-                                                                            ? "bg-[var(--color-gold)]/15 text-[var(--color-gold)] border-[var(--color-gold)]/20"
-                                                                            : "bg-white/5 text-white/30 border-white/8"}`}>
-                                                                        {pax}
-                                                                    </span>
-                                                                    {badge && (
-                                                                        <span className="flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full
-                                                                                        bg-[var(--color-gold)]/15 text-[var(--color-gold)] font-medium border border-[var(--color-gold)]/20">
-                                                                            <Star size={9} className="fill-[var(--color-gold)]" />
-                                                                            {badge}
-                                                                        </span>
-                                                                    )}
-                                                                </div>
-                                                                <p className={`text-xs leading-relaxed transition-colors
-                                                                    ${sel ? "text-white/55" : "text-white/28"}`}>
-                                                                    {tagline}
-                                                                </p>
-                                                            </div>
-
-                                                            {/* Radio indicator */}
-                                                            <div className={`shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all
-                                                                ${sel ? "border-[var(--color-gold)] bg-[var(--color-gold)]" : "border-white/20"}`}>
-                                                                {sel && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}
-                                                                    className="w-2 h-2 rounded-full bg-white" />}
-                                                            </div>
-                                                        </label>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {/* ── Step 5 – Contact details ───── */}
-                                    {step === 5 && (
-                                        <div>
-                                            <StepHeading Icon={Mail} title="Last step — your details" sub="Our travel experts will reach out with your bespoke itinerary." />
-                                            <div className="space-y-5 mt-8">
-                                                <FormField label="Full name" id="name" type="text" placeholder="Your full name" register={register("name")} error={errors.name?.message} />
-                                                <FormField label="Email address" id="email" type="email" placeholder="you@example.com" register={register("email")} error={errors.email?.message} />
-                                                <div>
-                                                    <FieldLabel label="Special requests" optional />
-                                                    <textarea
-                                                        {...register("specialRequests")}
-                                                        rows={4}
-                                                        placeholder="Dietary needs, special celebrations, accessibility…"
-                                                        className="w-full px-4 py-3.5 rounded-xl border border-white/10 bg-white/[0.04]
-                                                                   text-white text-sm placeholder:text-white/20 outline-none resize-none
-                                                                   focus:border-[var(--color-gold)]/60 focus:bg-white/[0.07] transition-all
-                                                                   focus:shadow-[0_0_0_3px_rgba(180,134,60,0.12)]"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </motion.div>
-                            </AnimatePresence>
-
-                            {/* ── Navigation bar ────────────────────── */}
-                            <div className="flex items-center justify-between px-8 pb-8 sm:px-10">
-                                {step > 1 ? (
-                                    <button
-                                        type="button"
-                                        onClick={() => setStep(step - 1)}
-                                        className="flex items-center gap-2 text-sm text-white/40 hover:text-white/80
-                                                   transition-all duration-200 font-medium px-3 py-2 rounded-lg
-                                                   hover:bg-white/[0.05] border border-transparent hover:border-white/8"
+                    {STEPS.map(({ id, label, Icon }, i) => {
+                        const done = step > id;
+                        const active = step === id;
+                        return (
+                            <div key={id} className="flex items-center">
+                                <div className="flex flex-col items-center gap-1.5">
+                                    <div
+                                        className={`
+                                            w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center
+                                            border-2 transition-all duration-400
+                                            ${done
+                                                ? "bg-[var(--color-gold)] border-[var(--color-gold)]"
+                                                : active
+                                                    ? "bg-transparent border-[var(--color-gold)] ring-4 ring-[var(--color-gold)]/20"
+                                                    : "bg-transparent border-white/15"
+                                            }
+                                        `}
                                     >
-                                        <ArrowLeft size={14} strokeWidth={2} />
-                                        Back
-                                    </button>
-                                ) : <div />}
+                                        {done
+                                            ? <Check size={14} className="text-white" strokeWidth={2.5} />
+                                            : <Icon size={14} className={active ? "text-[var(--color-gold)]" : "text-white/30"} strokeWidth={1.8} />
+                                        }
+                                    </div>
+                                    <span className={`text-[11px] font-medium hidden sm:block transition-colors duration-300
+                                        ${done || active ? "text-white/80" : "text-white/25"}`}>
+                                        {label}
+                                    </span>
+                                </div>
 
-                                {step < 5 ? (
-                                    <button
-                                        type="button"
-                                        onClick={() => canProceed() && setStep(step + 1)}
-                                        disabled={!canProceed()}
-                                        className="flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold
-                                                   text-white transition-all duration-300
-                                                   disabled:opacity-30 disabled:cursor-not-allowed
-                                                   shadow-lg shadow-[var(--color-gold)]/20
-                                                   disabled:shadow-none"
-                                        style={{
-                                            background: canProceed()
-                                                ? "linear-gradient(135deg, var(--color-gold), #d97706)"
-                                                : "rgba(255,255,255,0.08)",
-                                        }}
-                                    >
-                                        Continue
-                                        <ArrowRight size={14} strokeWidth={2.2} />
-                                    </button>
-                                ) : (
-                                    <button
-                                        type="submit"
-                                        disabled={submitting || !canProceed()}
-                                        className="flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold
-                                                   text-white transition-all duration-300
-                                                   disabled:opacity-30 disabled:cursor-not-allowed
-                                                   shadow-lg shadow-[var(--color-gold)]/20"
-                                        style={{
-                                            background: "linear-gradient(135deg, var(--color-gold), #d97706)",
-                                        }}
-                                    >
-                                        {submitting ? (
-                                            <><Loader2 size={14} className="animate-spin" /> Sending…</>
-                                        ) : (
-                                            <>Submit inquiry <Send size={13} strokeWidth={2} /></>
-                                        )}
-                                    </button>
+                                {/* Connector */}
+                                {i < STEPS.length - 1 && (
+                                    <div className="mx-1 sm:mx-2 mb-5 w-8 sm:w-14 h-px bg-white/10 relative overflow-hidden">
+                                        <motion.div
+                                            animate={{ scaleX: step > id ? 1 : 0 }}
+                                            initial={{ scaleX: 0 }}
+                                            transition={{ duration: 0.4 }}
+                                            style={{ originX: 0 }}
+                                            className="absolute inset-0 bg-[var(--color-gold)]"
+                                        />
+                                    </div>
                                 )}
                             </div>
-                        </form>
-                    </div>
-
-                    {/* Golden bottom-border accent */}
-                    <div className="h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/40 to-transparent mt-0" />
-
-                    {/* Trust badges below card */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={inView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        className="flex items-center justify-center gap-6 mt-6 flex-wrap"
-                    >
-                        {[
-                            { icon: "🔒", label: "Secure & Private" },
-                            { icon: "💬", label: "Reply within 24h" },
-                            { icon: "✨", label: "No commitment" },
-                        ].map(({ icon, label }) => (
-                            <div key={label} className="flex items-center gap-1.5 text-white/28 text-xs">
-                                <span className="text-sm">{icon}</span>
-                                <span>{label}</span>
-                            </div>
-                        ))}
-                    </motion.div>
+                        );
+                    })}
                 </motion.div>
+
+                {/* ── Card ─────────────────────────────────────────── */}
+                <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto">
+                    <input type="text" {...register("honeypot")} className="hidden" tabIndex={-1} autoComplete="off" />
+
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={step}
+                            initial={{ opacity: 0, y: 18 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -18 }}
+                            transition={{ duration: 0.28, ease: "easeOut" }}
+                            className="rounded-3xl border border-white/10 bg-white/[0.055] backdrop-blur-lg
+                                       p-7 sm:p-10 shadow-xl shadow-black/20"
+                        >
+
+                            {/* ── Step 1 – Travelers ───────────────── */}
+                            {step === 1 && (
+                                <div>
+                                    <StepHeading Icon={Users} title="How many travelers?" sub="We'll match your group to the ideal vehicle & accommodations." />
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-7">
+                                        {TRAVELER_OPTIONS.map(({ value, range, tag, Icon: TIcon, hint }) => {
+                                            const sel = travelers === value;
+                                            return (
+                                                <label
+                                                    key={value}
+                                                    className={`
+                                                        relative cursor-pointer rounded-2xl p-4 sm:p-5 transition-all duration-250 border
+                                                        flex flex-col items-center text-center
+                                                        ${sel
+                                                            ? "border-[var(--color-gold)] bg-[var(--color-gold)]/12 shadow-md shadow-[var(--color-gold)]/15"
+                                                            : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
+                                                        }
+                                                    `}
+                                                >
+                                                    <input type="radio" value={value} {...register("travelers")} className="sr-only" />
+
+                                                    {/* Check badge */}
+                                                    {sel && (
+                                                        <motion.span
+                                                            initial={{ scale: 0 }} animate={{ scale: 1 }}
+                                                            className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full
+                                                                       bg-[var(--color-gold)] flex items-center justify-center"
+                                                        >
+                                                            <Check size={10} className="text-white" strokeWidth={3} />
+                                                        </motion.span>
+                                                    )}
+
+                                                    <TIcon
+                                                        size={22}
+                                                        strokeWidth={1.6}
+                                                        className={`mb-3 transition-colors duration-250
+                                                            ${sel ? "text-[var(--color-gold)]" : "text-white/35"}`}
+                                                    />
+                                                    <p className={`text-xl font-bold leading-none mb-0.5 transition-colors
+                                                        ${sel ? "text-white" : "text-white/75"}`}>
+                                                        {range}
+                                                    </p>
+                                                    <p className={`text-[11px] font-semibold uppercase tracking-widest mb-2 transition-colors
+                                                        ${sel ? "text-[var(--color-gold)]" : "text-white/30"}`}>
+                                                        {tag}
+                                                    </p>
+                                                    <p className={`text-[11px] leading-tight transition-colors
+                                                        ${sel ? "text-white/60" : "text-white/25"}`}>
+                                                        {hint}
+                                                    </p>
+                                                </label>
+                                            );
+                                        })}
+                                    </div>
+                                    {travelers && (
+                                        <Tip>
+                                            Perfect — we&apos;ll curate the ideal Sri Lanka experience for{" "}
+                                            <strong className="text-[var(--color-gold)]">{travelers} guests</strong>.
+                                        </Tip>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* ── Step 2 – Dates ───────────────────── */}
+                            {step === 2 && (
+                                <div>
+                                    <StepHeading Icon={CalendarDays} title="When are you traveling?" sub="Choose your dates and we'll plan every day to perfection." />
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-7">
+                                        <DateField label="Departure date" id="startDate" {...register("startDate")} />
+                                        <DateField label="Return date" id="endDate" {...register("endDate")} />
+                                    </div>
+                                    {startDate && endDate && daysBetween(startDate, endDate) > 0 && (
+                                        <Tip>
+                                            Your journey spans{" "}
+                                            <strong className="text-[var(--color-gold)]">{daysBetween(startDate, endDate)} days</strong>{" "}
+                                            of unforgettable experiences.
+                                        </Tip>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* ── Step 3 – Destinations ────────────── */}
+                            {step === 3 && (
+                                <div>
+                                    <StepHeading Icon={MapPin} title="Where would you like to go?" sub="Pick any destinations that spark your interest — we'll weave them into a seamless route." />
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mt-7">
+                                        {DESTINATIONS.map(({ name, region }) => {
+                                            const sel = selectedDests.includes(name);
+                                            return (
+                                                <button
+                                                    key={name}
+                                                    type="button"
+                                                    onClick={() => toggleDest(name)}
+                                                    className={`
+                                                        relative text-center rounded-xl px-4 py-3.5 border transition-all duration-250 cursor-pointer group
+                                                        ${sel
+                                                            ? "border-[var(--color-gold)] bg-[var(--color-gold)]/12"
+                                                            : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
+                                                        }
+                                                    `}
+                                                >
+                                                    <MapPin
+                                                        size={13}
+                                                        strokeWidth={2}
+                                                        className={`absolute top-3 right-3 transition-colors
+                                                            ${sel ? "text-[var(--color-gold)]" : "text-white/10 group-hover:text-white/25"}`}
+                                                    />
+                                                    <p className={`text-sm font-semibold leading-tight transition-colors
+                                                        ${sel ? "text-white" : "text-white/70"}`}>
+                                                        {name}
+                                                    </p>
+                                                    <p className={`text-[11px] mt-0.5 transition-colors
+                                                        ${sel ? "text-[var(--color-gold)]/70" : "text-white/25"}`}>
+                                                        {region}
+                                                    </p>
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                    {selectedDests.length > 0 && (
+                                        <Tip>
+                                            <strong className="text-[var(--color-gold)]">{selectedDests.length}</strong>{" "}
+                                            destination{selectedDests.length > 1 ? "s" : ""} selected.
+                                        </Tip>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* ── Step 4 – Vehicle ─────────────────── */}
+                            {step === 4 && (
+                                <div>
+                                    <StepHeading Icon={Car} title="Choose your vehicle" sub="Every vehicle includes a professional chauffeur and complimentary Wi-Fi." />
+                                    <div className="space-y-4 mt-7">
+                                        {VEHICLE_CATEGORIES.map((cat) => {
+                                            const isCatSelected = selectedCategory === cat.id;
+                                            return (
+                                                <div key={cat.id} className="space-y-3">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setSelectedCategory(isCatSelected ? null : cat.id)}
+                                                        className={`
+                                                            w-full flex flex-col items-center gap-3 rounded-2xl px-5 py-6 border cursor-pointer
+                                                            transition-all duration-300 relative overflow-hidden group text-center
+                                                            ${isCatSelected
+                                                                ? "border-[var(--color-gold)] bg-[var(--color-gold)]/10 shadow-lg shadow-[var(--color-gold)]/5"
+                                                                : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
+                                                            }
+                                                        `}
+                                                    >
+                                                        <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500
+                                                            ${isCatSelected ? "bg-[var(--color-gold)] text-white" : "bg-white/5 text-white/30 group-hover:text-white/50"}`}>
+                                                            <cat.icon size={24} strokeWidth={1.5} />
+                                                        </div>
+                                                        <div className="text-center">
+                                                            <div className="flex flex-col items-center gap-1">
+                                                                <span className={`text-base font-bold transition-colors
+                                                                    ${isCatSelected ? "text-white" : "text-white/80"}`}>
+                                                                    {cat.name}
+                                                                </span>
+                                                                <ArrowRight size={16} className={`transition-all duration-400
+                                                                    ${isCatSelected ? "rotate-90 text-[var(--color-gold)]" : "text-white/10 group-hover:text-white/25"}`} />
+                                                            </div>
+                                                            <p className={`text-xs mt-1 leading-relaxed transition-colors max-w-[200px] mx-auto
+                                                                ${isCatSelected ? "text-white/60" : "text-white/30"}`}>
+                                                                {cat.tagline}
+                                                            </p>
+                                                        </div>
+                                                    </button>
+
+                                                    <AnimatePresence>
+                                                        {isCatSelected && (
+                                                            <motion.div
+                                                                initial={{ height: 0, opacity: 0 }}
+                                                                animate={{ height: "auto", opacity: 1 }}
+                                                                exit={{ height: 0, opacity: 0 }}
+                                                                transition={{ duration: 0.35, ease: "easeInOut" }}
+                                                                className="overflow-hidden bg-white/[0.02] rounded-2xl border border-white/5 ml-4 sm:ml-8"
+                                                            >
+                                                                <div className="p-3 space-y-2">
+                                                                    {cat.options.map((opt) => {
+                                                                        const isSelected = vehicleType === opt.value;
+                                                                        return (
+                                                                            <label
+                                                                                key={opt.value}
+                                                                                className={`
+                                                                                    flex flex-col items-center gap-2 rounded-xl px-4 py-4 border cursor-pointer
+                                                                                    transition-all duration-200 text-center
+                                                                                    ${isSelected
+                                                                                        ? "border-[var(--color-gold)]/40 bg-[var(--color-gold)]/15"
+                                                                                        : "border-transparent bg-transparent hover:bg-white/5"
+                                                                                    }
+                                                                                `}
+                                                                            >
+                                                                                <input type="radio" value={opt.value} {...register("vehicleType")} className="sr-only" />
+                                                                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all mb-1
+                                                                                    ${isSelected ? "border-[var(--color-gold)] bg-[var(--color-gold)]" : "border-white/20"}`}>
+                                                                                    {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
+                                                                                </div>
+                                                                                <div>
+                                                                                    <div className="flex flex-col items-center gap-1">
+                                                                                        <span className={`text-sm font-semibold ${isSelected ? "text-white" : "text-white/70"}`}>
+                                                                                            {opt.name}
+                                                                                        </span>
+                                                                                        <div className="flex items-center gap-2">
+                                                                                            <span className={`text-[10px] uppercase tracking-wider font-bold ${isSelected ? "text-[var(--color-gold)]" : "text-white/25"}`}>
+                                                                                                {opt.pax}
+                                                                                            </span>
+                                                                                            {opt.badge && (
+                                                                                                <span className="text-[10px] bg-[var(--color-gold)]/20 text-[var(--color-gold)] px-1.5 py-0.5 rounded leading-none font-bold">
+                                                                                                    {opt.badge}
+                                                                                                </span>
+                                                                                            )}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </label>
+                                                                        );
+                                                                    })}
+                                                                </div>
+                                                            </motion.div>
+                                                        )}
+                                                    </AnimatePresence>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* ── Step 5 – Contact details ──────────── */}
+                            {step === 5 && (
+                                <div>
+                                    <StepHeading Icon={Mail} title="Last step — your details" sub="Our travel experts will reach out with your bespoke itinerary." />
+                                    <div className="space-y-5 mt-7">
+                                        <FormField label="Full name" id="name" type="text" placeholder="Your full name" register={register("name")} error={errors.name?.message} />
+                                        <FormField label="Email address" id="email" type="email" placeholder="you@example.com" register={register("email")} error={errors.email?.message} />
+                                        <div>
+                                            <FieldLabel label="Special requests" optional />
+                                            <textarea
+                                                {...register("specialRequests")}
+                                                rows={4}
+                                                placeholder="Dietary needs, special celebrations, accessibility…"
+                                                className="w-full px-4 py-3.5 rounded-xl border border-white/15 bg-white/[0.055]
+                                                           text-white text-sm placeholder:text-white/25 outline-none resize-none text-center
+                                                           focus:border-[var(--color-gold)] focus:bg-white/[0.08] transition-all"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </motion.div>
+                    </AnimatePresence>
+
+                    {/* ── Navigation bar ───────────────────────────── */}
+                    <div className="flex items-center justify-between mt-5">
+                        {step > 1 ? (
+                            <button
+                                type="button"
+                                onClick={() => setStep(step - 1)}
+                                className="flex items-center gap-2 text-sm text-white/50 hover:text-white/90
+                                           transition-colors duration-200 font-medium px-1 py-2"
+                            >
+                                <ArrowLeft size={15} strokeWidth={2} />
+                                Back
+                            </button>
+                        ) : <div />}
+
+                        <span className="text-white/20 text-xs tracking-wider hidden sm:block">
+                            {step} / {STEPS.length}
+                        </span>
+
+                        {step < 5 ? (
+                            <button
+                                type="button"
+                                onClick={() => canProceed() && setStep(step + 1)}
+                                disabled={!canProceed()}
+                                className="btn-primary !bg-[var(--color-gold)] !border-[var(--color-gold)]
+                                           !py-3.5 !px-7 disabled:opacity-35 disabled:cursor-not-allowed
+                                           hover:!bg-amber-500 hover:!border-amber-500"
+                            >
+                                Continue
+                                <ArrowRight size={15} strokeWidth={2.2} />
+                            </button>
+                        ) : (
+                            <button
+                                type="submit"
+                                disabled={submitting || !canProceed()}
+                                className="btn-primary !bg-[var(--color-gold)] !border-[var(--color-gold)]
+                                           !py-3.5 !px-7 disabled:opacity-35 disabled:cursor-not-allowed
+                                           hover:!bg-amber-500 hover:!border-amber-500"
+                            >
+                                {submitting ? (
+                                    <><Loader2 size={15} className="animate-spin" /> Sending…</>
+                                ) : (
+                                    <>Submit inquiry <Send size={14} strokeWidth={2} /></>
+                                )}
+                            </button>
+                        )}
+                    </div>
+                </form>
             </div>
         </section>
     );
@@ -663,14 +643,14 @@ export default function TourBuilderSection() {
 
 function StepHeading({ Icon, title, sub }: { Icon: React.ElementType; title: string; sub: string }) {
     return (
-        <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
-            <div className="shrink-0 w-11 h-11 rounded-2xl bg-[var(--color-gold)]/12 border border-[var(--color-gold)]/25
-                            flex items-center justify-center mt-0.5 shadow-lg shadow-[var(--color-gold)]/10">
-                <Icon size={18} className="text-[var(--color-gold)]" strokeWidth={1.8} />
+        <div className="flex flex-col items-center text-center gap-3">
+            <div className="shrink-0 w-12 h-12 rounded-full bg-[var(--color-gold)]/15 border border-[var(--color-gold)]/30
+                            flex items-center justify-center">
+                <Icon size={22} className="text-[var(--color-gold)]" strokeWidth={1.8} />
             </div>
             <div>
                 <h3 className="!text-white text-xl sm:text-2xl !font-semibold m-0 leading-tight">{title}</h3>
-                <p className="text-white/40 text-sm mt-1 leading-relaxed">{sub}</p>
+                <p className="text-white/45 text-sm mt-2 leading-relaxed max-w-md mx-auto">{sub}</p>
             </div>
         </div>
     );
@@ -678,23 +658,21 @@ function StepHeading({ Icon, title, sub }: { Icon: React.ElementType; title: str
 
 function Tip({ children }: { children: React.ReactNode }) {
     return (
-        <motion.div
+        <motion.p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-5 flex items-center justify-center gap-2 text-sm text-white/45 text-center
-                       bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3"
+            className="mt-5 text-sm text-white/50 text-center"
         >
-            <Sparkles size={12} className="text-[var(--color-gold)]/70 shrink-0" />
-            <span>{children}</span>
-        </motion.div>
+            {children}
+        </motion.p>
     );
 }
 
 function FieldLabel({ label, optional }: { label: string; optional?: boolean }) {
     return (
-        <label className="block text-xs text-white/55 font-semibold tracking-wider uppercase mb-2.5">
+        <label className="block text-sm text-white/60 font-medium mb-2 text-center">
             {label}{" "}
-            {optional && <span className="text-white/22 font-normal normal-case tracking-normal">(optional)</span>}
+            {optional && <span className="text-white/25 font-normal">(optional)</span>}
         </label>
     );
 }
@@ -707,10 +685,9 @@ function DateField({ label, id, ...rest }: { label: string; id: string } & React
                 type="date"
                 id={id}
                 {...rest}
-                className="w-full px-4 py-3.5 rounded-xl border border-white/10 bg-white/[0.04]
-                           text-white text-sm outline-none focus:border-[var(--color-gold)]/60
-                           focus:bg-white/[0.07] transition-all [color-scheme:dark]
-                           focus:shadow-[0_0_0_3px_rgba(180,134,60,0.12)]"
+                className="w-full px-4 py-3.5 rounded-xl border border-white/15 bg-white/[0.055]
+                           text-white text-sm outline-none focus:border-[var(--color-gold)] text-center
+                           focus:bg-white/[0.08] transition-all [color-scheme:dark]"
             />
         </div>
     );
@@ -730,12 +707,11 @@ function FormField({
                 id={id}
                 placeholder={placeholder}
                 {...register}
-                className="w-full px-4 py-3.5 rounded-xl border border-white/10 bg-white/[0.04]
-                           text-white text-sm placeholder:text-white/20 outline-none
-                           focus:border-[var(--color-gold)]/60 focus:bg-white/[0.07] transition-all
-                           focus:shadow-[0_0_0_3px_rgba(180,134,60,0.12)]"
+                className="w-full px-4 py-3.5 rounded-xl border border-white/15 bg-white/[0.055]
+                           text-white text-sm placeholder:text-white/25 outline-none text-center
+                           focus:border-[var(--color-gold)] focus:bg-white/[0.08] transition-all"
             />
-            {error && <p className="text-red-400/90 text-xs mt-1.5 flex items-center gap-1">⚠ {error}</p>}
+            {error && <p className="text-red-400 text-xs mt-1.5 text-center">{error}</p>}
         </div>
     );
 }
