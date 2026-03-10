@@ -1,6 +1,8 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import ContactForm from "./ContactForm";
 import { siteConfig } from "@/lib/data";
+import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Contact Us",
@@ -11,7 +13,17 @@ export default function ContactPage() {
     return (
         <>
             {/* Hero */}
-            <section className="relative h-[50vh] min-h-[350px] flex items-center justify-center bg-gradient-to-br from-[var(--color-primary)] via-[#0a2d6b] to-[#061a3d]">
+            <section className="relative h-[50vh] min-h-[350px] flex items-center justify-center overflow-hidden">
+                <Image
+                    src="/assets/images/contact-us.png"
+                    alt=""
+                    fill
+                    priority
+                    quality={100}
+                    sizes="100vw"
+                    className="pointer-events-none select-none absolute inset-0 object-cover object-center z-0"
+                />
+                <div className="absolute inset-0 bg-black/35 z-0" />
                 <div className="relative z-10 text-center container-luxury">
                     <span className="section-label justify-center !text-[var(--color-gold)]">
                         Get in Touch
@@ -44,8 +56,8 @@ export default function ContactPage() {
 
                             <div className="space-y-6 mb-12">
                                 <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-[var(--color-sky)] flex items-center justify-center text-[var(--color-primary)] flex-shrink-0">
-                                        📍
+                                    <div className="w-12 h-12 rounded-2xl bg-[var(--color-sky)] flex items-center justify-center flex-shrink-0">
+                                        <MapPin size={22} className="text-[var(--color-primary)]" strokeWidth={1.8} />
                                     </div>
                                     <div>
                                         <h4 className="text-sm font-semibold mb-1">Address</h4>
@@ -53,8 +65,8 @@ export default function ContactPage() {
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-[var(--color-sky)] flex items-center justify-center text-[var(--color-primary)] flex-shrink-0">
-                                        📞
+                                    <div className="w-12 h-12 rounded-2xl bg-[var(--color-sky)] flex items-center justify-center flex-shrink-0">
+                                        <Phone size={22} className="text-[var(--color-primary)]" strokeWidth={1.8} />
                                     </div>
                                     <div>
                                         <h4 className="text-sm font-semibold mb-1">Phone</h4>
@@ -64,8 +76,8 @@ export default function ContactPage() {
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-[var(--color-sky)] flex items-center justify-center text-[var(--color-primary)] flex-shrink-0">
-                                        ✉️
+                                    <div className="w-12 h-12 rounded-2xl bg-[var(--color-sky)] flex items-center justify-center flex-shrink-0">
+                                        <Mail size={22} className="text-[var(--color-primary)]" strokeWidth={1.8} />
                                     </div>
                                     <div>
                                         <h4 className="text-sm font-semibold mb-1">Email</h4>
@@ -81,7 +93,7 @@ export default function ContactPage() {
                                 </div>
                                 <div className="flex items-start gap-4">
                                     <div className="w-12 h-12 rounded-2xl bg-green-50 flex items-center justify-center flex-shrink-0">
-                                        💬
+                                        <MessageCircle size={22} className="text-green-600" strokeWidth={1.8} />
                                     </div>
                                     <div>
                                         <h4 className="text-sm font-semibold mb-1">WhatsApp</h4>

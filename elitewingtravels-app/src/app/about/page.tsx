@@ -1,6 +1,8 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { stats } from "@/lib/data";
+import { ShieldCheck, Gem, Heart } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "About Us",
@@ -13,13 +15,16 @@ export default function AboutPage() {
             {/* Hero */}
             <section
                 className="relative h-[56vh] md:h-[62vh] min-h-[320px] md:min-h-[420px] flex items-center justify-center overflow-hidden"
-                style={{
-                    backgroundImage: "url('/destinations/galle-gen.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                }}
             >
+                <Image
+                    src="/assets/images/about-page.jpeg"
+                    alt=""
+                    fill
+                    priority
+                    quality={100}
+                    sizes="100vw"
+                    className="pointer-events-none select-none absolute inset-0 object-cover object-center z-0"
+                />
                 <div className="absolute -top-24 -left-20 h-64 w-64 rounded-full bg-[var(--color-gold)]/12 blur-3xl" />
                 <div className="absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-white/8 blur-3xl" />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,26,61,0.58),rgba(6,26,61,0.76))]" />
@@ -145,23 +150,25 @@ export default function AboutPage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
                             {
-                                icon: "🛡️",
+                                icon: ShieldCheck,
                                 title: "Safety & Trust",
                                 desc: "Every journey is backed by licensed chauffeurs, comprehensive insurance, and rigorous safety protocols.",
                             },
                             {
-                                icon: "💎",
+                                icon: Gem,
                                 title: "Premium Quality",
                                 desc: "From our luxury fleet to handpicked accommodations, we never compromise on quality or comfort.",
                             },
                             {
-                                icon: "❤️",
+                                icon: Heart,
                                 title: "Authentic Hospitality",
                                 desc: "True to our Ayubowan spirit, we treat every traveler as an honored guest, ensuring genuine warmth.",
                             },
                         ].map((value) => (
                             <div key={value.title} className="card-luxury p-8 text-center">
-                                <span className="text-4xl mb-4 block">{value.icon}</span>
+                                <div className="w-14 h-14 rounded-2xl bg-[var(--color-sky)] mx-auto mb-4 flex items-center justify-center">
+                                    <value.icon size={28} className="text-[var(--color-primary)]" strokeWidth={1.6} />
+                                </div>
                                 <h3 className="text-xl mb-3">{value.title}</h3>
                                 <p className="text-sm">{value.desc}</p>
                             </div>

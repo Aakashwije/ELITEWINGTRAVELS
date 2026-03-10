@@ -12,7 +12,6 @@ export const siteConfig = {
     social: {
         facebook: "https://www.facebook.com/share/18Cf7t487G/",
         instagram: "https://www.instagram.com/elitewing_travels?igsh=cG12dm80bnByNjBx",
-        tripadvisor: "https://tripadvisor.com/elitewingtravels",
     },
 };
 
