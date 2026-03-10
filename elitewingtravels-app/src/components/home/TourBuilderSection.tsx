@@ -244,7 +244,7 @@ export default function TourBuilderSection() {
                 <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/80 via-transparent to-[var(--color-primary)]/80" />
             </div>
 
-            <div className="container-luxury relative z-10">
+            <div className="container-luxury relative z-10 flex flex-col items-center">
 
                 {/* ── Header ───────────────────────────────────────── */}
                 <motion.div
@@ -320,7 +320,7 @@ export default function TourBuilderSection() {
                 </motion.div>
 
                 {/* ── Card ─────────────────────────────────────────── */}
-                <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto">
+                <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl w-full mx-auto">
                     <input type="text" {...register("honeypot")} className="hidden" tabIndex={-1} autoComplete="off" />
 
                     <AnimatePresence mode="wait">
@@ -510,7 +510,7 @@ export default function TourBuilderSection() {
                                                                 animate={{ height: "auto", opacity: 1 }}
                                                                 exit={{ height: 0, opacity: 0 }}
                                                                 transition={{ duration: 0.35, ease: "easeInOut" }}
-                                                                className="overflow-hidden bg-white/[0.02] rounded-2xl border border-white/5 ml-4 sm:ml-8"
+                                                                className="overflow-hidden bg-white/[0.02] rounded-2xl border border-white/5"
                                                             >
                                                                 <div className="p-3 space-y-2">
                                                                     {cat.options.map((opt) => {
@@ -588,7 +588,7 @@ export default function TourBuilderSection() {
                     </AnimatePresence>
 
                     {/* ── Navigation bar ───────────────────────────── */}
-                    <div className="flex items-center justify-between mt-5">
+                    <div className="flex items-center justify-between mt-10">
                         {step > 1 ? (
                             <button
                                 type="button"
