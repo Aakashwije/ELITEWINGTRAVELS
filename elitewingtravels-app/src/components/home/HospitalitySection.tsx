@@ -23,10 +23,10 @@ export default function HospitalitySection() {
                         <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl group border-[6px] border-[var(--color-gold)] ring-[6px] ring-white bg-white">
                             {/* Decorative background aura */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-primary)] to-transparent opacity-10 mix-blend-multiply z-10 transition-opacity duration-500 group-hover:opacity-0 pointer-events-none" />
-                            
-                            <img 
-                                src="/assets/images/ayubowan.png" 
-                                alt="Sri Lankan Ayubowan Greeting" 
+
+                            <img
+                                src="/assets/images/ayubowan2.JPG"
+                                alt="Sri Lankan Ayubowan Greeting"
                                 className="w-full h-auto object-cover transition-transform duration-1000 ease-in-out group-hover:scale-105"
                             />
                         </div>
@@ -43,7 +43,7 @@ export default function HospitalitySection() {
                     >
                         <span className="section-label">Our Philosophy</span>
                         <h2 className="mb-6 text-4xl md:text-5xl font-bold leading-tight">
-                            <span className="text-gradient-gold">Ayubowan</span> –<br />                   
+                            <span className="text-gradient-gold">Ayubowan</span> –<br />
                             <span className="font-light">May You Live Long</span>
                         </h2>
                         <p className="mb-6 text-lg md:text-xl text-[var(--color-dark)]/80 font-light leading-relaxed">

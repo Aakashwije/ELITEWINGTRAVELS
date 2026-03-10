@@ -3,12 +3,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { memories } from "@/lib/data";
+import { memories, extraMemories } from "@/lib/data";
 
 export default function MemoriesPage() {
-    // For a real gallery, we'd have many more images in data.ts
-    // For now, we'll use the ones we have, maybe repeat them to show a "full" gallery
-    const allMemories = [...memories, ...memories, ...memories];
+    const allMemories = [...memories, ...extraMemories];
 
     return (
         <div className="min-h-screen bg-[var(--color-background)]">
@@ -37,7 +35,7 @@ export default function MemoriesPage() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="max-w-2xl mx-auto text-lg text-[var(--color-muted)]"
                     >
-                        A glimpse into the unforgettable journeys we've shared with our wonderful travelers across the emerald isle of Sri Lanka.
+                        A glimpse into the unforgettable journeys we&apos;ve shared with our wonderful travelers across the emerald isle of Sri Lanka.
                     </motion.p>
                 </div>
 
@@ -67,11 +65,8 @@ export default function MemoriesPage() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
                                     <span className="text-[var(--color-gold)] font-medium mb-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                        Past Tour
+                                        EliteWing Travels
                                     </span>
-                                    <h3 className="text-white text-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                                        {memory.title}
-                                    </h3>
                                 </div>
                             </motion.div>
                         ))}
