@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { destinations, tours } from "@/lib/data";
+import { destinations } from "@/lib/data";
 import { notFound } from "next/navigation";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -41,66 +41,98 @@ export default async function DestinationPage({ params }: PageProps) {
     return (
         <>
             {/* Hero */}
-            <section className="relative h-[70vh] min-h-[500px] flex items-end bg-black">
+            <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center bg-black">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${dest.image})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="relative z-10 container-luxury pb-16">
+                <div className="relative z-10 container-luxury text-center">
                     <h1 className="!text-white text-4xl md:text-6xl mb-3">{dest.name}</h1>
-                    <p className="!text-white/80 text-xl">{dest.tagline}</p>
+                    <p className="!text-white/85 text-xl">{dest.tagline}</p>
                 </div>
             </section>
 
-            {/* Content */}
-            <section className="section-luxury">
-                <div className="container-luxury">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                        {/* Main */}
-                        <div className="lg:col-span-2">
-                            <h2 className="mb-6">About {dest.name}</h2>
-                            <p className="text-lg leading-relaxed mb-12">{dest.description}</p>
+            {/* ── About Section ── */}
+            <section className="py-20 md:py-28 bg-white">
+                <div className="container-luxury max-w-5xl mx-auto">
+                    <div className="flex items-center gap-3 mb-8">
+                        <span className="block w-10 h-[3px] rounded-full bg-[var(--color-gold)]" />
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-gold)]">Discover</p>
+                    </div>
+                    <h2 className="mb-8">About {dest.name}</h2>
+                    <p className="text-lg md:text-xl leading-[1.9] text-[var(--color-muted)]">{dest.description}</p>
+                </div>
+            </section>
 
-                            {/* Attractions */}
-                            <h3 className="mb-6">Key Attractions</h3>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-                                {dest.highlights.map((h) => (
-                                    <div key={h} className="card-luxury p-5 flex items-center gap-3">
-                                        <span className="w-10 h-10 rounded-xl bg-[var(--color-sky)] flex items-center justify-center text-[var(--color-primary)]">
-                                            ✦
-                                        </span>
-                                        <span className="font-medium text-sm">{h}</span>
-                                    </div>
-                                ))}
+            {/* ── Key Attractions Section ── */}
+            <section className="py-20 md:py-28 bg-[var(--color-sky)]/30">
+                <div className="container-luxury max-w-5xl mx-auto">
+                    <div className="flex items-center gap-3 mb-8">
+                        <span className="block w-10 h-[3px] rounded-full bg-[var(--color-gold)]" />
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-gold)]">Explore</p>
+                    </div>
+                    <h3 className="mb-12">Key Attractions</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                        {dest.highlights.map((h, i) => (
+                            <div
+                                key={h}
+                                className="group flex items-center gap-6 rounded-2xl border border-[var(--color-border)] bg-white px-7 py-6 hover:border-[var(--color-gold)]/50 hover:shadow-lg transition-all duration-300 shadow-sm"
+                            >
+                                <span className="h-12 w-12 rounded-2xl bg-[var(--color-gold)]/10 flex items-center justify-center font-bold text-sm text-[var(--color-primary)] flex-shrink-0 group-hover:bg-[var(--color-gold)]/20 transition-colors duration-300">
+                                    {String(i + 1).padStart(2, "0")}
+                                </span>
+                                <span className="font-semibold text-lg text-[var(--color-primary)] leading-relaxed">{h}</span>
                             </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── Did You Know + Info Cards Section ── */}
+            <section className="py-20 md:py-28 bg-white">
+                <div className="container-luxury max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                        {/* Did You Know */}
+                        <div className="relative overflow-hidden rounded-[2rem] bg-[var(--color-primary)] p-10 md:p-14 flex flex-col justify-center">
+                            <span className="absolute -top-16 -right-16 w-56 h-56 bg-white/5 rounded-full" />
+                            <span className="absolute -bottom-10 -left-10 w-36 h-36 bg-white/5 rounded-full" />
+                            <p className="relative text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-gold)] mb-6">Did You Know</p>
+                            <p className="relative text-xl md:text-2xl text-white font-light leading-[1.85]">
+                                {dest.name} is one of Sri Lanka&apos;s most cherished destinations, celebrated for its{" "}
+                                <span className="text-[var(--color-gold)] font-medium">
+                                    {dest.highlights.slice(0, 3).join(", ")}
+                                </span>
+                                {" "}&mdash; offering every traveler an unforgettable blend of discovery, culture, and natural beauty.
+                            </p>
                         </div>
 
-                        {/* Sidebar */}
-                        <div className="space-y-8">
-                            <div className="card-luxury p-6">
-                                <h4 className="text-lg mb-4">Best Time to Visit</h4>
-                                <p className="text-[var(--color-gold)] font-semibold text-lg">{dest.bestTime}</p>
+                        {/* Info Cards */}
+                        <div className="space-y-8 flex flex-col justify-center">
+
+                            {/* Best Time */}
+                            <div className="rounded-[2rem] border-2 border-[var(--color-border)] bg-white p-10 shadow-sm">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <span className="w-10 h-10 rounded-xl bg-[var(--color-sky)] flex items-center justify-center text-base flex-shrink-0">🌤️</span>
+                                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-gold)]">Best Time to Visit</p>
+                                </div>
+                                <p className="text-4xl font-bold text-[var(--color-primary)] mb-4">{dest.bestTime}</p>
+                                <p className="text-base text-[var(--color-muted)] leading-relaxed">
+                                    This season offers the most comfortable weather and ideal conditions to explore {dest.name}.
+                                </p>
                             </div>
 
-                            <div className="card-luxury p-6">
-                                <h4 className="text-lg mb-4">Luxury Hotels</h4>
-                                <ul className="space-y-3">
-                                    {dest.hotels.map((h) => (
-                                        <li key={h} className="flex items-center gap-2">
-                                            <span className="text-[var(--color-gold)]">★</span>
-                                            <span className="text-sm">{h}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            <div className="card-luxury p-6">
-                                <h4 className="text-lg mb-4">Plan Your Visit</h4>
-                                <Link href="/contact" className="btn-primary w-full justify-center">
+                            {/* CTA Card */}
+                            <div className="rounded-[2rem] bg-[var(--color-primary)] p-10 text-center">
+                                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-gold)] mb-3">Ready to Visit?</p>
+                                <h4 className="!text-white text-2xl font-semibold mb-4">Plan Your {dest.name} Trip</h4>
+                                <p className="text-white/70 text-base mb-8 leading-relaxed">Our travel experts will craft a personalised itinerary just for you.</p>
+                                <Link href="/contact" className="btn-primary w-full justify-center py-4 text-base font-semibold">
                                     Inquire Now
                                 </Link>
                             </div>
+
                         </div>
                     </div>
                 </div>
