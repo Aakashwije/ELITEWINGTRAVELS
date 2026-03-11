@@ -13,9 +13,9 @@ export default function Footer() {
     return (
         <footer className="bg-[var(--color-dark)] text-white">
             {/* Main Footer */}
-            <div className="py-10">
+            <div className="py-12 md:py-14">
                 <div className="container-luxury">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 md:gap-y-12 gap-x-12 lg:gap-x-16">
                         {/* Brand */}
                         <div>
                             <div className="mb-6 flex items-center gap-4">
@@ -53,8 +53,8 @@ export default function Footer() {
 
                         {/* Quick Links */}
                         <div>
-                            <h4 className="!text-white text-lg mb-6">Quick Links</h4>
-                            <ul className="space-y-3 list-none">
+                            <h4 className="!text-white text-lg mb-5">Quick Links</h4>
+                            <ul className="space-y-4 list-none">
                                 {navLinks.map((link) => (
                                     <li key={link.href}>
                                         <Link
@@ -70,8 +70,8 @@ export default function Footer() {
 
                         {/* Destinations */}
                         <div>
-                            <h4 className="!text-white text-lg mb-6">Top Destinations</h4>
-                            <ul className="space-y-3 list-none">
+                            <h4 className="!text-white text-lg mb-5">Top Destinations</h4>
+                            <ul className="space-y-4 list-none">
                                 {["Sigiriya", "Galle", "Kandy", "Ella", "Bentota"].map((d) => (
                                     <li key={d}>
                                         <Link
@@ -87,8 +87,8 @@ export default function Footer() {
 
                         {/* Contact */}
                         <div>
-                            <h4 className="!text-white text-lg mb-6">Get in Touch</h4>
-                            <div className="space-y-4">
+                            <h4 className="!text-white text-lg mb-5">Get in Touch</h4>
+                            <div className="space-y-5">
                                 <div className="flex items-start gap-3 group">
                                     <MapPin className="text-[var(--color-gold)] mt-1 w-5 h-5 transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1" />
                                     <span className="text-gray-400 text-sm">{siteConfig.address}</span>
@@ -120,7 +120,7 @@ export default function Footer() {
             </div>
 
             {/* Bottom Bar */}
-            <div className="border-t border-white/10 py-7 md:py-8">
+            <div className="border-t border-white/10 py-8 md:py-9">
                 <div className="container-luxury flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="!text-gray-500 text-sm">
                         © {currentYear} {siteConfig.name}. All rights reserved.

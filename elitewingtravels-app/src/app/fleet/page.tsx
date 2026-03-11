@@ -58,9 +58,11 @@ export default function FleetPage() {
             </section>
 
             {/* Interactive Fleet Showcase */}
-            <FleetShowcase />
+            <div className="pb-24 md:pb-28 lg:pb-32">
+                <FleetShowcase />
+            </div>
 
-            {/* Fixed physical gap before footer */}
+            {/* Fixed spacing requested: do not remove */}
             <div className="h-[3cm]" aria-hidden="true" />
         </>
     );

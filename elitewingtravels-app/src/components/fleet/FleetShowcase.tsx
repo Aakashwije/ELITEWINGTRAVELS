@@ -74,7 +74,7 @@ export default function FleetShowcase() {
     };
 
     return (
-        <section className="pt-24 pb-32 md:pb-36 mb-[6cm] bg-gradient-to-b from-[var(--color-bg)] via-slate-50 to-[var(--color-bg)]">
+        <section className="pt-24 pb-32 md:pb-36 bg-gradient-to-b from-[var(--color-bg)] via-slate-50 to-[var(--color-bg)]">
             <div className="container-luxury">
                 {/* Header / Breadcrumbs */}
                 <div className="mb-14 flex items-center justify-between gap-4">
@@ -132,7 +132,7 @@ export default function FleetShowcase() {
 
                 {/* View: Main Categories */}
                 {!activeCategory && (
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-8 md:mb-12">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-14 md:mb-20">
                         {MAIN_CATEGORIES.map((cat, i) => {
                             const Icon = cat.icon;
                             return (

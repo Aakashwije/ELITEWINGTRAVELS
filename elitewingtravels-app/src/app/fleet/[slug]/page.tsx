@@ -82,19 +82,19 @@ export default async function VehiclePage({ params }: Props) {
                 </div>
             </section>
 
-            <div className="container-luxury mt-16">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="container-luxury mt-20 mb-24 md:mb-28">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
 
                     {/* Main Content Area */}
-                    <div className="lg:col-span-2 space-y-12">
+                    <div className="lg:col-span-7 space-y-14">
 
                         {/* Features & Safety */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                                <h3 className="text-2xl font-semibold mb-6 text-[var(--color-dark)] flex items-center gap-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+                            <div className="bg-white p-9 md:p-10 rounded-3xl shadow-sm border border-gray-100 h-full min-h-[390px]">
+                                <h3 className="text-2xl md:text-3xl font-semibold mb-7 text-[var(--color-dark)] flex items-center gap-2">
                                     Key Features
                                 </h3>
-                                <ul className="space-y-4">
+                                <ul className="space-y-5">
                                     {vehicle.features.map((feature, i) => (
                                         <li key={i} className="flex items-start gap-3 text-gray-700">
                                             <CheckCircle2 className="w-5 h-5 text-[var(--color-gold)] shrink-0 mt-0.5" />
@@ -104,11 +104,11 @@ export default async function VehiclePage({ params }: Props) {
                                 </ul>
                             </div>
 
-                            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                                <h3 className="text-2xl font-semibold mb-6 text-[var(--color-dark)] flex items-center gap-2">
+                            <div className="bg-white p-9 md:p-10 rounded-3xl shadow-sm border border-gray-100 h-full min-h-[390px]">
+                                <h3 className="text-2xl md:text-3xl font-semibold mb-7 text-[var(--color-dark)] flex items-center gap-2">
                                     <ShieldCheck className="w-6 h-6 text-[var(--color-gold)]" /> Safety Measures
                                 </h3>
-                                <ul className="space-y-4">
+                                <ul className="space-y-5">
                                     {vehicle.safety.map((safetyItem, i) => (
                                         <li key={i} className="flex items-start gap-3 text-gray-700">
                                             <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] mt-2 shrink-0" />
@@ -141,47 +141,46 @@ export default async function VehiclePage({ params }: Props) {
                     </div>
 
                     {/* Sidebar Area */}
-                    <div className="space-y-8">
+                    <div className="space-y-12 lg:col-span-5 lg:sticky lg:top-28 self-start">
 
                         {/* Driver Details Card */}
-                        <div className="bg-gradient-to-br from-[#0a2d6b] to-[#061a3d] p-8 rounded-2xl shadow-xl text-white">
-                            <h3 className="text-2xl font-semibold mb-6 text-white border-b border-white/20 pb-4">
+                        <div className="bg-gradient-to-br from-[#0a2d6b] to-[#061a3d] p-10 md:p-12 rounded-3xl shadow-xl text-white min-h-[460px] text-center">
+                            <h3 className="text-3xl md:text-4xl font-semibold mb-9 text-white border-b border-white/20 pb-5">
                                 Your Chauffeur
                             </h3>
 
-                            <div className="flex items-center gap-6 mb-8">
-                                <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-[var(--color-gold)]">
+                            <div className="mb-12 rounded-2xl border border-white/15 bg-white/5 p-6 md:p-7">
+                                <div className="mx-auto mb-5 flex h-18 w-18 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/20">
                                     <Image
-                                        src={vehicle.driverImage || "/fleet/driver-placeholder.jpg"}
-                                        alt={vehicle.driverName || "EliteWing Chauffeur"}
-                                        fill
-                                        className="object-cover"
+                                        src="/assets/images/elitewing.png"
+                                        alt="EliteWing Travels"
+                                        width={44}
+                                        height={44}
+                                        className="object-contain"
                                     />
                                 </div>
-                                <div>
-                                    <p className="text-sm text-[var(--color-gold)] uppercase tracking-wider font-semibold mb-1">
-                                        Assigned Chauffeur
-                                    </p>
-                                    <h4 className="text-2xl font-bold">
-                                        {vehicle.driverName || "Professional Guide"}
-                                    </h4>
-                                </div>
+                                <p className="text-sm text-[var(--color-gold)] uppercase tracking-wider font-semibold mb-2">
+                                    Assigned Chauffeur
+                                </p>
+                                <h4 className="text-2xl md:text-3xl font-bold leading-tight">
+                                    {vehicle.driverName || "Professional Guide"}
+                                </h4>
                             </div>
 
-                            <div className="space-y-4 mb-8">
-                                <div className="flex items-center gap-3">
-                                    <Award className="w-5 h-5 text-[var(--color-gold)]" />
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-12">
+                                <div className="rounded-2xl bg-white/5 border border-white/10 p-5 md:p-6">
+                                    <Award className="w-5 h-5 text-[var(--color-gold)] mx-auto mb-2" />
                                     <div>
-                                        <p className="text-xs text-white/60">Experience</p>
+                                        <p className="text-xs text-white/60 mb-1">Experience</p>
                                         <p className="font-medium">{vehicle.driverExperience || "Fully Licensed"}</p>
                                     </div>
                                 </div>
 
-                                <div className="flex items-center gap-3">
-                                    <Globe className="w-5 h-5 text-[var(--color-gold)]" />
+                                <div className="rounded-2xl bg-white/5 border border-white/10 p-5 md:p-6">
+                                    <Globe className="w-5 h-5 text-[var(--color-gold)] mx-auto mb-2" />
                                     <div>
-                                        <p className="text-xs text-white/60">Languages Spoken</p>
-                                        <div className="flex flex-wrap gap-2 mt-1">
+                                        <p className="text-xs text-white/60 mb-1">Languages Spoken</p>
+                                        <div className="flex flex-wrap justify-center gap-2 mt-1">
                                             {(vehicle.driverLanguages || ["English"]).map((lang, i) => (
                                                 <span key={i} className="px-2 py-0.5 bg-white/10 rounded text-sm">
                                                     {lang}
@@ -192,13 +191,18 @@ export default async function VehiclePage({ params }: Props) {
                                 </div>
                             </div>
 
-                            <p className="text-sm text-white/80 italic border-l-2 border-[var(--color-gold)] pl-4">
-                                "All our chauffeurs are highly trained professionals, offering not just a safe ride, but deep local knowledge to enhance your Sri Lankan journey."
-                            </p>
+                            <div className="rounded-2xl border border-white/15 bg-white/5 p-6 md:p-7 text-left">
+                                <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)] font-semibold">
+                                    EliteWing Promise
+                                </p>
+                                <p className="mt-3 text-base leading-8 text-white/90">
+                                    All our chauffeurs are highly trained professionals, offering not just a safe ride, but deep local knowledge to enhance your Sri Lankan journey.
+                                </p>
+                            </div>
                         </div>
 
                         {/* Booking CTA */}
-                        <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center">
+                        <div className="bg-white p-9 md:p-10 rounded-3xl shadow-lg border border-gray-100 text-center min-h-[220px]">
                             <h3 className="text-2xl font-semibold mb-4 text-[var(--color-dark)]">
                                 Ready to Book?
                             </h3>
