@@ -11,7 +11,13 @@ export default function DestinationsSection() {
     const inView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section className="section-luxury-lg bg-[var(--color-sky)]" ref={ref}>
+        <section
+            className="section-luxury-lg"
+            style={{
+                background: 'linear-gradient(to bottom, var(--color-sky), var(--color-sky) 85%, white)'
+            }}
+            ref={ref}
+        >
             <div className="container-luxury">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

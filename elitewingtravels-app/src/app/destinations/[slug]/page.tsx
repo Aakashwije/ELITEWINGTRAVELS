@@ -1,9 +1,18 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { destinations, tours } from "@/lib/data";
 import { notFound } from "next/navigation";
 
 type PageProps = { params: Promise<{ slug: string }> };
+
+const tourPosters = [
+    { id: 1, image: "/tour itinaries/tour itinary 1.png", title: "Tour Itinerary 1" },
+    { id: 2, image: "/tour itinaries/tour itinary 2.png", title: "Tour Itinerary 2" },
+    { id: 3, image: "/tour itinaries/tour itinary 3.png", title: "Tour Itinerary 3" },
+    { id: 4, image: "/tour itinaries/tour itinary 4.png", title: "Tour Itinerary 4" },
+    { id: 5, image: "/tour itinaries/tour itinary 5.png", title: "Tour Itinerary 5" },
+];
 
 export async function generateStaticParams() {
     return destinations.map((d) => ({ slug: d.slug }));
@@ -32,12 +41,12 @@ export default async function DestinationPage({ params }: PageProps) {
     return (
         <>
             {/* Hero */}
-            <section className="relative h-[70vh] min-h-[500px] flex items-end bg-gradient-to-br from-[var(--color-primary)] via-[#0a2d6b] to-[#061a3d]">
+            <section className="relative h-[70vh] min-h-[500px] flex items-end bg-black">
                 <div
-                    className="absolute inset-0 bg-cover bg-center opacity-40"
+                    className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${dest.image})` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-primary)] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="relative z-10 container-luxury pb-16">
                     <h1 className="!text-white text-4xl md:text-6xl mb-3">{dest.name}</h1>
                     <p className="!text-white/80 text-xl">{dest.tagline}</p>
@@ -98,35 +107,42 @@ export default async function DestinationPage({ params }: PageProps) {
             </section>
 
             {/* Related Tours */}
-            <section className="section-luxury bg-[var(--color-sky)]">
+            <section
+                className="section-luxury"
+                style={{
+                    background: 'linear-gradient(to bottom, white, var(--color-sky) 20%, var(--color-sky))'
+                }}
+            >
                 <div className="container-luxury">
                     <h2 className="text-center mb-12">
                         Related <span className="text-gradient-gold">Tours</span>
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {tours.slice(0, 3).map((tour) => (
-                            <Link
-                                key={tour.slug}
-                                href={`/tours/${tour.slug}`}
-                                className="block no-underline group"
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                        {tourPosters.map((poster) => (
+                            <div
+                                key={poster.id}
+                                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-500 bg-white"
                             >
-                                <div className="card-luxury overflow-hidden">
-                                    <div className="relative h-48 overflow-hidden">
-                                        <div
-                                            className="w-full h-full bg-gradient-to-br from-[var(--color-primary)] to-[#1a4fa0] transition-transform duration-700 group-hover:scale-110"
-                                            style={{
-                                                backgroundImage: `url(${tour.image})`,
-                                                backgroundSize: "cover",
-                                                backgroundPosition: "center",
-                                            }}
-                                        />
-                                    </div>
-                                    <div className="p-5">
-                                        <h4 className="mb-1">{tour.name}</h4>
-                                        <p className="text-sm text-[var(--color-gold)]">{tour.duration}</p>
-                                    </div>
+                                {/* Poster Image */}
+                                <div className="relative w-full aspect-[3/4]">
+                                    <Image
+                                        src={poster.image}
+                                        alt={poster.title}
+                                        fill
+                                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                                    />
                                 </div>
-                            </Link>
+
+                                {/* Hover Overlay with Book Now Button */}
+                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
+                                    <Link
+                                        href="/contact"
+                                        className="btn-primary transform scale-90 group-hover:scale-100 transition-transform duration-300"
+                                    >
+                                        Book Now
+                                    </Link>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>

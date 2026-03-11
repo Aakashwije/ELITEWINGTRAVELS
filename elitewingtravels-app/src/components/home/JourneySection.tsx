@@ -49,7 +49,13 @@ export default function JourneySection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="section-luxury bg-[#fafafa]" ref={ref}>
+    <section
+      className="section-luxury"
+      style={{
+        background: 'linear-gradient(to bottom, #fafafa, #fafafa 85%, #f5f4f0)'
+      }}
+      ref={ref}
+    >
       {/* Header */}
       <div className="container-luxury text-center mb-14">
         <motion.div
@@ -77,9 +83,8 @@ export default function JourneySection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.55, delay: index * 0.08 }}
             >
-              <Link
-                href={journey.href}
-                className="group relative block h-[400px] md:h-[460px] overflow-hidden md:rounded-2xl shadow-md hover:shadow-2xl transition-shadow duration-500"
+              <div
+                className="group relative block h-[400px] md:h-[460px] overflow-hidden md:rounded-2xl shadow-md hover:shadow-2xl transition-shadow duration-500 cursor-default"
                 style={{ position: "relative" }}
               >
                 {/* Photo — plain img for reliability, styled to fill */}
@@ -102,18 +107,15 @@ export default function JourneySection() {
                 </div>
 
                 {/* Bottom content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-[2]">
-                  <h3 className="!text-white text-2xl font-bold mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <div className="absolute bottom-1 left-2 right-0 p-8 pb-12 z-[2]">
+                  <h3 className="!text-white text-2xl font-bold mb-3 transform translate-y-0 group-hover:translate-y-[-4px] transition-transform duration-300">
                     {journey.title}
                   </h3>
                   <div className="flex items-center justify-between">
                     <div className="h-0.5 bg-[var(--color-gold)] w-8 group-hover:w-14 transition-all duration-400" />
-                    <span className="flex items-center gap-1.5 text-[var(--color-gold)] text-sm font-semibold opacity-0 group-hover:opacity-100 translate-x-3 group-hover:translate-x-0 transition-all duration-300">
-                      View Tour <ArrowRight size={14} strokeWidth={2.5} />
-                    </span>
                   </div>
                 </div>
-              </Link>
+              </div>
             </motion.div>
           ))}
         </div>

@@ -90,7 +90,12 @@ export default function AboutPage() {
             </section>
 
             {/* Vehicles */}
-            <section className="py-14 md:py-20 bg-[radial-gradient(circle_at_50%_0%,#f8fbff_0%,#eef5ff_45%,#e7f1ff_100%)] border-y border-[#d9e7fb]">
+            <section
+                className="py-14 md:py-20"
+                style={{
+                    background: 'linear-gradient(to bottom, white, white 20%, #eef5ff 40%, var(--color-sky))'
+                }}
+            >
                 <div className="container-luxury">
                     <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
                         <span className="section-label justify-center">Our Fleet</span>
@@ -121,7 +126,12 @@ export default function AboutPage() {
             </section>
 
             {/* Stats */}
-            <section className="section-luxury bg-[var(--color-sky)]">
+            <section
+                className="section-luxury"
+                style={{
+                    background: 'linear-gradient(to bottom, var(--color-sky), var(--color-sky) 80%, white)'
+                }}
+            >
                 <div className="container-luxury">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
                         {stats.map((stat) => (

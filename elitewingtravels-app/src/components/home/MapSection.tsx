@@ -13,36 +13,36 @@ import Link from "next/link";
 
 const allDestinations = [
   // ── North / North-central ──
-  { label: "Anuradhapura",  x: "51%", y: "55%" },
-  { label: "Wilpattu",      x: "46%", y: "51%" },
-  { label: "Minneriya",     x: "57%", y: "59%" },
-  { label: "Sigiriya",      x: "55%", y: "62%" },
-  { label: "Polonnaruwa",   x: "60%", y: "62%" },
-  { label: "Gammaduwa",     x: "53%", y: "64%" },
+  { label: "Anuradhapura", x: "51%", y: "55%" },
+  { label: "Wilpattu", x: "46%", y: "51%" },
+  { label: "Minneriya", x: "57%", y: "59%" },
+  { label: "Sigiriya", x: "55%", y: "62%" },
+  { label: "Polonnaruwa", x: "60%", y: "62%" },
+  { label: "Gammaduwa", x: "53%", y: "64%" },
   // ── Central / Hill Country ──
-  { label: "Kandy",         x: "53%", y: "69%" },
-  { label: "Kithulgala",    x: "50%", y: "71%" },
-  { label: "Rathnapura",    x: "49%", y: "76%" },
+  { label: "Kandy", x: "53%", y: "69%" },
+  { label: "Kithulgala", x: "50%", y: "71%" },
+  { label: "Rathnapura", x: "49%", y: "76%" },
   { label: "Horton Plains", x: "55%", y: "75%" },
-  { label: "Ella",          x: "57%", y: "76%" },
-  { label: "Ranamure",      x: "51%", y: "78%" },
-  { label: "Sinharaja",     x: "50%", y: "81%" },
-  { label: "Maduru Oya",    x: "64%", y: "65%" },
+  { label: "Ella", x: "57%", y: "76%" },
+  { label: "Ranamure", x: "51%", y: "78%" },
+  { label: "Sinharaja", x: "50%", y: "81%" },
+  { label: "Maduru Oya", x: "64%", y: "65%" },
   // ── West coast ──
-  { label: "Negombo",       x: "44%", y: "67%" },
-  { label: "Colombo",       x: "44%", y: "72%" },
-  { label: "Bentota",       x: "46%", y: "78%" },
-  { label: "Ingiriya",      x: "48%", y: "75%" },
+  { label: "Negombo", x: "44%", y: "67%" },
+  { label: "Colombo", x: "44%", y: "72%" },
+  { label: "Bentota", x: "46%", y: "78%" },
+  { label: "Ingiriya", x: "48%", y: "75%" },
   // ── South coast ──
-  { label: "Galle",         x: "47%", y: "85%" },
-  { label: "Unawatuna",     x: "49%", y: "86%" },
-  { label: "Weligama",      x: "51%", y: "87%" },
-  { label: "Mirissa",       x: "52%", y: "88%" },
-  { label: "Polhena",       x: "55%", y: "88%" },
+  { label: "Galle", x: "47%", y: "85%" },
+  { label: "Unawatuna", x: "49%", y: "86%" },
+  { label: "Weligama", x: "51%", y: "87%" },
+  { label: "Mirissa", x: "52%", y: "88%" },
+  { label: "Polhena", x: "55%", y: "88%" },
   // ── East coast ──
-  { label: "Arugam Bay",    x: "62%", y: "69%" },
+  { label: "Arugam Bay", x: "62%", y: "69%" },
   // ── South-east ──
-  { label: "Yala",          x: "56%", y: "80%" },
+  { label: "Yala", x: "56%", y: "80%" },
 ];
 
 // ─── Category definitions ──────────────────────────────────────────────────────
@@ -106,16 +106,16 @@ const categories = [
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function MapSection() {
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
-  const [activeCategory, setActiveCategory]   = useState<string | null>(null);
-  const ref    = useRef(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
-  const leftCategories  = categories.filter((c) => c.side === "left");
+  const leftCategories = categories.filter((c) => c.side === "left");
   const rightCategories = categories.filter((c) => c.side === "right");
 
   const currentCategory = hoveredCategory ?? activeCategory;
-  const activeCat       = categories.find((c) => c.id === currentCategory);
-  const accentColor     = activeCat?.color ?? "var(--color-gold)";
+  const activeCat = categories.find((c) => c.id === currentCategory);
+  const accentColor = activeCat?.color ?? "var(--color-gold)";
 
   // Only the locations for the active/hovered category — none when idle
   const visibleLocations: string[] = activeCat ? activeCat.locations : [];
@@ -126,7 +126,13 @@ export default function MapSection() {
   );
 
   return (
-    <section className="py-20 md:py-28 bg-[#f5f4f0]" ref={ref}>
+    <section
+      className="py-20 md:py-28"
+      style={{
+        background: 'linear-gradient(to bottom, #f5f4f0, #f5f4f0 85%, var(--color-sky))'
+      }}
+      ref={ref}
+    >
       <div className="max-w-[1440px] mx-auto px-4 md:px-8">
 
         {/* Header */}
@@ -184,11 +190,20 @@ export default function MapSection() {
             transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="relative mx-auto w-full max-w-[340px] md:max-w-[440px] lg:max-w-none order-1 lg:order-2"
           >
-            <img
-              src="/assets/images/srilanka_illustrated.png"
-              alt="Sri Lanka Illustrated Map"
-              className="w-full h-auto drop-shadow-2xl"
-            />
+            {/* Map wrapper with aggressive fade effect to remove box border and blue background */}
+            <div
+              className="relative w-full"
+              style={{
+                maskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
+                WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 95%)'
+              }}
+            >
+              <img
+                src="/assets/images/srilanka_illustrated.png"
+                alt="Sri Lanka Illustrated Map"
+                className="w-full h-auto"
+              />
+            </div>
 
             {/* Idle hint — visible only when no category is selected */}
             <AnimatePresence>

@@ -10,7 +10,13 @@ export default function HospitalitySection() {
     const inView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section className="section-luxury-lg bg-[var(--color-sky)]" ref={ref}>
+        <section
+            className="section-luxury-lg"
+            style={{
+                background: 'linear-gradient(to bottom, white, var(--color-sky) 15%, var(--color-sky) 85%, #fafafa)'
+            }}
+            ref={ref}
+        >
             <div className="container-luxury">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     {/* Image Side */}
