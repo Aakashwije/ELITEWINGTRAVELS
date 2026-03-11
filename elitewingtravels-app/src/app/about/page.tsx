@@ -25,18 +25,14 @@ export default function AboutPage() {
                     sizes="100vw"
                     className="pointer-events-none select-none absolute inset-0 object-cover object-center z-0"
                 />
-                <div className="absolute -top-24 -left-20 h-64 w-64 rounded-full bg-[var(--color-gold)]/12 blur-3xl" />
-                <div className="absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-white/8 blur-3xl" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,26,61,0.58),rgba(6,26,61,0.76))]" />
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:52px_52px] opacity-12" />
                 <div className="relative z-10 text-center container-luxury">
-                    <span className="section-label justify-center !text-[var(--color-gold)]">
+                    <span className="section-label justify-center !text-[var(--color-gold)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                         Our Story
                     </span>
-                    <h1 className="!text-white mb-4">
+                    <h1 className="!text-white mb-4 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
                         About <span className="text-gradient-gold">EliteWing</span>
                     </h1>
-                    <p className="!text-white/70 text-base md:text-lg max-w-2xl mx-auto">
+                    <p className="!text-white/90 text-base md:text-lg max-w-2xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium">
                         21 years of passion, dedication, and unwavering commitment to
                         delivering extraordinary travel experiences.
                     </p>

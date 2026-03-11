@@ -251,7 +251,7 @@ export default function TourBuilderSection() {
                     initial={{ opacity: 0, y: 24 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.7 }}
-                    className="text-center mb-14"
+                    className="text-center mb-20 sm:mb-32"
                 >
                     <span className="section-label justify-center !text-[var(--color-gold)]">
                         Private Tour Builder
@@ -271,7 +271,7 @@ export default function TourBuilderSection() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.7, delay: 0.1 }}
-                    className="flex items-start justify-center gap-1 sm:gap-2 mb-12"
+                    className="flex items-start justify-center gap-2 sm:gap-4 mb-20 sm:mb-24"
                 >
                     {STEPS.map(({ id, label, Icon }, i) => {
                         const done = step > id;
@@ -338,14 +338,14 @@ export default function TourBuilderSection() {
                             {step === 1 && (
                                 <div>
                                     <StepHeading Icon={Users} title="How many travelers?" sub="We'll match your group to the ideal vehicle & accommodations." />
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-7">
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 mt-8 sm:mt-10">
                                         {TRAVELER_OPTIONS.map(({ value, range, tag, Icon: TIcon, hint }) => {
                                             const sel = travelers === value;
                                             return (
                                                 <label
                                                     key={value}
                                                     className={`
-                                                        relative cursor-pointer rounded-2xl p-4 sm:p-5 transition-all duration-250 border
+                                                        relative cursor-pointer rounded-2xl p-5 sm:p-6 transition-all duration-250 border
                                                         flex flex-col items-center text-center
                                                         ${sel
                                                             ? "border-[var(--color-gold)] bg-[var(--color-gold)]/12 shadow-md shadow-[var(--color-gold)]/15"
@@ -401,7 +401,7 @@ export default function TourBuilderSection() {
                             {step === 2 && (
                                 <div>
                                     <StepHeading Icon={CalendarDays} title="When are you traveling?" sub="Choose your dates and we'll plan every day to perfection." />
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-7">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 sm:mt-10">
                                         <DateField label="Departure date" id="startDate" {...register("startDate")} />
                                         <DateField label="Return date" id="endDate" {...register("endDate")} />
                                     </div>
@@ -419,7 +419,7 @@ export default function TourBuilderSection() {
                             {step === 3 && (
                                 <div>
                                     <StepHeading Icon={MapPin} title="Where would you like to go?" sub="Pick any destinations that spark your interest — we'll weave them into a seamless route." />
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mt-7">
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 mt-8 sm:mt-10">
                                         {DESTINATIONS.map(({ name, region }) => {
                                             const sel = selectedDests.includes(name);
                                             return (
@@ -428,7 +428,7 @@ export default function TourBuilderSection() {
                                                     type="button"
                                                     onClick={() => toggleDest(name)}
                                                     className={`
-                                                        relative text-center rounded-xl px-4 py-3.5 border transition-all duration-250 cursor-pointer group
+                                                        relative text-center rounded-xl px-4 py-4 sm:py-5 border transition-all duration-250 cursor-pointer group
                                                         ${sel
                                                             ? "border-[var(--color-gold)] bg-[var(--color-gold)]/12"
                                                             : "border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.045]"
@@ -466,7 +466,7 @@ export default function TourBuilderSection() {
                             {step === 4 && (
                                 <div>
                                     <StepHeading Icon={Car} title="Choose your vehicle" sub="Every vehicle includes a professional chauffeur and complimentary Wi-Fi." />
-                                    <div className="space-y-4 mt-7">
+                                    <div className="space-y-5 sm:space-y-6 mt-8 sm:mt-10">
                                         {VEHICLE_CATEGORIES.map((cat) => {
                                             const isCatSelected = selectedCategory === cat.id;
                                             return (
@@ -475,7 +475,7 @@ export default function TourBuilderSection() {
                                                         type="button"
                                                         onClick={() => setSelectedCategory(isCatSelected ? null : cat.id)}
                                                         className={`
-                                                            w-full flex flex-col items-center gap-3 rounded-2xl px-5 py-6 border cursor-pointer
+                                                            w-full flex flex-col items-center gap-3 rounded-2xl px-5 py-7 sm:py-8 border cursor-pointer
                                                             transition-all duration-300 relative overflow-hidden group text-center
                                                             ${isCatSelected
                                                                 ? "border-[var(--color-gold)] bg-[var(--color-gold)]/10 shadow-lg shadow-[var(--color-gold)]/5"
@@ -567,7 +567,7 @@ export default function TourBuilderSection() {
                             {step === 5 && (
                                 <div>
                                     <StepHeading Icon={Mail} title="Last step — your details" sub="Our travel experts will reach out with your bespoke itinerary." />
-                                    <div className="space-y-5 mt-7">
+                                    <div className="space-y-6 mt-8 sm:mt-10">
                                         <FormField label="Full name" id="name" type="text" placeholder="Your full name" register={register("name")} error={errors.name?.message} />
                                         <FormField label="Email address" id="email" type="email" placeholder="you@example.com" register={register("email")} error={errors.email?.message} />
                                         <div>
@@ -588,57 +588,59 @@ export default function TourBuilderSection() {
                     </AnimatePresence>
 
                     {/* ── Navigation bar ───────────────────────────── */}
-                    <div className="relative z-30 mt-[7cm] mb-0 h-16 isolate">
-                        {step > 1 ? (
-                            <button
-                                type="button"
-                                onClick={() => setStep(step - 1)}
-                                className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-2 text-sm text-white/50 hover:text-white/90
-                                           transition-colors duration-200 font-medium px-1 py-2"
-                            >
-                                <ArrowLeft size={15} strokeWidth={2} />
-                                Back
-                            </button>
-                        ) : <div />}
-
-                        <span className="absolute left-1/2 -top-6 -translate-x-1/2 text-white/25 text-xs tracking-wider hidden sm:block pointer-events-none">
-                            {step} / {STEPS.length}
+                    <div className="relative z-30 mt-32 sm:mt-44 mb-0 h-16 isolate flex flex-col items-center">
+                        <span className="text-white/20 text-[10px] tracking-[0.2em] uppercase font-bold mb-8 pointer-events-none">
+                            Step {step} of {STEPS.length}
                         </span>
 
-                        {step < 5 ? (
-                            <button
-                                type="button"
-                                onClick={() => canProceed() && setStep(step + 1)}
-                                disabled={!canProceed()}
-                                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 btn-primary
-                                           !bg-gradient-to-r !from-[var(--color-gold)] !to-amber-500 !border-transparent !text-white
-                                           !py-3.5 !px-8 disabled:opacity-35 disabled:cursor-not-allowed
-                                           shadow-[0_12px_34px_rgba(198,167,94,0.5)] hover:shadow-[0_16px_40px_rgba(198,167,94,0.65)]
-                                           hover:!from-amber-500 hover:!to-[var(--color-gold)] hover:scale-[1.03]"
-                            >
-                                Continue
-                                <ArrowRight size={15} strokeWidth={2.2} />
-                            </button>
-                        ) : (
-                            <button
-                                type="submit"
-                                disabled={submitting || !canProceed()}
-                                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 btn-primary
-                                           !bg-gradient-to-r !from-[var(--color-gold)] !to-amber-500 !border-transparent !text-white
-                                           !py-3.5 !px-8 disabled:opacity-35 disabled:cursor-not-allowed
-                                           shadow-[0_12px_34px_rgba(198,167,94,0.5)] hover:shadow-[0_16px_40px_rgba(198,167,94,0.65)]
-                                           hover:!from-amber-500 hover:!to-[var(--color-gold)] hover:scale-[1.03]"
-                            >
-                                {submitting ? (
-                                    <><Loader2 size={15} className="animate-spin" /> Sending…</>
-                                ) : (
-                                    <>Submit inquiry <Send size={14} strokeWidth={2} /></>
-                                )}
-                            </button>
-                        )}
+                        <div className="w-full relative flex items-center justify-center">
+                            {step > 1 ? (
+                                <button
+                                    type="button"
+                                    onClick={() => setStep(step - 1)}
+                                    className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-2 text-sm text-white/50 hover:text-white/90
+                                               transition-colors duration-200 font-medium px-1 py-2"
+                                >
+                                    <ArrowLeft size={15} strokeWidth={2} />
+                                    Back
+                                </button>
+                            ) : null}
+
+                            {step < 5 ? (
+                                <button
+                                    type="button"
+                                    onClick={() => canProceed() && setStep(step + 1)}
+                                    disabled={!canProceed()}
+                                    className="btn-primary
+                                               !bg-gradient-to-r !from-[var(--color-gold)] !to-amber-500 !border-transparent !text-white
+                                               !py-3.5 !px-8 disabled:opacity-35 disabled:cursor-not-allowed
+                                               shadow-[0_12px_34px_rgba(198,167,94,0.5)] hover:shadow-[0_16px_40px_rgba(198,167,94,0.65)]
+                                               hover:!from-amber-500 hover:!to-[var(--color-gold)] hover:scale-[1.03]"
+                                >
+                                    Continue
+                                    <ArrowRight size={15} strokeWidth={2.2} />
+                                </button>
+                            ) : (
+                                <button
+                                    type="submit"
+                                    disabled={submitting || !canProceed()}
+                                    className="btn-primary
+                                               !bg-gradient-to-r !from-[var(--color-gold)] !to-amber-500 !border-transparent !text-white
+                                               !py-3.5 !px-8 disabled:opacity-35 disabled:cursor-not-allowed
+                                               shadow-[0_12px_34px_rgba(198,167,94,0.5)] hover:shadow-[0_16px_40px_rgba(198,167,94,0.65)]
+                                               hover:!from-amber-500 hover:!to-[var(--color-gold)] hover:scale-[1.03]"
+                                >
+                                    {submitting ? (
+                                        <><Loader2 size={15} className="animate-spin" /> Sending…</>
+                                    ) : (
+                                        <>Submit inquiry <Send size={14} strokeWidth={2} /></>
+                                    )}
+                                </button>
+                            )}
+                        </div>
                     </div>
 
-                    <div className="h-[5cm]" aria-hidden="true" />
+                    <div className="h-32" aria-hidden="true" />
                 </form>
             </div>
         </section>

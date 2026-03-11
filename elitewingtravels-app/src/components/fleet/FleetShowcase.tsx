@@ -13,7 +13,7 @@ const MAIN_CATEGORIES = [
         image: "/Vehicles/Buses/Coaster 29 Seater/TOYOTA COASTER 29 SEATER.png",
         desc: "5 Vehicle Types",
         icon: Bus,
-        accentColor: "from-black/70 via-black/20 to-transparent",
+        accentColor: "from-black/40 via-transparent to-transparent",
         tagBg: "bg-amber-600",
     },
     {
@@ -22,7 +22,7 @@ const MAIN_CATEGORIES = [
         image: "/Vehicles/Vans/KDH Highroof 14 Seater/KFH HIGHROOF.png",
         desc: "2 Vehicle Types",
         icon: Van,
-        accentColor: "from-black/70 via-black/20 to-transparent",
+        accentColor: "from-black/40 via-transparent to-transparent",
         tagBg: "bg-blue-600",
     },
     {
@@ -31,7 +31,7 @@ const MAIN_CATEGORIES = [
         image: "/Vehicles/Cars/SUV/TOYOTA PRADO .png",
         desc: "Sedans & SUVs",
         icon: CarFront,
-        accentColor: "from-black/70 via-black/20 to-transparent",
+        accentColor: "from-black/40 via-transparent to-transparent",
         tagBg: "bg-emerald-700",
     },
 ];
@@ -42,14 +42,14 @@ const SUV_SUBCATEGORIES = [
         name: "Sedan Cars",
         image: "/Vehicles/Cars/Sedan/MERCEDES C200.png",
         desc: "4 Vehicle Types",
-        accentColor: "from-black/70 via-black/20 to-transparent",
+        accentColor: "from-black/40 via-transparent to-transparent",
     },
     {
         id: "SUVs",
         name: "SUVs",
         image: "/Vehicles/Cars/SUV/TOYOTA PRADO .png",
         desc: "2 Vehicle Types",
-        accentColor: "from-black/70 via-black/20 to-transparent",
+        accentColor: "from-black/40 via-transparent to-transparent",
     },
 ];
 
@@ -153,7 +153,6 @@ export default function FleetShowcase() {
 
                                     {/* Overlays */}
                                     <div className={`absolute inset-0 bg-gradient-to-t ${cat.accentColor} z-10`} />
-                                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-500 z-10" />
 
                                     {/* Gold shimmer border on hover */}
                                     <div className="absolute inset-0 rounded-3xl ring-0 group-hover:ring-2 ring-[var(--color-gold)]/60 transition-all duration-500 z-30 pointer-events-none" />
@@ -199,7 +198,6 @@ export default function FleetShowcase() {
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                 />
                                 <div className={`absolute inset-0 bg-gradient-to-t ${cat.accentColor} z-10`} />
-                                <div className="absolute inset-0 bg-black/15 group-hover:bg-black/5 transition-colors duration-500 z-10" />
                                 <div className="absolute inset-0 rounded-3xl ring-0 group-hover:ring-2 ring-[var(--color-gold)]/60 transition-all duration-500 z-30 pointer-events-none" />
 
                                 <div className="absolute top-5 left-5 z-20">
@@ -236,7 +234,7 @@ export default function FleetShowcase() {
                                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                         />
                                         {/* Hover Overlay */}
-                                        <div className="absolute inset-0 bg-black/85 flex flex-col justify-center items-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 backdrop-blur-sm">
+                                        <div className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 backdrop-blur-sm">
                                             <h4 className="text-[var(--color-gold)] font-bold mb-3 border-b border-[var(--color-gold)]/50 pb-2 text-sm tracking-wider uppercase">Quick Info</h4>
                                             <ul className="text-white space-y-2 text-sm text-center">
                                                 <li><span className="text-gray-400">Capacity: </span>{vehicle.capacity}</li>

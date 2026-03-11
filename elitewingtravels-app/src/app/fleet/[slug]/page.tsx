@@ -11,6 +11,10 @@ interface Props {
     }>;
 }
 
+export async function generateStaticParams() {
+    return fleet.map((v) => ({ slug: v.slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const resolvedParams = await params;
     const vehicle = fleet.find((v) => v.slug === resolvedParams.slug);
@@ -31,6 +35,9 @@ export default async function VehiclePage({ params }: Props) {
     const resolvedParams = await params;
     const vehicle = fleet.find((v) => v.slug === resolvedParams.slug);
 
+    console.log("Fleet dynamic route requested slug:", resolvedParams.slug);
+    console.log("Found vehicle:", !!vehicle);
+
     if (!vehicle) {
         notFound();
     }
@@ -38,44 +45,47 @@ export default async function VehiclePage({ params }: Props) {
     return (
         <main className="bg-[var(--color-bg)] pb-20">
             {/* Hero Section */}
-            <section className="relative h-[60vh] min-h-[500px] w-full bg-gray-900">
+            <section className="relative h-[60vh] min-h-[500px] w-full bg-black">
                 <Image
                     src={vehicle.image}
                     alt={vehicle.name}
                     fill
-                    className="object-cover opacity-60"
+                    className="object-cover"
                     priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                {/* Minimal fade for back button and labels */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent z-0" />
+                {/* Minimal fade for bottom title text */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-0" />
 
-                <div className="absolute inset-0 flex items-end pb-16">
+                <div className="absolute inset-0 flex items-end pb-16 z-10">
                     <div className="container-luxury w-full">
                         <Link
                             href="/fleet"
-                            className="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors"
+                            className="inline-flex items-center text-white hover:text-white mb-6 transition-colors drop-shadow-md font-medium"
                         >
                             <ChevronLeft className="w-5 h-5 mr-1" />
                             Back to Fleet
                         </Link>
 
                         <div className="flex flex-wrap items-center gap-4 mb-4">
-                            <span className="px-4 py-1.5 bg-[var(--color-gold)] text-white text-sm font-bold rounded-full">
+                            <span className="px-4 py-1.5 bg-[var(--color-gold)] text-white text-sm font-bold rounded-full shadow-md">
                                 {vehicle.category}
                             </span>
                             {vehicle.subCategory && (
-                                <span className="px-4 py-1.5 border border-white/30 text-white text-sm font-medium rounded-full bg-black/20 backdrop-blur-sm">
+                                <span className="px-4 py-1.5 border border-white/30 text-white text-sm font-medium rounded-full bg-black/40 backdrop-blur-sm shadow-md">
                                     {vehicle.subCategory}
                                 </span>
                             )}
-                            <span className="px-4 py-1.5 bg-white/10 text-white text-sm font-medium rounded-full backdrop-blur-sm shadow-sm">
+                            <span className="px-4 py-1.5 bg-black/40 text-white text-sm font-medium rounded-full backdrop-blur-sm shadow-md border border-white/20">
                                 {vehicle.capacity}
                             </span>
                         </div>
 
-                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                        <h1 className="!text-white text-4xl md:text-6xl font-bold mb-4 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
                             {vehicle.name}
                         </h1>
-                        <p className="text-xl text-white/90 max-w-3xl">
+                        <p className="text-xl !text-white max-w-3xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium">
                             {vehicle.description}
                         </p>
                     </div>
