@@ -187,7 +187,7 @@ export default function TourBuilderSection() {
     /* ── Success screen ───────────────────────────────────── */
     if (submitted) {
         return (
-            <section className="relative py-24 overflow-hidden" id="tour-builder">
+            <section className="relative pt-24 pb-[4cm] overflow-hidden" id="tour-builder">
                 {/* Background Image & Overlay */}
                 <div className="absolute inset-0 z-0">
                     <Image
@@ -229,7 +229,7 @@ export default function TourBuilderSection() {
         <section
             id="tour-builder"
             ref={ref}
-            className="relative bg-[var(--color-primary)] py-24 overflow-hidden"
+            className="relative bg-[var(--color-primary)] pt-24 pb-0 overflow-hidden"
         >
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
@@ -588,12 +588,12 @@ export default function TourBuilderSection() {
                     </AnimatePresence>
 
                     {/* ── Navigation bar ───────────────────────────── */}
-                    <div className="flex items-center justify-between mt-10">
+                    <div className="relative z-30 mt-[7cm] mb-0 h-16 isolate">
                         {step > 1 ? (
                             <button
                                 type="button"
                                 onClick={() => setStep(step - 1)}
-                                className="flex items-center gap-2 text-sm text-white/50 hover:text-white/90
+                                className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-2 text-sm text-white/50 hover:text-white/90
                                            transition-colors duration-200 font-medium px-1 py-2"
                             >
                                 <ArrowLeft size={15} strokeWidth={2} />
@@ -601,7 +601,7 @@ export default function TourBuilderSection() {
                             </button>
                         ) : <div />}
 
-                        <span className="text-white/20 text-xs tracking-wider hidden sm:block">
+                        <span className="absolute left-1/2 -top-6 -translate-x-1/2 text-white/25 text-xs tracking-wider hidden sm:block pointer-events-none">
                             {step} / {STEPS.length}
                         </span>
 
@@ -610,9 +610,11 @@ export default function TourBuilderSection() {
                                 type="button"
                                 onClick={() => canProceed() && setStep(step + 1)}
                                 disabled={!canProceed()}
-                                className="btn-primary !bg-[var(--color-gold)] !border-[var(--color-gold)]
-                                           !py-3.5 !px-7 disabled:opacity-35 disabled:cursor-not-allowed
-                                           hover:!bg-amber-500 hover:!border-amber-500"
+                                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 btn-primary
+                                           !bg-gradient-to-r !from-[var(--color-gold)] !to-amber-500 !border-transparent !text-white
+                                           !py-3.5 !px-8 disabled:opacity-35 disabled:cursor-not-allowed
+                                           shadow-[0_12px_34px_rgba(198,167,94,0.5)] hover:shadow-[0_16px_40px_rgba(198,167,94,0.65)]
+                                           hover:!from-amber-500 hover:!to-[var(--color-gold)] hover:scale-[1.03]"
                             >
                                 Continue
                                 <ArrowRight size={15} strokeWidth={2.2} />
@@ -621,9 +623,11 @@ export default function TourBuilderSection() {
                             <button
                                 type="submit"
                                 disabled={submitting || !canProceed()}
-                                className="btn-primary !bg-[var(--color-gold)] !border-[var(--color-gold)]
-                                           !py-3.5 !px-7 disabled:opacity-35 disabled:cursor-not-allowed
-                                           hover:!bg-amber-500 hover:!border-amber-500"
+                                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 btn-primary
+                                           !bg-gradient-to-r !from-[var(--color-gold)] !to-amber-500 !border-transparent !text-white
+                                           !py-3.5 !px-8 disabled:opacity-35 disabled:cursor-not-allowed
+                                           shadow-[0_12px_34px_rgba(198,167,94,0.5)] hover:shadow-[0_16px_40px_rgba(198,167,94,0.65)]
+                                           hover:!from-amber-500 hover:!to-[var(--color-gold)] hover:scale-[1.03]"
                             >
                                 {submitting ? (
                                     <><Loader2 size={15} className="animate-spin" /> Sending…</>
@@ -633,6 +637,8 @@ export default function TourBuilderSection() {
                             </button>
                         )}
                     </div>
+
+                    <div className="h-[5cm]" aria-hidden="true" />
                 </form>
             </div>
         </section>
