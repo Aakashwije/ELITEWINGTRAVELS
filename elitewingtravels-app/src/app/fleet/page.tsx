@@ -59,6 +59,9 @@ export default function FleetPage() {
 
             {/* Interactive Fleet Showcase */}
             <FleetShowcase />
+
+            {/* Fixed physical gap before footer */}
+            <div className="h-[3cm]" aria-hidden="true" />
         </>
     );
 }

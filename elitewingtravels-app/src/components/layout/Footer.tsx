@@ -120,7 +120,7 @@ export default function Footer() {
             </div>
 
             {/* Bottom Bar */}
-            <div className="border-t border-white/10 py-6">
+            <div className="border-t border-white/10 py-7 md:py-8">
                 <div className="container-luxury flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="!text-gray-500 text-sm">
                         © {currentYear} {siteConfig.name}. All rights reserved.
