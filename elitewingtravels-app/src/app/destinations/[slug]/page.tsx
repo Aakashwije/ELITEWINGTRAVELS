@@ -53,17 +53,21 @@ export default async function DestinationPage({ params }: PageProps) {
                 </div>
             </section>
 
+            <div className="h-16 md:h-10 bg-white" aria-hidden="true" />
+
             {/* ── About Section ── */}
-            <section className="py-20 md:py-28 bg-white">
+            <section className="pt-20 md:pt-28 pb-32 md:pb-40 bg-white">
                 <div className="container-luxury max-w-5xl mx-auto">
                     <div className="flex items-center gap-3 mb-8">
                         <span className="block w-10 h-[3px] rounded-full bg-[var(--color-gold)]" />
                         <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-gold)]">Discover</p>
                     </div>
                     <h2 className="mb-8">About {dest.name}</h2>
-                    <p className="text-lg md:text-xl leading-[1.9] text-[var(--color-muted)]">{dest.description}</p>
+                    <p className="text-lg md:text-xl leading-[1.9] text-[var(--color-muted)] mb-20">{dest.description}</p>
                 </div>
             </section>
+
+            <div className="h-16 md:h-10 bg-white" aria-hidden="true" />
 
             {/* ── Key Attractions Section ── */}
             <section className="py-20 md:py-28 bg-[var(--color-sky)]/30">
@@ -88,6 +92,8 @@ export default async function DestinationPage({ params }: PageProps) {
                     </div>
                 </div>
             </section>
+
+            <div className="h-16 md:h-18 bg-white" aria-hidden="true" />
 
             {/* ── Did You Know + Info Cards Section ── */}
             <section className="py-20 md:py-28 bg-white">

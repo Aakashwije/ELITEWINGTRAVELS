@@ -98,7 +98,7 @@ export default function DestinationsSection() {
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : {}}
                     transition={{ duration: 0.6, delay: 0.8 }}
-                    className="text-center mt-24 flex flex-col items-center !mb-0 !pb-0"
+                    className="text-center mt-40 flex flex-col items-center !mb-0 !pb-0"
                 >
                     <div className="flex items-center gap-2 mb-6 text-sm text-gray-800">
                         Your voyage of discovery begins here.
