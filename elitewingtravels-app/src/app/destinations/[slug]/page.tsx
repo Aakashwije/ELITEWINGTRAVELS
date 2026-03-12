@@ -118,7 +118,7 @@ export default async function DestinationPage({ params }: PageProps) {
                         <div className="space-y-8 flex flex-col justify-center">
 
                             {/* Best Time */}
-                            <div className="rounded-[2rem] border-2 border-[var(--color-border)] bg-white p-10 shadow-sm">
+                            <div>
                                 <div className="flex items-center gap-3 mb-6">
                                     <span className="w-10 h-10 rounded-xl bg-[var(--color-sky)] flex items-center justify-center text-base flex-shrink-0">🌤️</span>
                                     <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-gold)]">Best Time to Visit</p>

@@ -160,7 +160,7 @@ export const destinations: Destination[] = [
             "A UNESCO World Heritage site showcasing the majestic remnants of Sri Lanka's first capital, featuring colossal stupas and the sacred Sri Maha Bodhi tree.",
         image: "/Locations/Anuradhapura/Anuradhapura_1.png",
         bestTime: "May - September",
-        highlights: ["Sri Maha Bodhi", "Ruwanwelisaya", "Jetavanaramaya", "Abhayagiri Dagoba", "Mihintale"],
+        highlights: ["Sri Maha Bodhi", "Ruwanwelisaya", "Jetavanaramaya", "Abhayagiri Sthupa", "Mihintale"],
         hotels: ["Ulagalla by Uga Escapes", "Kapuruge Hotel", "Heritage Hotel"],
         gallery: [
             "/Locations/Anuradhapura/Anuradhapura_1.png",
