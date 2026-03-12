@@ -187,7 +187,7 @@ export default function TourBuilderSection() {
     /* ── Success screen ───────────────────────────────────── */
     if (submitted) {
         return (
-            <section className="relative pt-24 pb-[4cm] overflow-hidden" id="tour-builder">
+            <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden" id="tour-builder">
                 {/* Background Image & Overlay */}
                 <div className="absolute inset-0 z-0">
                     <Image
@@ -197,11 +197,11 @@ export default function TourBuilderSection() {
                         className="object-cover"
                         priority
                     />
-                    <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/80 via-transparent to-[var(--color-primary)]/80" />
+                    <div className="absolute inset-0 bg-black/50" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
                 </div>
 
-                <div className="container-luxury relative z-10 text-center">
+                <div className="container-luxury relative z-10 text-center py-20 flex flex-col items-center justify-center">
                     <motion.div
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
@@ -211,9 +211,11 @@ export default function TourBuilderSection() {
                     >
                         <CheckCircle2 size={44} className="text-white" strokeWidth={1.5} />
                     </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
-                        <h2 className="!text-white mb-3 text-3xl sm:text-4xl">Your journey begins here.</h2>
-                        <p className="!text-white/65 text-lg max-w-lg mx-auto leading-relaxed">
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+                        className="flex flex-col items-center"
+                    >
+                        <h2 className="!text-white mb-4 text-3xl sm:text-4xl md:text-5xl text-center">Your journey begins here.</h2>
+                        <p className="!text-white/75 text-lg max-w-lg text-center leading-relaxed">
                             We&apos;ve received your request. Our team will craft a personalised
                             itinerary and reach out within{" "}
                             <span className="text-[var(--color-gold)] font-semibold">24 hours</span>.
@@ -229,7 +231,7 @@ export default function TourBuilderSection() {
         <section
             id="tour-builder"
             ref={ref}
-            className="relative bg-[var(--color-primary)] pt-24 pb-0 overflow-hidden"
+            className="relative bg-black pt-24 pb-0 overflow-hidden"
         >
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
@@ -240,8 +242,8 @@ export default function TourBuilderSection() {
                     className="object-cover"
                     priority
                 />
-                <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
-                <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/80 via-transparent to-[var(--color-primary)]/80" />
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70" />
             </div>
 
             <div className="container-luxury relative z-10 flex flex-col items-center">
@@ -251,16 +253,16 @@ export default function TourBuilderSection() {
                     initial={{ opacity: 0, y: 24 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.7 }}
-                    className="text-center mb-20 sm:mb-32"
+                    className="text-center mb-16 sm:mb-20 flex flex-col items-center"
                 >
                     <span className="section-label justify-center !text-[var(--color-gold)]">
                         Private Tour Builder
                     </span>
-                    <h2 className="!text-white mt-1 mb-4">
+                    <h2 className="!text-white mt-1 mb-4 text-center">
                         Design Your{" "}
                         <span className="text-gradient-gold">Dream Journey</span>
                     </h2>
-                    <p className="!text-white/55 max-w-md mx-auto text-base">
+                    <p className="!text-white/55 max-w-md mx-auto text-base text-center">
                         Tell us about your perfect trip and we&apos;ll craft a bespoke
                         itinerary tailored just for you.
                     </p>
@@ -320,7 +322,7 @@ export default function TourBuilderSection() {
                 </motion.div>
 
                 {/* ── Card ─────────────────────────────────────────── */}
-                <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl w-full mx-auto">
+                <form onSubmit={handleSubmit(onSubmit)} className="max-w-3xl w-full mx-auto">
                     <input type="text" {...register("honeypot")} className="hidden" tabIndex={-1} autoComplete="off" />
 
                     <AnimatePresence mode="wait">
@@ -331,7 +333,7 @@ export default function TourBuilderSection() {
                             exit={{ opacity: 0, y: -18 }}
                             transition={{ duration: 0.28, ease: "easeOut" }}
                             className="rounded-3xl border border-white/10 bg-white/[0.055] backdrop-blur-lg
-                                       p-7 sm:p-10 shadow-xl shadow-black/20"
+                                       p-8 sm:p-14 shadow-2xl shadow-black/30"
                         >
 
                             {/* ── Step 1 – Travelers ───────────────── */}
@@ -588,7 +590,7 @@ export default function TourBuilderSection() {
                     </AnimatePresence>
 
                     {/* ── Navigation bar ───────────────────────────── */}
-                    <div className="relative z-30 mt-32 sm:mt-44 mb-0 h-16 isolate flex flex-col items-center">
+                    <div className="relative z-30 mt-10 sm:mt-14 mb-0 h-16 isolate flex flex-col items-center">
                         <span className="text-white/20 text-[10px] tracking-[0.2em] uppercase font-bold mb-8 pointer-events-none">
                             Step {step} of {STEPS.length}
                         </span>
@@ -640,7 +642,7 @@ export default function TourBuilderSection() {
                         </div>
                     </div>
 
-                    <div className="h-32" aria-hidden="true" />
+                    <div className="h-20" aria-hidden="true" />
                 </form>
             </div>
         </section>
@@ -652,13 +654,13 @@ export default function TourBuilderSection() {
 function StepHeading({ Icon, title, sub }: { Icon: React.ElementType; title: string; sub: string }) {
     return (
         <div className="flex flex-col items-center text-center gap-3">
-            <div className="shrink-0 w-12 h-12 rounded-full bg-[var(--color-gold)]/15 border border-[var(--color-gold)]/30
+            <div className="shrink-0 w-14 h-14 rounded-full bg-[var(--color-gold)]/15 border border-[var(--color-gold)]/30
                             flex items-center justify-center">
-                <Icon size={22} className="text-[var(--color-gold)]" strokeWidth={1.8} />
+                <Icon size={26} className="text-[var(--color-gold)]" strokeWidth={1.8} />
             </div>
             <div>
-                <h3 className="!text-white text-xl sm:text-2xl !font-semibold m-0 leading-tight">{title}</h3>
-                <p className="text-white/45 text-sm mt-2 leading-relaxed max-w-md mx-auto">{sub}</p>
+                <h3 className="!text-white text-2xl sm:text-3xl !font-semibold m-0 leading-tight">{title}</h3>
+                <p className="text-white/50 text-sm sm:text-base mt-3 leading-relaxed max-w-md mx-auto">{sub}</p>
             </div>
         </div>
     );
@@ -693,8 +695,8 @@ function DateField({ label, id, ...rest }: { label: string; id: string } & React
                 type="date"
                 id={id}
                 {...rest}
-                className="w-full px-4 py-3.5 rounded-xl border border-white/15 bg-white/[0.055]
-                           text-white text-sm outline-none focus:border-[var(--color-gold)] text-center
+                className="w-full px-5 py-4 rounded-xl border border-white/15 bg-white/[0.055]
+                           text-white text-base outline-none focus:border-[var(--color-gold)] text-center
                            focus:bg-white/[0.08] transition-all [color-scheme:dark]"
             />
         </div>

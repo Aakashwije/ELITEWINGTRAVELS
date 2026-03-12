@@ -50,7 +50,7 @@ export default function JourneySection() {
 
   return (
     <section
-      className="section-luxury"
+      className="section-luxury !pb-44"
       style={{
         background: 'linear-gradient(to bottom, #fafafa, #fafafa 85%, #f5f4f0)'
       }}
@@ -62,10 +62,11 @@ export default function JourneySection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
+          className="flex flex-col items-center"
         >
-          <span className="section-label mb-4 inline-block">What&apos;s your journey?</span>
-          <h2 className="mb-5">Your adventure. Your way.</h2>
-          <p className="max-w-2xl mx-auto">
+          <span className="section-label justify-center mb-4 inline-flex">What&apos;s your journey?</span>
+          <h2 className="mb-5 text-center">Your adventure. Your way.</h2>
+          <p className="max-w-2xl text-center">
             Discover a curated collection of signature itineraries, thoughtfully designed to
             showcase the diverse beauty of Sri Lanka. Whether you seek wild escapes, serene shores,
             or cultural deep dives, your perfect journey awaits.
@@ -122,21 +123,30 @@ export default function JourneySection() {
       </div>
 
       {/* CTA */}
-      <div className="container-luxury mt-10 text-center">
+      <div className="container-luxury mt-32 text-center">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex flex-col items-center gap-2"
         >
-          <p className="text-[var(--color-muted)] text-sm mb-5">
-            Can&apos;t find your perfect match?{" "}
-            <Link href="/#tour-builder" className="text-[var(--color-primary)] font-semibold hover:underline">
-              Build a custom journey
-            </Link>
-          </p>
-          <Link href="/tours" className="btn-secondary !py-3 !px-8 !text-sm">
+          <Link
+            href="/tours"
+            className="inline-flex items-center gap-2 text-[#a3a300] font-semibold text-sm tracking-wide hover:opacity-80 transition-opacity"
+          >
             Browse all itineraries
-            <ArrowRight size={15} strokeWidth={2} />
+            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </Link>
+          <Link
+            href="/#tour-builder"
+            className="inline-flex items-center gap-2 text-[#a3a300] font-semibold text-sm tracking-wide hover:opacity-80 transition-opacity"
+          >
+            Build a custom journey
+            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
           </Link>
         </motion.div>
       </div>

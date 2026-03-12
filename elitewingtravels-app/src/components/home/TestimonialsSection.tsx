@@ -11,22 +11,22 @@ export default function TestimonialsSection() {
     const inView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section className="section-luxury-lg" ref={ref}>
+        <section className="section-luxury-lg !pt-25" ref={ref}>
             <div className="container-luxury">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    className="text-center mb-16 flex flex-col items-center"
                 >
-                    <span className="section-label mb-4 inline-block">Tales of travels</span>
+                    <span className="section-label justify-center mb-4 inline-flex">Tales of travels</span>
                     <h2>
                         Stories from <span className="text-gradient-gold">all over</span>
                     </h2>
                 </motion.div>
 
                 {/* Image Tiles Grid */}
-                <div className="flex flex-col gap-[3cm]">
+                <div className="flex flex-col gap-10">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -63,20 +63,13 @@ export default function TestimonialsSection() {
                         transition={{ duration: 0.8, delay: 0.8 }}
                         className="text-center"
                     >
-                        <Link href="/memories" className="btn-secondary group">
-                            <span>View more memories</span>
-                            <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="transition-transform duration-300 group-hover:translate-x-1"
-                            >
-                                <path d="M5 12h14M12 5l7 7-7 7" />
+                        <Link
+                            href="/memories"
+                            className="inline-flex items-center gap-2 text-[#a3a300] font-semibold text-sm tracking-wide hover:opacity-80 transition-opacity"
+                        >
+                            View more memories
+                            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
                             </svg>
                         </Link>
                     </motion.div>

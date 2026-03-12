@@ -91,7 +91,7 @@ export default function ToursPage() {
                     <div className="absolute inset-0 bg-black/45 z-10" />
                 </div>
 
-                <div className="relative z-20 container-luxury text-center w-full">
+                <div className="relative z-20 container-luxury text-center w-full flex flex-col items-center">
                     <h2 className="!text-white mb-4 text-3xl md:text-5xl font-light">
                         Can&apos;t Find Your Perfect Tour?
                     </h2>

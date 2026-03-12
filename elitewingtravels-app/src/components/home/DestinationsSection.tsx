@@ -12,7 +12,7 @@ export default function DestinationsSection() {
 
     return (
         <section
-            className="section-luxury-lg"
+            className="section-luxury-lg !pb-16"
             style={{
                 background: 'linear-gradient(to bottom, var(--color-sky), var(--color-sky) 85%, white)'
             }}
@@ -23,13 +23,13 @@ export default function DestinationsSection() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    className="text-center mb-16 flex flex-col items-center"
                 >
-                    <span className="section-label mb-4 inline-block">Fortresses, forests, temples, treasures</span>
-                    <h2>
+                    <span className="section-label justify-center mb-4 inline-flex">Fortresses, forests, temples, treasures</span>
+                    <h2 className="text-center">
                         Magical destinations
                     </h2>
-                    <p className="max-w-xl mx-auto mt-4">
+                    <p className="max-w-xl text-center mt-4">
                         Discover the diverse allure of Sri Lanka with our carefully selected magical escapes.
                     </p>
                 </motion.div>
@@ -98,7 +98,7 @@ export default function DestinationsSection() {
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : {}}
                     transition={{ duration: 0.6, delay: 0.8 }}
-                    className="text-center mt-24 flex flex-col items-center"
+                    className="text-center mt-24 flex flex-col items-center !mb-0 !pb-0"
                 >
                     <div className="flex items-center gap-2 mb-6 text-sm text-gray-800">
                         Your voyage of discovery begins here.
