@@ -133,7 +133,7 @@ export default function MapSection() {
       }}
       ref={ref}
     >
-      <div className="max-w-[1440px] mx-auto px-4 md:px-8">
+      <div className="max-w-[1440px] mx-auto px-8 md:px-16 lg:px-24">
 
         {/* Header */}
         <motion.div
@@ -163,10 +163,10 @@ export default function MapSection() {
         </motion.div>
 
         {/* 3-column grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_260px] xl:grid-cols-[290px_1fr_290px] items-center gap-6 xl:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_260px] xl:grid-cols-[290px_1fr_290px] items-center gap-3 xl:gap-6">
 
           {/* LEFT TILES */}
-          <div className="flex flex-col gap-4 order-2 lg:order-1">
+        <div className="flex flex-col gap-4 order-2 lg:order-1 pl-4 pr-2 lg:pl-10">
             {leftCategories.map((cat, i) => (
               <CategoryTile
                 key={cat.id}
