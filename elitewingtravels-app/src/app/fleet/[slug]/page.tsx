@@ -103,7 +103,7 @@ export default async function VehiclePage({ params }: Props) {
                         {/* Features & Safety */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
                             <div>
-                                <div className="h-7" />
+                                <div className="h-6" />
                                 <h3 className="text-2xl md:text-3xl font-semibold mb-7 text-[var(--color-dark)] flex items-center gap-2">
                                     Key Features
                                 </h3>
@@ -137,30 +137,32 @@ export default async function VehiclePage({ params }: Props) {
                             </div>
                         </div>
 
-                        <div className="h-7" />
-
-                        <div className="bg-white p-7 md:p-8 rounded-3xl shadow-lg border border-gray-100 text-center">
-                            <div className="h-7" />
-                            <h3 className="text-2xl font-semibold mb-4 text-[var(--color-dark)]">
-                                Ready to Book?
-                            </h3>
-
+                        <div className="hidden lg:block">
                             <div className="h-7" />
 
-                            <p className="text-gray-600 mb-6">
-                                Contact us to check availability and get a tailored quote for the {vehicle.name}.
-                            </p>
+                            <div className="bg-white p-7 md:p-8 rounded-3xl shadow-lg border border-gray-100 text-center">
+                                <div className="h-7" />
+                                <h3 className="text-2xl font-semibold mb-4 text-[var(--color-dark)]">
+                                    Ready to Book?
+                                </h3>
 
-                            <div className="h-7" />
+                                <div className="h-7" />
 
-                            <Link href="/contact" className="btn-primary w-full justify-center">
-                                Inquire Now
-                            </Link>
+                                <p className="text-gray-600 mb-6">
+                                    Contact us to check availability and get a tailored quote for the {vehicle.name}.
+                                </p>
+
+                                <div className="h-7" />
+
+                                <Link href="/contact" className="btn-primary w-full justify-center">
+                                    Inquire Now
+                                </Link>
+
+                                <div className="h-7" />
+                            </div>
 
                             <div className="h-7" />
                         </div>
-
-                        <div className="h-7" />
 
                         {/* Gallery Section */}
                         {vehicle.gallery && vehicle.gallery.length > 0 && (
@@ -227,6 +229,31 @@ export default async function VehiclePage({ params }: Props) {
                                         All our chauffeurs are highly trained professionals, offering not just a safe ride, but deep local knowledge to enhance your Sri Lankan journey.
                                     </p>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className="lg:hidden">
+                            <div className="h-7" />
+
+                            <div className="bg-white p-7 md:p-8 rounded-3xl shadow-lg border border-gray-100 text-center">
+                                <div className="h-7" />
+                                <h3 className="text-2xl font-semibold mb-4 text-[var(--color-dark)]">
+                                    Ready to Book?
+                                </h3>
+
+                                <div className="h-7" />
+
+                                <p className="text-gray-600 mb-6">
+                                    Contact us to check availability and get a tailored quote for the {vehicle.name}.
+                                </p>
+
+                                <div className="h-7" />
+
+                                <Link href="/contact" className="btn-primary w-full justify-center">
+                                    Inquire Now
+                                </Link>
+
+                                <div className="h-7" />
                             </div>
                         </div>
 
