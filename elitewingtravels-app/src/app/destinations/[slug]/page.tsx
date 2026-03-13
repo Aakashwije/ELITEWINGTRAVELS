@@ -77,6 +77,7 @@ export default async function DestinationPage({ params }: PageProps) {
                         <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-gold)]">Explore</p>
                     </div>
                     <h3 className="mb-12">Key Attractions</h3>
+                    <div className="h-3" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                         {dest.highlights.map((h, i) => (
                             <div

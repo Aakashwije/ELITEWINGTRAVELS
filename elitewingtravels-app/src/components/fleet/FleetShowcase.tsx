@@ -103,6 +103,7 @@ export default function FleetShowcase() {
                                 )}
                             </div>
                         )}
+                        <div className="h-11" />
                         <h2 className="text-3xl md:text-5xl font-light text-[var(--color-dark)]">
                             {!activeCategory && (
                                 <>Our <span className="text-gradient-gold font-semibold">Vehicle Categories</span></>
@@ -110,6 +111,7 @@ export default function FleetShowcase() {
                             {activeCategory && !activeSubCategory && activeCategory}
                             {activeSubCategory && activeSubCategory}
                         </h2>
+                        <div className="h-1" />
                         <p className="text-lg text-gray-500 max-w-2xl mt-3">
                             {!activeCategory && "Select a category to explore our diverse range of premium vehicles."}
                             {activeCategory === "Buses" && "Explore our premium selection of coaches and luxury buses."}
@@ -118,6 +120,7 @@ export default function FleetShowcase() {
                             {activeSubCategory === "Sedan Cars" && "Experience ultimate luxury with our premium sedan collection."}
                             {activeSubCategory === "SUVs" && "Commanding, capable, and luxurious SUVs for all terrains."}
                         </p>
+                        <div className="h-9" />
                     </div>
                     {activeCategory && (
                         <button

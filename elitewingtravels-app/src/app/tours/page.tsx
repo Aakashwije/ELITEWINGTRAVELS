@@ -41,6 +41,7 @@ export default function ToursPage() {
                             Tour <span className="text-gradient-gold">Itineraries</span>
                         </h2>
                     </div>
+                    <div className="h-7" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {tourPosters.map((poster, index) => (
                             <motion.div
@@ -95,9 +96,13 @@ export default function ToursPage() {
                     <h2 className="!text-white mb-4 text-3xl md:text-5xl font-light">
                         Can&apos;t Find Your Perfect Tour?
                     </h2>
+
+                    <div className="h-1" />
+
                     <p className="!text-white/90 text-lg max-w-xl mx-auto mb-10 leading-relaxed font-light text-center">
                         Let us design a bespoke journey tailored exclusively to your preferences and desires.
                     </p>
+                    <div className="h-3" />
                     <Link href="/contact" className="btn-white">
                         Design a Custom Tour
                     </Link>

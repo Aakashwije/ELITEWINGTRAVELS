@@ -29,10 +29,13 @@ export default function DestinationsSection() {
                     <h2 className="text-center">
                         Magical destinations
                     </h2>
+                    <div className="h-4" />
                     <p className="max-w-xl text-center mt-4">
                         Discover the diverse allure of Sri Lanka with our carefully selected magical escapes.
                     </p>
                 </motion.div>
+
+                <div className="h-6" />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {destinations
@@ -94,6 +97,8 @@ export default function DestinationsSection() {
                         ))}
                 </div>
 
+                <div className="h-8" />
+
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : {}}
@@ -104,12 +109,16 @@ export default function DestinationsSection() {
                         Your voyage of discovery begins here.
                     </div>
 
+                    <div className="h-1" />
+
                     <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 mb-2 leading-tight">
                         Discover paradise, the EliteWing way
                     </h3>
                     <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif text-gray-900 mb-12 font-normal">
                         Your journey: your plan.
                     </h3>
+
+                    <div className="h-2" />
 
                     <Link
                         href="/destinations"

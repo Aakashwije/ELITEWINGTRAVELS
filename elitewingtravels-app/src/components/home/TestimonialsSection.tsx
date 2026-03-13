@@ -25,6 +25,8 @@ export default function TestimonialsSection() {
                     </h2>
                 </motion.div>
 
+                <div className="h-7" />
+
                 {/* Image Tiles Grid */}
                 <div className="flex flex-col gap-10">
                     <motion.div

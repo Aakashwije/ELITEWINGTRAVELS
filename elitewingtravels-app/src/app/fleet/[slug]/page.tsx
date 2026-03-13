@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, CheckCircle2, User, Award, Globe, ShieldCheck } from "lucide-react";
+import { ChevronLeft, CheckCircle2, User, ShieldCheck } from "lucide-react";
 import { fleet } from "@/lib/data";
 import { Metadata } from "next";
 
@@ -92,6 +92,8 @@ export default async function VehiclePage({ params }: Props) {
                 </div>
             </section>
 
+            <div className="h-7" />
+
             <div className="container-luxury mt-20 mb-24 md:mb-28">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
 
@@ -100,7 +102,8 @@ export default async function VehiclePage({ params }: Props) {
 
                         {/* Features & Safety */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
-                            <div className="bg-white p-9 md:p-10 rounded-3xl shadow-sm border border-gray-100 h-full min-h-[390px]">
+                            <div>
+                                <div className="h-7" />
                                 <h3 className="text-2xl md:text-3xl font-semibold mb-7 text-[var(--color-dark)] flex items-center gap-2">
                                     Key Features
                                 </h3>
@@ -114,7 +117,8 @@ export default async function VehiclePage({ params }: Props) {
                                 </ul>
                             </div>
 
-                            <div className="bg-white p-9 md:p-10 rounded-3xl shadow-sm border border-gray-100 h-full min-h-[390px]">
+                            <div className="self-start">
+                                <div className="h-7" />
                                 <h3 className="text-2xl md:text-3xl font-semibold mb-7 text-[var(--color-dark)] flex items-center gap-2">
                                     <ShieldCheck className="w-6 h-6 text-[var(--color-gold)]" /> Safety Measures
                                 </h3>
@@ -154,64 +158,51 @@ export default async function VehiclePage({ params }: Props) {
                     <div className="space-y-12 lg:col-span-5 lg:sticky lg:top-28 self-start">
 
                         {/* Driver Details Card */}
-                        <div className="bg-gradient-to-br from-[#0a2d6b] to-[#061a3d] p-10 md:p-12 rounded-3xl shadow-xl text-white min-h-[460px] text-center">
+                        <div className="h-7" />
+                        <div className="bg-gradient-to-br from-[#0a2d6b] to-[#061a3d] p-10 md:p-12 rounded-3xl shadow-xl text-white min-h-[390px] text-center">
                             <h3 className="text-3xl md:text-4xl font-semibold mb-9 text-white border-b border-white/20 pb-5">
                                 Your Chauffeur
                             </h3>
 
-                            <div className="mb-12 rounded-2xl border border-white/15 bg-white/5 p-6 md:p-7">
-                                <div className="mx-auto mb-5 flex h-18 w-18 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/20">
-                                    <Image
-                                        src="/assets/images/elitewing.png"
-                                        alt="EliteWing Travels"
-                                        width={44}
-                                        height={44}
-                                        className="object-contain"
-                                    />
-                                </div>
-                                <p className="text-sm text-[var(--color-gold)] uppercase tracking-wider font-semibold mb-2">
-                                    Assigned Chauffeur
-                                </p>
-                                <h4 className="text-2xl md:text-3xl font-bold leading-tight">
-                                    {vehicle.driverName || "Professional Guide"}
-                                </h4>
-                            </div>
+                            <div className="h-3" />
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-12">
-                                <div className="rounded-2xl bg-white/5 border border-white/10 p-5 md:p-6">
-                                    <Award className="w-5 h-5 text-[var(--color-gold)] mx-auto mb-2" />
-                                    <div>
-                                        <p className="text-xs text-white/60 mb-1">Experience</p>
-                                        <p className="font-medium">{vehicle.driverExperience || "Fully Licensed"}</p>
-                                    </div>
+                            <div className="mt-8 space-y-7 text-center">
+                                <p className="text-sm text-white/80 font-medium">EliteWing Travels</p>
+
+                                <div>
+                                    <p className="text-sm text-[var(--color-gold)] uppercase tracking-wider font-semibold mb-2">
+                                        Assigned Chauffeur
+                                    </p>
+                                    <h4 className="text-2xl md:text-3xl font-bold leading-tight">
+                                        {vehicle.driverName || "Professional Guide"}
+                                    </h4>
                                 </div>
 
-                                <div className="rounded-2xl bg-white/5 border border-white/10 p-5 md:p-6">
-                                    <Globe className="w-5 h-5 text-[var(--color-gold)] mx-auto mb-2" />
-                                    <div>
-                                        <p className="text-xs text-white/60 mb-1">Languages Spoken</p>
-                                        <div className="flex flex-wrap justify-center gap-2 mt-1">
-                                            {(vehicle.driverLanguages || ["English"]).map((lang, i) => (
-                                                <span key={i} className="px-2 py-0.5 bg-white/10 rounded text-sm">
-                                                    {lang}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
+                                <div>
+                                    <p className="text-xs text-white/70 uppercase tracking-wider mb-2">Experience</p>
+                                    <p className="text-lg font-medium">{vehicle.driverExperience || "Fully Licensed"}</p>
                                 </div>
-                            </div>
 
-                            <div className="rounded-2xl border border-white/15 bg-white/5 p-6 md:p-7 text-left">
-                                <p className="text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)] font-semibold">
-                                    EliteWing Promise
-                                </p>
-                                <p className="mt-3 text-base leading-8 text-white/90">
-                                    All our chauffeurs are highly trained professionals, offering not just a safe ride, but deep local knowledge to enhance your Sri Lankan journey.
-                                </p>
+                                <div>
+                                    <p className="text-xs text-white/70 uppercase tracking-wider mb-2">Languages Spoken</p>
+                                    <p className="text-base font-medium">{(vehicle.driverLanguages || ["English"]).join(" • ")}</p>
+                                </div>
+
+                                <div className="h-7" />
+
+                                <div>
+                                    <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-gold)] font-semibold mb-2">
+                                        EliteWing Promise
+                                    </p>
+                                    <p className="text-base leading-8 text-white/90">
+                                        All our chauffeurs are highly trained professionals, offering not just a safe ride, but deep local knowledge to enhance your Sri Lankan journey.
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
                         {/* Booking CTA */}
+                        <div className="h-7" />
                         <div className="bg-white p-9 md:p-10 rounded-3xl shadow-lg border border-gray-100 text-center min-h-[220px]">
                             <h3 className="text-2xl font-semibold mb-4 text-[var(--color-dark)]">
                                 Ready to Book?
@@ -223,6 +214,8 @@ export default async function VehiclePage({ params }: Props) {
                                 Inquire Now
                             </Link>
                         </div>
+
+                        <div className="h-7" />
 
                     </div>
                 </div>

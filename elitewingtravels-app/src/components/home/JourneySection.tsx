@@ -57,7 +57,7 @@ export default function JourneySection() {
       ref={ref}
     >
       {/* Header */}
-      <div className="container-luxury text-center mb-14">
+      <div className="container-luxury text-center mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -66,6 +66,7 @@ export default function JourneySection() {
         >
           <span className="section-label justify-center mb-4 inline-flex">What&apos;s your journey?</span>
           <h2 className="mb-5 text-center">Your adventure. Your way.</h2>
+          <div className="h-2" />
           <p className="max-w-2xl text-center">
             Discover a curated collection of signature itineraries, thoughtfully designed to
             showcase the diverse beauty of Sri Lanka. Whether you seek wild escapes, serene shores,
@@ -73,6 +74,8 @@ export default function JourneySection() {
           </p>
         </motion.div>
       </div>
+
+      <div className="h-5" />
 
       {/* Grid */}
       <div className="container-luxury px-0 md:px-6">
@@ -121,6 +124,8 @@ export default function JourneySection() {
           ))}
         </div>
       </div>
+
+      <div className="h-7" />
 
       {/* CTA */}
       <div className="container-luxury mt-32 text-center">
