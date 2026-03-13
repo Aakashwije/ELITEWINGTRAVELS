@@ -12,7 +12,7 @@ export default function DestinationsSection() {
 
     return (
         <section
-            className="section-luxury-lg !pb-16"
+            className="section-luxury-lg !pb-8"
             style={{
                 background: 'linear-gradient(to bottom, var(--color-sky), var(--color-sky) 85%, white)'
             }}

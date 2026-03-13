@@ -11,7 +11,7 @@ export default function TestimonialsSection() {
     const inView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section className="section-luxury-lg !pt-25" ref={ref}>
+        <section className="section-luxury-lg !pt-14" ref={ref}>
             <div className="container-luxury">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
