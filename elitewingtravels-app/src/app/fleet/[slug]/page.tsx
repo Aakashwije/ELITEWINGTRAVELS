@@ -101,7 +101,7 @@ export default async function VehiclePage({ params }: Props) {
                     <div className="lg:col-span-7 space-y-14">
 
                         {/* Features & Safety */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
                             <div>
                                 <div className="h-6" />
                                 <h3 className="text-2xl md:text-3xl font-semibold mb-7 text-[var(--color-dark)] flex items-center gap-2">
@@ -255,6 +255,8 @@ export default async function VehiclePage({ params }: Props) {
 
                                 <div className="h-7" />
                             </div>
+
+                            <div className="h-7" />
                         </div>
 
                     </div>

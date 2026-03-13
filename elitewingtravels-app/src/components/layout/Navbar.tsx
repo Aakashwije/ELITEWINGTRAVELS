@@ -93,13 +93,15 @@ export default function Navbar() {
                         exit={{ opacity: 0, height: 0 }}
                         className="lg:hidden bg-white shadow-xl overflow-hidden"
                     >
-                        <div className="container-luxury py-6 flex flex-col gap-4">
+                        <div className="container-luxury py-8 flex flex-col gap-5">
+                            <div className="h-1 bg-white" />
+
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setMobileOpen(false)}
-                                    className="text-[var(--color-dark)] font-medium text-lg no-underline py-2 border-b border-gray-100 hover:text-[var(--color-primary)] transition-colors"
+                                    className="text-[var(--color-dark)] font-medium text-lg no-underline py-3 border-b border-gray-100 hover:text-[var(--color-primary)] transition-colors"
                                 >
                                     {link.label}
                                 </Link>
@@ -107,10 +109,12 @@ export default function Navbar() {
                             <Link
                                 href="/contact"
                                 onClick={() => setMobileOpen(false)}
-                                className="btn-primary text-center mt-2"
+                                className="btn-primary text-center mt-4"
                             >
                                 Book Now
                             </Link>
+
+                            <div className="h-1 bg-white" />
                         </div>
                     </motion.div>
                 )}
