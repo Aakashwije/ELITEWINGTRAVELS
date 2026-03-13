@@ -71,6 +71,8 @@ export default function HeroSection() {
                         The Home of Sri Lankan Hospitality
                     </h1>
 
+                    <div className="h-7" />
+
 
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -78,14 +80,11 @@ export default function HeroSection() {
                         transition={{ duration: 0.8, delay: 1.8 }}
                         className="flex flex-col sm:flex-row items-center justify-center gap-6"
                     >
-                        <Link href="/tours" className="btn-primary !bg-[var(--color-gold)] !border-[var(--color-gold)] !text-white hover:!bg-white hover:!text-[var(--color-gold)] shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+                        <Link href="/tours" className="btn-white !bg-transparent !border-white/50 !text-white hover:!bg-white hover:!text-[var(--color-primary)] shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                             Explore Journeys
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
-                        </Link>
-                        <Link href="/contact#tour-builder" className="btn-white !bg-transparent !border-white/50 !text-white hover:!bg-white hover:!text-[var(--color-primary)] shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
-                            Design Your Private Tour
                         </Link>
                     </motion.div>
                 </motion.div>
