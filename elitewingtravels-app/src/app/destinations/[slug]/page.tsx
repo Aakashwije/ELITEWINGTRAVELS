@@ -102,7 +102,7 @@ export default async function DestinationPage({ params }: PageProps) {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
                         {/* Did You Know */}
-                        <div className="relative overflow-hidden rounded-[2rem] bg-[var(--color-primary)] p-12 md:p-16 flex flex-col justify-center items-center text-center">
+                        <div className="order-2 lg:order-1 relative overflow-hidden rounded-[2rem] bg-[var(--color-primary)] p-12 md:p-16 flex flex-col justify-center items-center text-center">
                             <span className="absolute -top-16 -right-16 w-56 h-56 bg-white/5 rounded-full" />
                             <span className="absolute -bottom-10 -left-10 w-36 h-36 bg-white/5 rounded-full" />
                             <p className="relative text-base md:text-lg font-extrabold uppercase tracking-[0.22em] text-[var(--color-gold)] mb-8">Did You Know</p>
@@ -116,11 +116,11 @@ export default async function DestinationPage({ params }: PageProps) {
                         </div>
 
                         {/* Info Cards */}
-                        <div className="space-y-0 flex flex-col justify-center">
+                        <div className="order-1 lg:order-2 space-y-0 flex flex-col justify-center">
 
                             {/* Best Time */}
-                            <div>
-                                <div className="flex items-center gap-3 mb-6">
+                            <div className="text-center lg:text-left">
+                                <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
                                     <span className="w-10 h-10 rounded-xl bg-[var(--color-sky)] flex items-center justify-center text-base flex-shrink-0">🌤️</span>
                                     <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-gold)]">Best Time to Visit</p>
                                 </div>
