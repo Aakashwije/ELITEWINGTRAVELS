@@ -107,11 +107,12 @@ export default async function VehiclePage({ params }: Props) {
                                 <h3 className="text-2xl md:text-3xl font-semibold mb-7 text-[var(--color-dark)] flex items-center gap-2">
                                     Key Features
                                 </h3>
+                                <div className="h-3" />
                                 <ul className="space-y-5">
                                     {vehicle.features.map((feature, i) => (
-                                        <li key={i} className="flex items-start gap-3 text-gray-700">
-                                            <CheckCircle2 className="w-5 h-5 text-[var(--color-gold)] shrink-0 mt-0.5" />
-                                            <span>{feature}</span>
+                                        <li key={i} className="flex items-center gap-3 text-gray-700">
+                                            <CheckCircle2 className="w-5 h-5 text-[var(--color-gold)] shrink-0" />
+                                            <span className="leading-normal">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -122,16 +123,44 @@ export default async function VehiclePage({ params }: Props) {
                                 <h3 className="text-2xl md:text-3xl font-semibold mb-7 text-[var(--color-dark)] flex items-center gap-2">
                                     <ShieldCheck className="w-6 h-6 text-[var(--color-gold)]" /> Safety Measures
                                 </h3>
+                                <div className="h-3" />
                                 <ul className="space-y-5">
                                     {vehicle.safety.map((safetyItem, i) => (
-                                        <li key={i} className="flex items-start gap-3 text-gray-700">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] mt-2 shrink-0" />
-                                            <span>{safetyItem}</span>
+                                        <li key={i} className="flex items-center gap-3 text-gray-700">
+                                            <span className="flex h-3 w-3 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/20">
+                                                <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-gold)]" />
+                                            </span>
+                                            <span className="leading-normal">{safetyItem}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
                         </div>
+
+                        <div className="h-7" />
+
+                        <div className="bg-white p-7 md:p-8 rounded-3xl shadow-lg border border-gray-100 text-center">
+                            <div className="h-7" />
+                            <h3 className="text-2xl font-semibold mb-4 text-[var(--color-dark)]">
+                                Ready to Book?
+                            </h3>
+
+                            <div className="h-7" />
+
+                            <p className="text-gray-600 mb-6">
+                                Contact us to check availability and get a tailored quote for the {vehicle.name}.
+                            </p>
+
+                            <div className="h-7" />
+
+                            <Link href="/contact" className="btn-primary w-full justify-center">
+                                Inquire Now
+                            </Link>
+
+                            <div className="h-7" />
+                        </div>
+
+                        <div className="h-7" />
 
                         {/* Gallery Section */}
                         {vehicle.gallery && vehicle.gallery.length > 0 && (
@@ -200,22 +229,6 @@ export default async function VehiclePage({ params }: Props) {
                                 </div>
                             </div>
                         </div>
-
-                        {/* Booking CTA */}
-                        <div className="h-7" />
-                        <div className="bg-white p-9 md:p-10 rounded-3xl shadow-lg border border-gray-100 text-center min-h-[220px]">
-                            <h3 className="text-2xl font-semibold mb-4 text-[var(--color-dark)]">
-                                Ready to Book?
-                            </h3>
-                            <p className="text-gray-600 mb-6">
-                                Contact us to check availability and get a tailored quote for the {vehicle.name}.
-                            </p>
-                            <Link href="/contact" className="btn-primary w-full justify-center">
-                                Inquire Now
-                            </Link>
-                        </div>
-
-                        <div className="h-7" />
 
                     </div>
                 </div>
