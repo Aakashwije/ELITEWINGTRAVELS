@@ -50,7 +50,7 @@ export default function JourneySection() {
 
   return (
     <section
-      className="section-luxury !pb-44"
+      className="section-luxury !pb-28 md:!pb-44"
       style={{
         background: 'linear-gradient(to bottom, #fafafa, #fafafa 85%, #f5f4f0)'
       }}
