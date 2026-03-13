@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
@@ -107,13 +107,28 @@ const categories = [
 export default function MapSection() {
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) {
+      setHoveredCategory(null);
+    }
+  }, [isDesktop]);
 
   const leftCategories = categories.filter((c) => c.side === "left");
   const rightCategories = categories.filter((c) => c.side === "right");
 
-  const currentCategory = hoveredCategory ?? activeCategory;
+  const currentCategory = isDesktop ? hoveredCategory : activeCategory;
   const activeCat = categories.find((c) => c.id === currentCategory);
   const accentColor = activeCat?.color ?? "var(--color-gold)";
 
@@ -163,19 +178,31 @@ export default function MapSection() {
         </motion.div>
 
         {/* 3-column grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_260px] xl:grid-cols-[290px_1fr_290px] items-center gap-3 xl:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_260px] xl:grid-cols-[290px_1fr_290px] items-center gap-3 xl:gap-6 overflow-visible">
 
           {/* LEFT TILES */}
-        <div className="flex flex-col gap-4 order-2 lg:order-1 pl-4 pr-2 lg:pl-10">
+        <div className="relative z-20 flex flex-col items-center lg:items-stretch gap-4 order-2 lg:order-1 px-3 lg:pl-14 xl:pl-16 lg:pr-0 overflow-visible lg:translate-x-20 xl:translate-x-28">
             {leftCategories.map((cat, i) => (
               <CategoryTile
                 key={cat.id}
                 cat={cat}
                 isActive={activeCategory === cat.id}
                 isHovered={hoveredCategory === cat.id}
-                onToggle={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
-                onMouseEnter={() => setHoveredCategory(cat.id)}
-                onMouseLeave={() => setHoveredCategory(null)}
+                onToggle={() => {
+                  if (!isDesktop) {
+                    setActiveCategory(activeCategory === cat.id ? null : cat.id);
+                  }
+                }}
+                onMouseEnter={() => {
+                  if (isDesktop) {
+                    setHoveredCategory(cat.id);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (isDesktop) {
+                    setHoveredCategory(null);
+                  }
+                }}
                 inView={inView}
                 delay={0.08 * i}
                 animDir="left"
@@ -188,11 +215,11 @@ export default function MapSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto w-full max-w-[340px] md:max-w-[440px] lg:max-w-none order-1 lg:order-2"
+            className="relative z-0 order-1 lg:order-2 w-full flex justify-center"
           >
             {/* Map wrapper with aggressive fade effect to remove box border and blue background */}
             <div
-              className="relative w-full"
+              className="relative w-full max-w-[340px] md:max-w-[440px] lg:max-w-none"
               style={{
                 maskImage: 'radial-gradient(circle, black 50%, transparent 95%)',
                 WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 95%)'
@@ -246,16 +273,28 @@ export default function MapSection() {
           </motion.div>
 
           {/* RIGHT TILES */}
-          <div className="flex flex-col gap-4 order-3">
+          <div className="relative z-20 flex flex-col items-center lg:items-stretch gap-4 order-3 px-3 lg:pl-3 lg:pr-8 overflow-visible lg:-translate-x-20 xl:-translate-x-28">
             {rightCategories.map((cat, i) => (
               <CategoryTile
                 key={cat.id}
                 cat={cat}
                 isActive={activeCategory === cat.id}
                 isHovered={hoveredCategory === cat.id}
-                onToggle={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
-                onMouseEnter={() => setHoveredCategory(cat.id)}
-                onMouseLeave={() => setHoveredCategory(null)}
+                onToggle={() => {
+                  if (!isDesktop) {
+                    setActiveCategory(activeCategory === cat.id ? null : cat.id);
+                  }
+                }}
+                onMouseEnter={() => {
+                  if (isDesktop) {
+                    setHoveredCategory(cat.id);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (isDesktop) {
+                    setHoveredCategory(null);
+                  }
+                }}
                 inView={inView}
                 delay={0.08 * i}
                 animDir="right"
@@ -350,17 +389,18 @@ function CategoryTile({
       onClick={onToggle}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className="relative w-full text-left cursor-pointer focus:outline-none"
+      className="relative w-[96%] mx-auto text-left cursor-pointer focus:outline-none"
       aria-pressed={isActive}
     >
       <div
-        className="flex items-center gap-4 rounded-2xl px-4 py-3 overflow-hidden"
+        className="flex items-center gap-4 rounded-2xl px-4 py-3"
         style={{
           backgroundColor: isEmphasized ? "white" : "#ECECEA",
           boxShadow: isEmphasized
-            ? `0 8px 32px rgba(0,0,0,0.12), 0 0 0 2px ${cat.color}55`
+            ? `0 8px 32px rgba(0,0,0,0.12)`
             : "0 2px 8px rgba(0,0,0,0.06)",
-          transform: isEmphasized ? "scale(1.02)" : "scale(1)",
+          border: isEmphasized ? `2px solid ${cat.color}99` : "2px solid transparent",
+          transform: "scale(1)",
           transition: "all 0.35s cubic-bezier(0.22,1,0.36,1)",
         }}
       >
