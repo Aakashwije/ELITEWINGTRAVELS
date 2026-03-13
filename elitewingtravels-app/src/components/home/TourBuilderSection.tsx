@@ -231,7 +231,7 @@ export default function TourBuilderSection() {
         <section
             id="tour-builder"
             ref={ref}
-            className="relative bg-black pt-24 pb-0 overflow-hidden"
+            className="relative bg-black pt-14 sm:pt-24 pb-0 overflow-hidden"
         >
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
@@ -253,16 +253,16 @@ export default function TourBuilderSection() {
                     initial={{ opacity: 0, y: 24 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.7 }}
-                    className="text-center mb-16 sm:mb-20 flex flex-col items-center"
+                    className="text-center mb-8 sm:mb-20 flex flex-col items-center"
                 >
                     <span className="section-label justify-center !text-[var(--color-gold)]">
                         Private Tour Builder
                     </span>
-                    <h2 className="!text-white mt-1 mb-4 text-center">
+                    <h2 className="!text-white mt-1 mb-3 text-center text-4xl sm:text-5xl md:text-6xl leading-tight">
                         Design Your{" "}
                         <span className="text-gradient-gold">Dream Journey</span>
                     </h2>
-                    <p className="!text-white/55 max-w-md mx-auto text-base text-center">
+                    <p className="!text-white/55 max-w-md mx-auto text-sm sm:text-base text-center">
                         Tell us about your perfect trip and we&apos;ll craft a bespoke
                         itinerary tailored just for you.
                     </p>
@@ -273,7 +273,7 @@ export default function TourBuilderSection() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.7, delay: 0.1 }}
-                    className="flex items-start justify-center gap-2 sm:gap-4 mb-20 sm:mb-24"
+                    className="w-full flex items-start justify-center gap-0.5 sm:gap-4 mb-8 sm:mb-24 px-1 sm:px-0"
                 >
                     {STEPS.map(({ id, label, Icon }, i) => {
                         const done = step > id;
@@ -283,7 +283,7 @@ export default function TourBuilderSection() {
                                 <div className="flex flex-col items-center gap-1.5">
                                     <div
                                         className={`
-                                            w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center
+                                            w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center
                                             border-2 transition-all duration-400
                                             ${done
                                                 ? "bg-[var(--color-gold)] border-[var(--color-gold)]"
@@ -306,7 +306,7 @@ export default function TourBuilderSection() {
 
                                 {/* Connector */}
                                 {i < STEPS.length - 1 && (
-                                    <div className="mx-1 sm:mx-2 mb-5 w-8 sm:w-14 h-px bg-white/10 relative overflow-hidden">
+                                    <div className="mx-0.5 sm:mx-2 mb-5 w-5 sm:w-14 h-px bg-white/10 relative overflow-hidden">
                                         <motion.div
                                             animate={{ scaleX: step > id ? 1 : 0 }}
                                             initial={{ scaleX: 0 }}
@@ -333,7 +333,7 @@ export default function TourBuilderSection() {
                             exit={{ opacity: 0, y: -18 }}
                             transition={{ duration: 0.28, ease: "easeOut" }}
                             className="rounded-3xl border border-white/10 bg-white/[0.055] backdrop-blur-lg
-                                       p-8 sm:p-14 shadow-2xl shadow-black/30"
+                                       p-5 sm:p-14 shadow-2xl shadow-black/30"
                         >
 
                             {/* ── Step 1 – Travelers ───────────────── */}
@@ -590,17 +590,17 @@ export default function TourBuilderSection() {
                     </AnimatePresence>
 
                     {/* ── Navigation bar ───────────────────────────── */}
-                    <div className="relative z-30 mt-10 sm:mt-14 mb-0 h-16 isolate flex flex-col items-center">
+                    <div className="relative z-30 mt-10 sm:mt-14 mb-0 h-auto sm:h-16 isolate flex flex-col items-center">
                         <span className="text-white/20 text-[10px] tracking-[0.2em] uppercase font-bold mb-8 pointer-events-none">
                             Step {step} of {STEPS.length}
                         </span>
 
-                        <div className="w-full relative flex items-center justify-center">
+                        <div className="w-full relative flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-0">
                             {step > 1 ? (
                                 <button
                                     type="button"
                                     onClick={() => setStep(step - 1)}
-                                    className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-2 text-sm text-white/50 hover:text-white/90
+                                    className="flex sm:absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2 items-center gap-2 text-sm text-white/50 hover:text-white/90
                                                transition-colors duration-200 font-medium px-1 py-2"
                                 >
                                     <ArrowLeft size={15} strokeWidth={2} />
@@ -654,12 +654,12 @@ export default function TourBuilderSection() {
 function StepHeading({ Icon, title, sub }: { Icon: React.ElementType; title: string; sub: string }) {
     return (
         <div className="flex flex-col items-center text-center gap-3">
-            <div className="shrink-0 w-14 h-14 rounded-full bg-[var(--color-gold)]/15 border border-[var(--color-gold)]/30
+            <div className="shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[var(--color-gold)]/15 border border-[var(--color-gold)]/30
                             flex items-center justify-center">
-                <Icon size={26} className="text-[var(--color-gold)]" strokeWidth={1.8} />
+                <Icon size={22} className="text-[var(--color-gold)] sm:w-[26px] sm:h-[26px]" strokeWidth={1.8} />
             </div>
             <div>
-                <h3 className="!text-white text-2xl sm:text-3xl !font-semibold m-0 leading-tight">{title}</h3>
+                <h3 className="!text-white text-xl sm:text-3xl !font-semibold m-0 leading-tight">{title}</h3>
                 <p className="text-white/50 text-sm sm:text-base mt-3 leading-relaxed max-w-md mx-auto">{sub}</p>
             </div>
         </div>

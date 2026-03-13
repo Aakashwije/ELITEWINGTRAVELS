@@ -44,7 +44,7 @@ export default async function DestinationPage({ params }: PageProps) {
             <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center bg-black">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${dest.image})` }}
+                    style={{ backgroundImage: `url('${encodeURI(dest.image)}')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="relative z-10 container-luxury text-center">
@@ -101,11 +101,11 @@ export default async function DestinationPage({ params }: PageProps) {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
                         {/* Did You Know */}
-                        <div className="relative overflow-hidden rounded-[2rem] bg-[var(--color-primary)] p-10 md:p-14 flex flex-col justify-center">
+                        <div className="relative overflow-hidden rounded-[2rem] bg-[var(--color-primary)] p-12 md:p-16 flex flex-col justify-center items-center text-center">
                             <span className="absolute -top-16 -right-16 w-56 h-56 bg-white/5 rounded-full" />
                             <span className="absolute -bottom-10 -left-10 w-36 h-36 bg-white/5 rounded-full" />
-                            <p className="relative text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-gold)] mb-6">Did You Know</p>
-                            <p className="relative text-xl md:text-2xl text-white font-light leading-[1.85]">
+                            <p className="relative text-base md:text-lg font-extrabold uppercase tracking-[0.22em] text-[var(--color-gold)] mb-8">Did You Know</p>
+                            <p className="relative text-2xl md:text-3xl text-white font-light leading-[1.75] max-w-[34ch] text-center">
                                 {dest.name} is one of Sri Lanka&apos;s most cherished destinations, celebrated for its{" "}
                                 <span className="text-[var(--color-gold)] font-medium">
                                     {dest.highlights.slice(0, 3).join(", ")}
@@ -115,7 +115,7 @@ export default async function DestinationPage({ params }: PageProps) {
                         </div>
 
                         {/* Info Cards */}
-                        <div className="space-y-8 flex flex-col justify-center">
+                        <div className="space-y-0 flex flex-col justify-center">
 
                             {/* Best Time */}
                             <div>
@@ -129,8 +129,10 @@ export default async function DestinationPage({ params }: PageProps) {
                                 </p>
                             </div>
 
+                            <div className="h-10 md:h-8" aria-hidden="true" />
+
                             {/* CTA Card */}
-                            <div className="rounded-[2rem] bg-[var(--color-primary)] p-10 text-center">
+                            <div className="hidden md:block rounded-[2rem] bg-[var(--color-primary)] p-10 text-center">
                                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-gold)] mb-3">Ready to Visit?</p>
                                 <h4 className="!text-white text-2xl font-semibold mb-4">Plan Your {dest.name} Trip</h4>
                                 <p className="text-white/70 text-base mb-8 leading-relaxed">Our travel experts will craft a personalised itinerary just for you.</p>

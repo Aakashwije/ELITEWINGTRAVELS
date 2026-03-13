@@ -226,7 +226,7 @@ export const destinations: Destination[] = [
         tagline: "Nature's Masterpiece",
         description:
             "A misty, mountain-clad village surrounded by tea plantations, cascading waterfalls, and breathtaking hiking trails like Ella Rock and Little Adam's Peak.",
-        image: "/Locations/Ella/Ella_1.png",
+        image: "/Locations/Ella/Ella_4.png",
         bestTime: "January - May",
         highlights: ["Nine Arches Bridge", "Ella Rock", "Little Adam's Peak", "Ravana Falls", "Tea Factories"],
         hotels: ["98 Acres Resort & Spa", "Ekho Ella", "Mountain Heavens"],
@@ -243,7 +243,7 @@ export const destinations: Destination[] = [
         tagline: "The Safari Hub",
         description:
             "The perfect starting point for wildlife enthusiasts looking to explore the gathering of wild elephants at nearby Minneriya and Kaudulla National Parks.",
-        image: "/Locations/Habarana/Habarana_1.jpg",
+        image: "/Locations/Habarana/Habarana_2.jpg",
         bestTime: "July - September",
         highlights: ["Minneriya National Park", "Kaudulla National Park", "Hurulu Eco Park", "Habarana Lake", "Village Safaris"],
         hotels: ["Cinnamon Lodge", "Habarana Village", "Aliya Resort"],
@@ -365,7 +365,7 @@ export const destinations: Destination[] = [
         tagline: "Whale Watching Capital",
         description:
             "A stunning crescent-shaped beach that serves as one of the world's best locations for spotting majestic blue whales and playful dolphins.",
-        image: "/Locations/Mirissa/Mirissa_1.JPG",
+        image: "/Locations/Mirissa/Mirissa_2.jpg",
         bestTime: "November - April",
         highlights: ["Whale Watching", "Secret Beach", "Coconut Tree Hill", "Parrot Rock", "Surfing"],
         hotels: ["Weligama Bay Marriott", "Sri Sharavi Beach Villas", "Ubuntu Beach Villas"],
@@ -399,7 +399,7 @@ export const destinations: Destination[] = [
         tagline: "Little England",
         description:
             "The highest town in Sri Lanka, boasting crisp weather, colonial-style architecture, manicured gardens, and endless carpets of emerald tea.",
-        image: "/Locations/Nuwaraeliya/Nuwara Eliya_1.jpg",
+        image: "/Locations/Nuwaraeliya/Nuwara eliya_2.jpg",
         bestTime: "February - May",
         highlights: ["Horton Plains", "Gregory Lake", "Victoria Park", "Pedro Tea Estate", "Hakgala Botanical Garden"],
         hotels: ["The Grand Hotel", "Heritance Tea Factory", "Araliya Green Hills"],

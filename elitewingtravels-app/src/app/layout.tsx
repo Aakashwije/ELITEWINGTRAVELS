@@ -5,7 +5,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
-import StickyCTA from "@/components/ui/StickyCTA";
 
 const playfair = Playfair_Display({
   variable: "--font-heading",
@@ -114,7 +113,6 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <FloatingWhatsApp />
-        <StickyCTA />
       </body>
     </html>
   );
