@@ -191,7 +191,7 @@ export default async function VehiclePage({ params }: Props) {
                         {/* Driver Details Card */}
                         <div className="h-7" />
                         <div className="bg-gradient-to-br from-[#0a2d6b] to-[#061a3d] p-10 md:p-12 rounded-3xl shadow-xl text-white min-h-[390px] text-center">
-                            <h3 className="text-3xl md:text-4xl font-semibold mb-9 text-white border-b border-white/20 pb-5">
+                            <h3 className="text-3xl md:text-4xl font-semibold mb-9 text-white !text-white border-b border-white/20 pb-5">
                                 Your Chauffeur
                             </h3>
 
@@ -204,7 +204,7 @@ export default async function VehiclePage({ params }: Props) {
                                     <p className="text-sm text-[var(--color-gold)] uppercase tracking-wider font-semibold mb-2">
                                         Assigned Chauffeur
                                     </p>
-                                    <h4 className="text-2xl md:text-3xl font-bold leading-tight">
+                                    <h4 className="text-2xl md:text-3xl font-bold leading-tight text-white !text-white">
                                         {vehicle.driverName || "Professional Guide"}
                                     </h4>
                                 </div>

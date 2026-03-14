@@ -241,9 +241,6 @@ p {
   background: var(--color-gold);
 }
 
-.section-label:not(.justify-center)::after {
-  display: none;
-}
 
 /* ===== FLOATING WHATSAPP ===== */
 .floating-whatsapp {
