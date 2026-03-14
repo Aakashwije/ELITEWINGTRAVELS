@@ -13,36 +13,36 @@ import Link from "next/link";
 
 const allDestinations = [
   // ── North / North-central ──
-  { label: "Anuradhapura", x: "51%", y: "55%" },
-  { label: "Wilpattu", x: "46%", y: "51%" },
-  { label: "Minneriya", x: "57%", y: "59%" },
-  { label: "Sigiriya", x: "55%", y: "62%" },
-  { label: "Polonnaruwa", x: "60%", y: "62%" },
-  { label: "Gammaduwa", x: "53%", y: "64%" },
+  { label: "Anuradhapura", x: "45%", y: "39%" },
+  { label: "Wilpattu", x: "38%", y: "38%" },
+  { label: "Minneriya", x: "50%", y: "45%" },
+  { label: "Sigiriya", x: "50%", y: "49%" },
+  { label: "Polonnaruwa", x: "52%", y: "50%" },
+  { label: "Gammaduwa", x: "47%", y: "50%" },
   // ── Central / Hill Country ──
-  { label: "Kandy", x: "53%", y: "69%" },
-  { label: "Kithulgala", x: "50%", y: "71%" },
-  { label: "Rathnapura", x: "49%", y: "76%" },
-  { label: "Horton Plains", x: "55%", y: "75%" },
-  { label: "Ella", x: "57%", y: "76%" },
-  { label: "Ranamure", x: "51%", y: "78%" },
-  { label: "Sinharaja", x: "50%", y: "81%" },
-  { label: "Maduru Oya", x: "64%", y: "65%" },
+  { label: "Kandy", x: "48%", y: "59%" },
+  { label: "Kithulgala", x: "44%", y: "64%" },
+  { label: "Rathnapura", x: "42%", y: "70%" },
+  { label: "Horton Plains", x: "47%", y: "69%" },
+  { label: "Ella", x: "54%", y: "68%" },
+  { label: "Ranamure", x: "50%", y: "55%" },
+  { label: "Sinharaja", x: "44%", y: "75%" },
+  { label: "Maduru Oya", x: "55%", y: "58%" },
   // ── West coast ──
-  { label: "Negombo", x: "44%", y: "67%" },
-  { label: "Colombo", x: "44%", y: "72%" },
-  { label: "Bentota", x: "46%", y: "78%" },
-  { label: "Ingiriya", x: "48%", y: "75%" },
+  { label: "Negombo", x: "35%", y: "56%" },
+  { label: "Colombo", x: "36%", y: "64%" },
+  { label: "Bentota", x: "38%", y: "70%" },
+  { label: "Ingiriya", x: "42%", y: "69%" },
   // ── South coast ──
-  { label: "Galle", x: "47%", y: "85%" },
-  { label: "Unawatuna", x: "49%", y: "86%" },
-  { label: "Weligama", x: "51%", y: "87%" },
-  { label: "Mirissa", x: "52%", y: "88%" },
-  { label: "Polhena", x: "55%", y: "88%" },
+  { label: "Galle", x: "41%", y: "80%" },
+  { label: "Unawatuna", x: "49%", y: "81%" },
+  { label: "Weligama", x: "44%", y: "83%" },
+  { label: "Mirissa", x: "46%", y: "84%" },
+  { label: "Polhena", x: "44%", y: "83%" },
   // ── East coast ──
-  { label: "Arugam Bay", x: "62%", y: "69%" },
+  { label: "Arugam Bay", x: "60%", y: "69%" },
   // ── South-east ──
-  { label: "Yala", x: "56%", y: "80%" },
+  { label: "Yala", x: "60%", y: "71%" },
 ];
 
 // ─── Category definitions ──────────────────────────────────────────────────────
