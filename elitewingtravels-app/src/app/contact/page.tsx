@@ -53,6 +53,7 @@ export default function ContactPage() {
                                 escape, or a tailor-made adventure, our team is ready to bring
                                 your vision to life.
                             </p>
+                            <div style={{ height: '20px' }} />
 
                             <div className="space-y-6 mb-12">
                                 <div className="flex items-start gap-4">
@@ -64,6 +65,7 @@ export default function ContactPage() {
                                         <p className="text-sm">{siteConfig.address}</p>
                                     </div>
                                 </div>
+                                <div style={{ height: '5px' }} />
                                 <div className="flex items-start gap-4">
                                     <div className="w-12 h-12 rounded-2xl bg-[var(--color-sky)] flex items-center justify-center flex-shrink-0">
                                         <Phone size={22} className="text-[var(--color-primary)]" strokeWidth={1.8} />
@@ -75,6 +77,8 @@ export default function ContactPage() {
                                         </a>
                                     </div>
                                 </div>
+                                <div style={{ height: '5px' }} />
+                                
                                 <div className="flex items-start gap-4">
                                     <div className="w-12 h-12 rounded-2xl bg-[var(--color-sky)] flex items-center justify-center flex-shrink-0">
                                         <Mail size={22} className="text-[var(--color-primary)]" strokeWidth={1.8} />
@@ -91,6 +95,7 @@ export default function ContactPage() {
                                         </a>
                                     </div>
                                 </div>
+                                <div style={{ height: '5px' }} />
                                 <div className="flex items-start gap-4">
                                     <div className="w-12 h-12 rounded-2xl bg-green-50 flex items-center justify-center flex-shrink-0">
                                         <MessageCircle size={22} className="text-green-600" strokeWidth={1.8} />
@@ -102,6 +107,7 @@ export default function ContactPage() {
                                         </a>
                                     </div>
                                 </div>
+                                <div style={{ height: '23px' }} />
                             </div>
 
                             {/* Map */}
@@ -120,7 +126,7 @@ export default function ContactPage() {
                         </div>
 
                         {/* Right - Form */}
-                        <div>
+                        <div className="bg-white/95 border-4 border-white rounded-[2.5rem] shadow-[0_16px_56px_rgba(11,61,145,0.15)] p-16 md:p-20 max-w-2xl mx-auto">
                             <ContactForm />
                         </div>
                     </div>
