@@ -55,7 +55,7 @@ export default function HospitalitySection() {
 
                         <div className="h-7" />
 
-                        <p className="mb-6 text-lg md:text-xl text-[var(--color-dark)]/80 font-light leading-relaxed">
+                        <p className="mb-6 text-lg md:text-xl text-[var(--color-dark)]/80 font-light leading-relaxed text-center md:text-left">
                             In Sri Lanka, every journey begins with <em className="text-[var(--color-gold)] font-medium not-italic">Ayubowan</em> – a
                             greeting that means &ldquo;may you live long.&rdquo; It embodies
                             the warmth, generosity, and genuine care that defines Sri Lankan
@@ -64,7 +64,7 @@ export default function HospitalitySection() {
 
                         <div className="h-3" />
 
-                        <p className="mb-16 text-base md:text-lg text-[var(--color-dark)]/70 font-light leading-relaxed text-justify">
+                        <p className="mb-16 text-base md:text-lg text-[var(--color-dark)]/70 font-light leading-relaxed text-center md:text-justify md:text-left">
                             At EliteWing Travels, we carry this philosophy into everything we
                             do. From your first inquiry to your fond farewell, every detail is
                             handled with meticulous care, ensuring your experience is not just

@@ -32,7 +32,7 @@ export default function AboutPage() {
                     <h1 className="!text-white mb-4 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
                         About <span className="text-gradient-gold">EliteWing</span>
                     </h1>
-                    <p className="!text-white/90 text-base md:text-lg max-w-2xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium">
+                    <p className="!text-white/90 text-base md:text-lg max-w-2xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium text-center">
                         21 years of passion, dedication, and unwavering commitment to
                         delivering extraordinary travel experiences.
                     </p>
@@ -45,23 +45,23 @@ export default function AboutPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-14 items-start">
                         <div>
                             <span className="section-label">Since 2005</span>
-                            <h2 className="mb-6">
+                            <h2 className="mb-6 text-center md:text-left">
                                 A Legacy of{" "}
                                 <span className="text-gradient-gold">Excellence</span>
                             </h2>
                             <div style={{ height: '25px' }} />
-                            <p className="text-base md:text-lg mb-6">
+                            <p className="text-base md:text-lg mb-6 text-center md:text-left">
                                 Founded in 2005, EliteWing Travels was born from a simple yet
                                 powerful vision to showcase the beauty and warmth of Sri Lanka
                                 to the world through exceptional travel experiences.
                             </p>
-                            <p className="mb-6">
+                            <p className="mb-6 text-center md:text-left">
                                 Over two decades, we&apos;ve grown from a small, passionate team
                                 to one of Sri Lanka&apos;s most trusted luxury travel providers.
                                 Our commitment to quality, authenticity, and personalized service
                                 has earned us the trust of over 10,000 international travelers.
                             </p>
-                            <p>
+                            <p className="text-center md:text-left">
                                 Every journey we craft reflects our deep love for Sri Lanka 
                                 its ancient heritage, lush landscapes, vibrant culture, and
                                 above all, its warm and welcoming people.
@@ -97,7 +97,9 @@ export default function AboutPage() {
                     <div className="max-w-5xl w-full flex flex-col items-center justify-center text-center mx-auto">
                         <div className="w-full flex flex-col items-center justify-center text-center">
                             <span className="section-label">Our Fleet</span>
-                            <h2 className="mb-6">Vehicles Built for <span className="text-gradient-gold">Every Journey</span></h2>
+                            <h2 className="mb-6 text-center md:text-left">
+                                Vehicles Built for <span className="text-gradient-gold">Every Journey</span>
+                            </h2>
                             <p className="max-w-[800px] mb-10 text-[var(--color-primary)]/80 text-center">
                                 From private sedans to group coaches, our fleet is selected for comfort,
                                 safety, and smooth travel across Sri Lanka.
