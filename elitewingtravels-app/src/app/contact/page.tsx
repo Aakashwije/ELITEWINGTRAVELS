@@ -126,8 +126,10 @@ export default function ContactPage() {
                         </div>
 
                         {/* Right - Form */}
-                        <div className="bg-white/95 border-4 border-white rounded-[2.5rem] shadow-[0_16px_56px_rgba(11,61,145,0.15)] p-16 md:p-20 max-w-2xl mx-auto">
-                            <ContactForm />
+                        <div className="flex h-full items-end">
+                            <div className="bg-white border-12 border-white rounded-[2.5rem] shadow-[0_16px_56px_rgba(11,61,145,0.15)] p-10 md:p-14 w-full max-w-2xl ml-auto mt-16">
+                                <ContactForm />
+                            </div>
                         </div>
                     </div>
                 </div>

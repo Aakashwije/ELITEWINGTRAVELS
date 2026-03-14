@@ -67,7 +67,7 @@ export default function ContactForm() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="card-luxury p-12 text-center relative overflow-hidden flex flex-col items-center justify-center"
+                className="text-center relative overflow-hidden flex flex-col items-center justify-center"
             >
                 {/* Animated background glow */}
                 <motion.div
@@ -192,7 +192,7 @@ export default function ContactForm() {
     }
 
     return (
-        <div className="card-luxury p-8">
+        <>
             <h3 className="text-2xl mb-2">Send Us a Message</h3>
             <p className="text-sm mb-8">
                 Fill out the form below and our travel experts will respond promptly.
@@ -255,6 +255,6 @@ export default function ContactForm() {
                     We respect your privacy. Your information will never be shared with third parties.
                 </p>
             </form>
-        </div>
+        </>
     );
 }
