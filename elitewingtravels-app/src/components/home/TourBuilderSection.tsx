@@ -23,7 +23,6 @@ import {
     Users2,
     PartyPopper,
     Globe,
-    Star,
 } from "lucide-react";
 
 /* ─── Schema ──────────────────────────────────────────────── */
@@ -255,6 +254,7 @@ export default function TourBuilderSection() {
                     transition={{ duration: 0.7 }}
                     className="text-center mb-8 sm:mb-20 flex flex-col items-center"
                 >
+                    <div className="h-6 sm:h-8" aria-hidden="true" />
                     <span className="section-label justify-center !text-[var(--color-gold)]">
                         Private Tour Builder
                     </span>
@@ -266,6 +266,7 @@ export default function TourBuilderSection() {
                         Tell us about your perfect trip and we&apos;ll craft a bespoke
                         itinerary tailored just for you.
                     </p>
+                    <div className="h-6 sm:h-8" aria-hidden="true" />
                 </motion.div>
 
                 {/* ── Step bar ─────────────────────────────────────── */}
@@ -320,6 +321,8 @@ export default function TourBuilderSection() {
                         );
                     })}
                 </motion.div>
+
+                <div className="h-6 sm:h-8" aria-hidden="true" />
 
                 {/* ── Card ─────────────────────────────────────────── */}
                 <form onSubmit={handleSubmit(onSubmit)} className="max-w-3xl w-full mx-auto">
