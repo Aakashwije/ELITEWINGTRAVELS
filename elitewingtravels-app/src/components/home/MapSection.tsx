@@ -13,36 +13,36 @@ import Link from "next/link";
 
 const allDestinations = [
   // ── North / North-central ──
-  { label: "Anuradhapura", x: "45%", y: "39%" },
-  { label: "Wilpattu", x: "38%", y: "38%" },
+  { label: "Anuradhapura", x: "43%", y: "39%" },
+  { label: "Wilpattu", x: "33%", y: "37%" },
   { label: "Minneriya", x: "50%", y: "45%" },
-  { label: "Sigiriya", x: "50%", y: "49%" },
-  { label: "Polonnaruwa", x: "52%", y: "50%" },
+  { label: "Sigiriya", x: "47%", y: "47%" },
+  { label: "Polonnaruwa", x: "49%", y: "50%" },
   { label: "Gammaduwa", x: "47%", y: "50%" },
   // ── Central / Hill Country ──
-  { label: "Kandy", x: "48%", y: "59%" },
-  { label: "Kithulgala", x: "44%", y: "64%" },
+  { label: "Kandy", x: "47%", y: "56%" },
+  { label: "Kithulgala", x: "39%", y: "64%" },
   { label: "Rathnapura", x: "42%", y: "70%" },
-  { label: "Horton Plains", x: "47%", y: "69%" },
+  { label: "Horton Plains", x: "45%", y: "69%" },
   { label: "Ella", x: "54%", y: "68%" },
   { label: "Ranamure", x: "50%", y: "55%" },
-  { label: "Sinharaja", x: "44%", y: "75%" },
+  { label: "Sinharaja", x: "40%", y: "75%" },
   { label: "Maduru Oya", x: "55%", y: "58%" },
   // ── West coast ──
-  { label: "Negombo", x: "35%", y: "56%" },
-  { label: "Colombo", x: "36%", y: "64%" },
-  { label: "Bentota", x: "38%", y: "70%" },
+  { label: "Negombo", x: "30%", y: "56%" },
+  { label: "Colombo", x: "30%", y: "66%" },
+  { label: "Bentota", x: "31%", y: "70%" },
   { label: "Ingiriya", x: "42%", y: "69%" },
   // ── South coast ──
-  { label: "Galle", x: "41%", y: "80%" },
-  { label: "Unawatuna", x: "49%", y: "81%" },
+  { label: "Galle", x: "39%", y: "82%" },
+  { label: "Unawatuna", x: "47%", y: "81%" },
   { label: "Weligama", x: "44%", y: "83%" },
-  { label: "Mirissa", x: "46%", y: "84%" },
+  { label: "Mirissa", x: "41%", y: "81%" },
   { label: "Polhena", x: "44%", y: "83%" },
   // ── East coast ──
-  { label: "Arugam Bay", x: "60%", y: "69%" },
+  { label: "Arugam Bay", x: "64%", y: "69%" },
   // ── South-east ──
-  { label: "Yala", x: "60%", y: "71%" },
+  { label: "Yala", x: "62%", y: "74%" },
 ];
 
 // ─── Category definitions ──────────────────────────────────────────────────────
