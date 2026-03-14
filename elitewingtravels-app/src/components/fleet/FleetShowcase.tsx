@@ -28,7 +28,7 @@ const MAIN_CATEGORIES = [
     {
         id: "Cars & SUVs",
         name: "Luxury Cars & SUVs",
-        image: "/Vehicles/Cars/SUV/TOYOTA PRADO .png",
+        image: "/Vehicles/Cars/Sedan/TOYOTA PRIUS.png",
         desc: "Sedans & SUVs",
         icon: CarFront,
         accentColor: "from-black/40 via-transparent to-transparent",
@@ -142,20 +142,37 @@ export default function FleetShowcase() {
                                 <div
                                     key={cat.id}
                                     onClick={() => setActiveCategory(cat.id)}
-                                    className="group relative h-[480px] rounded-3xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                                    className="group relative h-[320px] md:h-[340px] rounded-3xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                                     style={{ animationDelay: `${i * 0.1}s` }}
                                 >
-                                    {/* Background Image */}
-                                    <Image
-                                        src={cat.image}
-                                        alt={cat.name}
-                                        fill
-                                        className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                                        sizes="(max-width: 768px) 100vw, 33vw"
-                                    />
-
-                                    {/* Overlays */}
-                                    <div className={`absolute inset-0 bg-gradient-to-t ${cat.accentColor} z-10`} />
+                                    {/* Background Image(s) */}
+                                    {Array.isArray(cat.image) ? (
+                                        <>
+                                            <Image
+                                                src={cat.image[0]}
+                                                alt={cat.name}
+                                                fill
+                                                className="object-contain object-center transition-transform duration-700 group-hover:scale-110 z-10"
+                                                sizes="(max-width: 768px) 100vw, 33vw"
+                                            />
+                                            <Image
+                                                src={cat.image[1]}
+                                                alt={cat.name + ' Prius'}
+                                                fill
+                                                className="object-contain object-center transition-transform duration-700 group-hover:scale-110 z-20 opacity-80"
+                                                sizes="(max-width: 768px) 100vw, 33vw"
+                                            />
+                                        </>
+                                    ) : (
+                                        <Image
+                                            src={cat.image}
+                                            alt={cat.name}
+                                            fill
+                                            className="object-contain object-center transition-transform duration-700 group-hover:scale-110"
+                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                        />
+                                    )}
+                                    {/* Overlay removed as requested */}
 
                                     {/* Gold shimmer border on hover */}
                                     <div className="absolute inset-0 rounded-3xl ring-0 group-hover:ring-2 ring-[var(--color-gold)]/60 transition-all duration-500 z-30 pointer-events-none" />

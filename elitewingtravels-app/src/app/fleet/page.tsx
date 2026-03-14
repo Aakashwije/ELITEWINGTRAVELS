@@ -12,7 +12,7 @@ export default function FleetPage() {
             {/* Hero */}
             <section
                 className="relative h-[70vh] md:h-[80vh] min-h-[450px] md:min-h-[550px] flex items-center justify-center bg-cover bg-center overflow-hidden"
-                style={{ backgroundImage: "url('/Vehicles/Buses/Coaster 29 Seater/TOYOTA COASTER 29 SEATER.png')" }}
+                style={{ backgroundImage: "url('/Vehicles/our_fleet.png')" }}
             >
                 {/* Layered overlays for depth */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20 z-0" />
@@ -37,9 +37,10 @@ export default function FleetPage() {
                         Every vehicle in our fleet is meticulously maintained and equipped
                         with modern amenities for the ultimate travel comfort.
                     </p>
+                    <div className="h-8" />
 
                     {/* Stats row */}
-                    <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+                    <div className="flex flex-row flex-nowrap justify-center items-center gap-8 md:gap-16">
                         {[
                             { value: "40+", label: "Premium Vehicles" },
                             { value: "100%", label: "Licensed Chauffeurs" },
