@@ -30,7 +30,7 @@ const allDestinations = [
   { label: "Maduru Oya", x: "55%", y: "58%" },
   // ── West coast ──
   { label: "Negombo", x: "30%", y: "56%" },
-  { label: "Colombo", x: "30%", y: "66%" },
+  { label: "Colombo", x: "32%", y: "66%" },
   { label: "Bentota", x: "31%", y: "70%" },
   { label: "Ingiriya", x: "42%", y: "69%" },
   // ── South coast ──
