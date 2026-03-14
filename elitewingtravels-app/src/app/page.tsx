@@ -14,6 +14,7 @@ export default function HomePage() {
       <JourneySection />
       <MapSection />
       <DestinationsSection />
+      <div className="h-16 md:h-20" aria-hidden="true" />
       <TestimonialsSection />
       <TourBuilderSection />
     </>
