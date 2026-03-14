@@ -48,7 +48,7 @@ export default function HospitalitySection() {
                         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                     >
                         <span className="section-label">Our Philosophy</span>
-                        <h2 className="mb-6 text-4xl md:text-5xl font-bold leading-tight">
+                        <h2 className="mb-6 text-4xl md:text-5xl font-bold leading-tight text-center md:text-left">
                             <span className="text-gradient-gold">Ayubowan</span> –<br />
                             <span className="font-light">May You Live Long</span>
                         </h2>

@@ -241,7 +241,6 @@ p {
   background: var(--color-gold);
 }
 
-
 /* ===== FLOATING WHATSAPP ===== */
 .floating-whatsapp {
   position: fixed;
@@ -425,6 +424,40 @@ p {
 
   .timeline-line {
     left: 20px;
+  }
+}
+
+/* Center align only on mobile for philosophy section */
+@media (max-width: 767px) {
+  .philosophy-mobile-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* Mobile-specific gold lines in .section-label */
+@media (max-width: 767px) {
+  .section-label {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    gap: 10px;
+  }
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: var(--color-gold);
+    flex: 1 1 0%;
+    min-width: 20px;
+    max-width: 30px;
+    margin: 0 4px;
   }
 }
 
