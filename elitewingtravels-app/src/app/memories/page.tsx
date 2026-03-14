@@ -10,8 +10,10 @@ export default function MemoriesPage() {
 
     return (
         <div className="min-h-screen bg-[var(--color-background)]">
+            {/* Spacer to clear navbar */}
+            <div style={{ height: '80px', background: 'white' }} />
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 overflow-hidden bg-[var(--color-sky)]">
+            <section className="relative pt-32 pb-20 overflow-hidden bg-transparent">
                 <div className="container-luxury relative z-10 text-center">
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}
@@ -29,19 +31,10 @@ export default function MemoriesPage() {
                     >
                         Our Travel <span className="text-gradient-gold">Memories</span>
                     </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="max-w-2xl mx-auto text-lg text-[var(--color-muted)]"
-                    >
-                        A glimpse into the unforgettable journeys we&apos;ve shared with our wonderful travelers across the emerald isle of Sri Lanka.
-                    </motion.p>
+                    {/* Description text removed as requested */}
                 </div>
 
-                {/* Decorative background elements */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-gold opacity-10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary opacity-5 rounded-full blur-3xl -ml-32 -mb-32"></div>
+                
             </section>
 
             {/* Gallery Grid */}
