@@ -49,6 +49,7 @@ export default function AboutPage() {
                                 A Legacy of{" "}
                                 <span className="text-gradient-gold">Excellence</span>
                             </h2>
+                            <div style={{ height: '25px' }} />
                             <p className="text-base md:text-lg mb-6">
                                 Founded in 2005, EliteWing Travels was born from a simple yet
                                 powerful vision to showcase the beauty and warmth of Sri Lanka
@@ -61,7 +62,7 @@ export default function AboutPage() {
                                 has earned us the trust of over 10,000 international travelers.
                             </p>
                             <p>
-                                Every journey we craft reflects our deep love for Sri Lanka -
+                                Every journey we craft reflects our deep love for Sri Lanka 
                                 its ancient heritage, lush landscapes, vibrant culture, and
                                 above all, its warm and welcoming people.
                             </p>
@@ -87,31 +88,33 @@ export default function AboutPage() {
 
             {/* Vehicles */}
             <section
-                className="py-14 md:py-20"
+                className="py-14 md:py-20 flex items-center justify-center min-h-[80vh]"
                 style={{
                     background: 'linear-gradient(to bottom, white, white 20%, #eef5ff 40%, var(--color-sky))'
                 }}
             >
-                <div className="container-luxury">
-                    <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
-                        <span className="section-label justify-center">Our Fleet</span>
-                        <h2 className="mb-6">
-                            Vehicles Built for <span className="text-gradient-gold">Every Journey</span>
-                        </h2>
-                        <p className="max-w-[800px] mx-auto mb-10 text-[var(--color-primary)]/80 text-center">
-                            From private sedans to group coaches, our fleet is selected for comfort,
-                            safety, and smooth travel across Sri Lanka.
-                        </p>
+                <div className="container-luxury flex flex-col items-center justify-center w-full">
+                    <div className="max-w-5xl w-full flex flex-col items-center justify-center text-center mx-auto">
+                        <div className="w-full flex flex-col items-center justify-center text-center">
+                            <span className="section-label">Our Fleet</span>
+                            <h2 className="mb-6">Vehicles Built for <span className="text-gradient-gold">Every Journey</span></h2>
+                            <p className="max-w-[800px] mb-10 text-[var(--color-primary)]/80 text-center">
+                                From private sedans to group coaches, our fleet is selected for comfort,
+                                safety, and smooth travel across Sri Lanka.
+                            </p>
+                            <div style={{ height: '25px' }} />
+                        </div>
 
-                        <div className="group relative overflow-hidden rounded-2xl border border-[#d6e4fa] shadow-[0_15px_40px_rgba(11,61,145,0.1)] w-full mx-auto block">
+                        <div className="group relative overflow-hidden rounded-2xl border border-[#d6e4fa] shadow-[0_15px_40px_rgba(11,61,145,0.1)] w-full max-w-5xl mx-auto flex justify-center items-center">
                             <img
                                 src="/Vehicles/2026_03_10_17_06_IMG_9079.JPG"
                                 alt="EliteWing Travels Fleet"
-                                className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]"
+                                className="w-full h-auto max-h-[520px] object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#061a3d]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
 
+                        <div style={{ height: '25px' }} />
                         <div className="mt-12">
                             <Link href="/fleet" className="btn-primary shadow-[0_10px_22px_rgba(11,61,145,0.20)] hover:shadow-[0_14px_28px_rgba(11,61,145,0.24)]">
                                 View Full Fleet
@@ -150,6 +153,7 @@ export default function AboutPage() {
                         <h2>
                             Our <span className="text-gradient-gold">Values</span>
                         </h2>
+                        <div style={{ height: '32px' }} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
@@ -169,12 +173,12 @@ export default function AboutPage() {
                                 desc: "True to our Ayubowan spirit, we treat every traveler as an honored guest, ensuring genuine warmth.",
                             },
                         ].map((value) => (
-                            <div key={value.title} className="card-luxury p-8 text-center">
-                                <div className="w-14 h-14 rounded-2xl bg-[var(--color-sky)] mx-auto mb-4 flex items-center justify-center">
-                                    <value.icon size={28} className="text-[var(--color-primary)]" strokeWidth={1.6} />
+                            <div key={value.title} className="card-luxury p-4 text-center">
+                                <div className="w-10 h-10 rounded-xl bg-[var(--color-sky)] mx-auto mb-2 flex items-center justify-center">
+                                    <value.icon size={20} className="text-[var(--color-primary)]" strokeWidth={1.4} />
                                 </div>
-                                <h3 className="text-xl mb-3">{value.title}</h3>
-                                <p className="text-sm">{value.desc}</p>
+                                <h3 className="text-base mb-2">{value.title}</h3>
+                                <p className="text-xs">{value.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -195,11 +199,14 @@ export default function AboutPage() {
                 <div className="absolute -left-20 -top-16 h-52 w-52 rounded-full bg-[var(--color-gold)]/14 blur-2xl" />
                 <div className="absolute -right-24 -bottom-16 h-64 w-64 rounded-full bg-white/8 blur-3xl" />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,26,61,0.45),rgba(6,26,61,0.62))]" />
-                <div className="container-luxury text-center relative z-10">
-                    <h2 className="!text-white mb-4">Ready to Experience the EliteWing Difference?</h2>
-                    <p className="!text-white/75 text-lg max-w-xl mx-auto mb-8">
-                        Join thousands of satisfied travelers who chose excellence.
-                    </p>
+                <div className="container-luxury flex flex-col items-center justify-center text-center relative z-10">
+                    <div className="flex flex-col items-center justify-center w-full">
+                        <h2 className="!text-white mb-4 text-center w-full">Ready to Experience the EliteWing Difference?</h2>
+                        <p className="!text-white/75 text-lg max-w-xl mb-8 text-center w-full">
+                            Join thousands of satisfied travelers who chose excellence.
+                        </p>
+                        <div style={{ height: '25px' }} />
+                    </div>
                     <Link href="/contact" className="btn-white">
                         Start Your Journey
                     </Link>
