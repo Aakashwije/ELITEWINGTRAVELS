@@ -66,7 +66,7 @@ export default function HeroSection() {
 
                     <h1
                         ref={headlineRef}
-                        className="!text-white text-5xl md:text-6xl lg:text-[5.5rem] font-bold mb-20 sm:mb-24 leading-[1.1] tracking-tight text-shadow-lg drop-shadow-md text-balance"
+                         className="!text-white text-5xl md:text-6xl lg:text-[5.5rem] font-bold mb-20 sm:mb-24 leading-[1.1] tracking-tight text-shadow-lg drop-shadow-md"
                     >
                         The Home of Sri Lankan Hospitality
                     </h1>
