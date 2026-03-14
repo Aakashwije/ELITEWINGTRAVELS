@@ -53,7 +53,7 @@ export default async function DestinationPage({ params }: PageProps) {
                 </div>
             </section>
 
-            <div className="h-16 md:h-10 bg-white" aria-hidden="true" />
+            <div className="h-6 md:h-4 bg-white" aria-hidden="true" />
 
             {/* ── About Section ── */}
             <section className="pt-20 md:pt-28 pb-32 md:pb-40 bg-white">
@@ -67,7 +67,7 @@ export default async function DestinationPage({ params }: PageProps) {
                 </div>
             </section>
 
-            <div className="h-16 md:h-10 bg-white" aria-hidden="true" />
+            <div className="h-6 md:h-4 bg-white" aria-hidden="true" />
 
             {/* ── Key Attractions Section ── */}
             <section className="py-20 md:py-28 bg-[var(--color-sky)]/30">
