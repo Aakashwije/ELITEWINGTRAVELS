@@ -12,6 +12,8 @@ export default function Footer() {
 
     return (
         <footer className="bg-[var(--color-dark)] text-white">
+            {/* Spacer before logo in footer */}
+            <div style={{ height: '15px' }} />
             {/* Main Footer */}
             <div className="py-12 md:py-14">
                 <div className="container-luxury">
@@ -35,6 +37,8 @@ export default function Footer() {
                                 Premium luxury travel experiences in Sri Lanka since 2005.
                                 Discover authentic hospitality with our curated journeys.
                             </p>
+                            {/* Add space after the description text */}
+                            <div style={{ height: '12px' }} />
                             <div className="flex gap-4">
                                 {Object.entries(siteConfig.social).map(([platform, url]) => (
                                     <a
@@ -49,6 +53,8 @@ export default function Footer() {
                                     </a>
                                 ))}
                             </div>
+                            {/* Add space after social buttons */}
+                            <div style={{ height: '14px' }} />
                         </div>
 
                         {/* Quick Links */}
@@ -88,11 +94,15 @@ export default function Footer() {
                         {/* Contact */}
                         <div>
                             <h4 className="!text-white text-lg mb-5">Get in Touch</h4>
+                            {/* Add space after 'Get in Touch' heading */}
+                            <div style={{ height: '10px' }} />
                             <div className="space-y-5">
                                 <div className="flex items-start gap-3 group">
                                     <MapPin className="text-[var(--color-gold)] mt-1 w-5 h-5 transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1" />
                                     <span className="text-gray-400 text-sm">{siteConfig.address}</span>
                                 </div>
+                                {/* Add space after address */}
+                                <div style={{ height: '10px' }} />
                                 <div className="flex items-start gap-3 group">
                                     <Phone className="text-[var(--color-gold)] mt-1 w-5 h-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                                     <a
@@ -102,6 +112,8 @@ export default function Footer() {
                                         {siteConfig.phone}
                                     </a>
                                 </div>
+                                {/* Add space after phone number */}
+                                <div style={{ height: '10px' }} />
                                 <div className="flex items-start gap-3 group">
                                     <Mail className="text-[var(--color-gold)] mt-1 w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                                     <a
