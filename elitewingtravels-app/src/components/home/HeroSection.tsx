@@ -46,7 +46,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 z-0">
                 {/* Fallback to simple img tag to guarantee visibility and avoid Next.js Image fill layout issues */}
                 <img
-                    src="/assets/images/home1.png"
+                    src="/assets/images/home1updated.png"
                     alt="EliteWing Travels Background"
                     className="absolute inset-0 w-full h-full object-cover"
                 />

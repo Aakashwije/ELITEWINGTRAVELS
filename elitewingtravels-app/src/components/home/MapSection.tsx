@@ -113,17 +113,25 @@ export default function MapSection() {
 
   useEffect(() => {
     const media = window.matchMedia("(min-width: 1024px)");
-    const update = () => setIsDesktop(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
+    
+    // Defer state update to next tick to avoid synchronous setState inside useEffect body
+    const timer = setTimeout(() => {
+      setIsDesktop(media.matches);
+    }, 0);
 
-  useEffect(() => {
-    if (!isDesktop) {
-      setHoveredCategory(null);
-    }
-  }, [isDesktop]);
+    const listener = (e: MediaQueryListEvent) => {
+      setIsDesktop(e.matches);
+      if (!e.matches) {
+        setHoveredCategory(null);
+      }
+    };
+
+    media.addEventListener("change", listener);
+    return () => {
+      clearTimeout(timer);
+      media.removeEventListener("change", listener);
+    };
+  }, []);
 
   const leftCategories = categories.filter((c) => c.side === "left");
   const rightCategories = categories.filter((c) => c.side === "right");
